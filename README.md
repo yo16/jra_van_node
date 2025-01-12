@@ -71,6 +71,8 @@ JRA-VANで、データを取得したり通信をする練習 Nodeで！
     ```
     npm uninstall winax
     npm install winax
+    npm build
+    npm run dev
     ```
   - OK!
 
