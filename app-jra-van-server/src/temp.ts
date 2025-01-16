@@ -115,5 +115,10 @@ export function loadTemp() {
 
 
 
-loadTemp();
+//loadTemp();
 
+import { getAccumulatedData } from "./collectData/getAccumulatedData";
+import { DataSpecs } from "./dataFormatDefs";
+// 蓄積系のキー名(=dataSpec)を取得する
+const dataSpecList = Object.keys(DataSpecs.chikuseki);
+getAccumulatedData(dataSpecList, "19500101000000");
