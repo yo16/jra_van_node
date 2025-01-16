@@ -5,7 +5,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node ./dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "ondemand": "npm run build && node ./dist/onDemandLoad.js",
+    "temp": "npm run build && node ./dist/temp.js"
   },
   "keywords": [],
   "author": "",

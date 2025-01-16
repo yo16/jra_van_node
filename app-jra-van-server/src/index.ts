@@ -35,12 +35,15 @@ app.use(
 // ----------------------------
 
 app.get('/', (req, res) => {
-    const ret = loadData();
+    const ret = loadData("RACE", "19860101000000");
     if ("error" in ret) {
+        console.log("EEEEEEEEEEEEEEE");
+        console.log({ret});
         res.status(500).json(ret);
+        return;
     }
     
-    res.json(ret);
+    res.status(200).json(ret);
 });
 
 app.listen(port, () => {

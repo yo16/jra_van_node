@@ -76,3 +76,9 @@ JRA-VANで、データを取得したり通信をする練習 Nodeで！
     ```
   - OK!
 
+## 関数呼び出し
+- 出力引数は、`winax.Variant`クラスを使う
+  - LONG型は`pint32`、STRING型は`pstring`を使う
+  - ただし`index.d.ts`に"p"付きの型が定義されていないので、`new winax.Variant(0, "pint32" as any)`として、無理やり突っ込む
+  - 値の取り出しは、`valueOf()`関数を使う
+
