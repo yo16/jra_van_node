@@ -6,7 +6,7 @@
 import winax from "winax";
 import fs from "fs";
 
-const LOCAL_DIR_BASE = "./data";
+const LOCAL_DIR_BASE = "./data/Accumulated";
 
 export async function readJVLink(
     jvlink: winax.Object,
