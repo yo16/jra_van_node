@@ -1,5 +1,18 @@
+/*
+JV-Data仕様書
 
-export const RecordSpecs = {
+*/
+
+// RecordTypes（レコード種別）の定義
+type RecordTypesType = {
+    [RecordTypeID: string]: {
+        recordTypeID: string;
+        formatNumber: number;
+        recordSize: number;
+        recordName: string;
+    },
+};
+export const RecordTypes: RecordTypesType = {
     "AV": {"recordTypeID": "AV", "formatNumber": 103, "recordSize": 78, "recordName": "出走取消・競走除外"},
     "BN": {"recordTypeID": "BN", "formatNumber": 17, "recordSize": 477, "recordName": "馬主マスタ"},
     "BR": {"recordTypeID": "BR", "formatNumber": 16, "recordSize": 545, "recordName": "生産者マスタ"},
@@ -40,8 +53,14 @@ export const RecordSpecs = {
     "YS": {"recordTypeID": "YS", "formatNumber": 25, "recordSize": 382, "recordName": "開催スケジュール"},
 };
 
-export const DataSpecs = {
-    "chikuseki": {
+// DataSpecs（データ種別）の定義
+type DataSpecs = {
+    [DataType: string]: {
+        [DataSpecName: string]: string[];   // DataSpecNameに対するRecordTypeIDのリスト
+    },
+}
+export const DataSpecs: DataSpecs = {
+    "Accumulated": {
         "TOKU": ["TK"],
         "RACE": [
             "RA",
@@ -140,7 +159,7 @@ export const DataSpecs = {
             "SE",
         ],
     },
-    "sokuhou": {
+    "Realtime": {
         "0B12": [
             "RA",
 		    "SE",
@@ -190,7 +209,7 @@ export const DataSpecs = {
         "0B42": ["O2"],
         "0B51": ["WF"],
     },
-    "setup": {
+    "Setup": {
         "RACE": [
             "RA",
             "SE",

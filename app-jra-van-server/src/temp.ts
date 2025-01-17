@@ -118,9 +118,9 @@ export function loadTemp() {
 //loadTemp();
 
 import { getAccumulatedData } from "./collectData/getAccumulatedData";
-import { DataSpecs } from "./dataFormatDefs";
+//import { DataSpecs } from "./dataFormatDefs";
 // 蓄積系のキー名(=dataSpec)を取得する
-//const dataSpecList = Object.keys(DataSpecs.chikuseki);
+//const dataSpecList = Object.keys(DataSpecs.Setup);
 const dataSpecList = [
     "TOKU",
     "RACE",

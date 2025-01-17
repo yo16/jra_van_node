@@ -1,10 +1,10 @@
 /*
 JV-Data仕様書
 
-データフォーマット
+レコードフォーマット
 */
 
-type ColumnType = {
+export type ColumnType = {
     seq: number,
     subSeq: string | null,
     isPk: boolean,
@@ -20,21 +20,25 @@ type ColumnType = {
     }
 };
 
-type DataFormatType = {
-    [recordTypeId: string]: {
-        recordTypeId: string,
-        recrodTypeNameJp: string,
-        formatNo: number,
-        totalBytes: number,
-        columns: ColumnType[],
-    }
+type RecordFormatElement = {
+    recordTypeId: string,
+    recrodTypeNameJp: string,
+    recordTypeName: string,
+    formatNo: number,
+    totalBytes: number,
+    columns: ColumnType[],
+};
+
+type RecordFormatType = {
+    [recordTypeId: string]: RecordFormatElement,
 };
 
 
-export const DataFormat: DataFormatType = {
+export const RecordFormat: RecordFormatType = {
     TK: {
         recordTypeId: "TK",
         recrodTypeNameJp: "特別登録馬",
+        recordTypeName: "SpecialRegisteredHorses",
         formatNo: 1,
         totalBytes: 21657,
         columns: [
@@ -466,6 +470,7 @@ export const DataFormat: DataFormatType = {
     RA: {
         recordTypeId: "RA",
         recrodTypeNameJp: "レコード種別ID",
+        recordTypeName: "RecordTypeId",
         formatNo: 2,
         totalBytes: 1272,
         columns: [
@@ -1313,6 +1318,7 @@ export const DataFormat: DataFormatType = {
     SE: {
         recordTypeId: "SE",
         recrodTypeNameJp: "馬毎レース情報",
+        recordTypeName: "HorseRaceInformation",
         formatNo: 3,
         totalBytes: 555,
         columns: [
@@ -2147,6 +2153,7 @@ export const DataFormat: DataFormatType = {
     HR: {
         recordTypeId: "HR",
         recrodTypeNameJp: "払戻",
+        recordTypeName: "Payout",
         formatNo: 4,
         totalBytes: 719,
         columns: [
@@ -3065,9 +3072,10 @@ export const DataFormat: DataFormatType = {
             },
         ]
     },
-    "H1": {
+    H1: {
         recordTypeId: "H1",
         recrodTypeNameJp: "票数１",
+        recordTypeName: "VoteCount1",
         formatNo: 5,
         totalBytes: 28955,
         columns: [
@@ -3876,6 +3884,7 @@ export const DataFormat: DataFormatType = {
     H6: {
         recordTypeId: "H6",
         recrodTypeNameJp: "票数6（3連単）",
+        recordTypeName: "VoteCountTrifecta",
         formatNo: 6,
         totalBytes: 102890,
         columns: [
@@ -4132,6 +4141,7 @@ export const DataFormat: DataFormatType = {
     O1: {
         recordTypeId: "O1",
         recrodTypeNameJp: "オッズ1（単複枠）",
+        recordTypeName: "OddsFrame",
         formatNo: 7,
         totalBytes: 962,
         columns: [
@@ -4541,6 +4551,7 @@ export const DataFormat: DataFormatType = {
     O2: {
         recordTypeId: "O2",
         recrodTypeNameJp: "オッズ2（馬連）",
+        recordTypeName: "OddsExacta",
         formatNo: 8,
         totalBytes: 2042,
         columns: [
@@ -4776,6 +4787,7 @@ export const DataFormat: DataFormatType = {
     O3: {
         recordTypeId: "O3",
         recrodTypeNameJp: "オッズ3（ワイド）",
+        recordTypeName: "OddsWide",
         formatNo: 9,
         totalBytes: 2654,
         columns: [
@@ -5025,6 +5037,7 @@ export const DataFormat: DataFormatType = {
     O4: {
         recordTypeId: "O4",
         recrodTypeNameJp: "オッズ4（馬単）",
+        recordTypeName: "OddsWinExacta",
         formatNo: 10,
         totalBytes: 4031,
         columns: [
@@ -5253,6 +5266,7 @@ export const DataFormat: DataFormatType = {
     O5: {
         recordTypeId: "O5",
         recrodTypeNameJp: "オッズ5（3連複）",
+        recordTypeName: "OddsTrio",
         formatNo: 11,
         totalBytes: 12293,
         columns: [
@@ -5485,9 +5499,10 @@ export const DataFormat: DataFormatType = {
             },
         ],
     },
-    "O6": {
+    O6: {
         recordTypeId: "O6",
         recrodTypeNameJp: "オッズ6（3連単）",
+        recordTypeName: "OddsTriplet",
         formatNo: 12,
         totalBytes: 83285,
         columns: [
@@ -5723,6 +5738,7 @@ export const DataFormat: DataFormatType = {
     UM: {
         recordTypeId: "UM",
         recrodTypeNameJp: "競走馬マスタ",
+        recordTypeName: "HorseMaster",
         formatNo: 13,
         totalBytes: 1609,
         columns: [
@@ -6944,6 +6960,7 @@ export const DataFormat: DataFormatType = {
     KS: {
         recordTypeId: "KS",
         recrodTypeNameJp: "騎手マスタ",
+        recordTypeName: "JockeyMaster",
         formatNo: 14,
         totalBytes: 4173,
         columns: [
@@ -7899,6 +7916,7 @@ export const DataFormat: DataFormatType = {
     CH: {
         recordTypeId: "CH",
         recrodTypeNameJp: "調教師マスタ",
+        recordTypeName: "TrainerMaster",
         formatNo: 15,
         totalBytes: 3862,
         columns: [
@@ -8645,6 +8663,7 @@ export const DataFormat: DataFormatType = {
     BR: {
         recordTypeId: "BR",
         recrodTypeNameJp: "生産者マスタ",
+        recordTypeName: "BreederMaster",
         formatNo: 16,
         totalBytes: 545,
         columns: [
@@ -8839,9 +8858,10 @@ export const DataFormat: DataFormatType = {
             },
         ],
     },
-    "BN": {
+    BN: {
         recordTypeId: "BN",
         recrodTypeNameJp: "馬主マスタ",
+        recordTypeName: "OwnerMaster",
         formatNo: 17,
         totalBytes: 477,
         columns: [
@@ -9034,6 +9054,7 @@ export const DataFormat: DataFormatType = {
     HN: {
         recordTypeId: "HN",
         recrodTypeNameJp: "繁殖馬マスタ",
+        recordTypeName: "BreedingHorseMaster",
         formatNo: 18,
         totalBytes: 251,
         columns: [
@@ -9270,6 +9291,7 @@ export const DataFormat: DataFormatType = {
     SK: {
         recordTypeId: "SK",
         recrodTypeNameJp: "産駒マスタ",
+        recordTypeName: "OffspringMaster",
         formatNo: 19,
         totalBytes: 208,
         columns: [
@@ -9454,6 +9476,7 @@ export const DataFormat: DataFormatType = {
     CK: {
         recordTypeId: "CK",
         recrodTypeNameJp: "出走別着度数",
+        recordTypeName: "RunPlacementStats",
         formatNo: 20,
         totalBytes: 6870,
         columns: [
@@ -13490,6 +13513,7 @@ export const DataFormat: DataFormatType = {
     RC: {
         recordTypeId: "RC",
         recrodTypeNameJp: "レコードマスタ",
+        recordTypeName: "RecordMaster",
         formatNo: 21,
         totalBytes: 501,
         columns: [
@@ -13859,6 +13883,7 @@ export const DataFormat: DataFormatType = {
     HC: {
         recordTypeId: "HC",
         recrodTypeNameJp: "坂路調教",
+        recordTypeName: "HillTraining",
         formatNo: 22,
         totalBytes: 60,
         columns: [
@@ -14032,6 +14057,7 @@ export const DataFormat: DataFormatType = {
     "HS": {
         recordTypeId: "HS",
         recrodTypeNameJp: "競走馬市場取引価格",
+        recordTypeName: "HorseMarketTransactionPrice",
         formatNo: 23,
         totalBytes: 200,
         columns: [
@@ -14207,6 +14233,7 @@ export const DataFormat: DataFormatType = {
     HY: {
         recordTypeId: "HY",
         recrodTypeNameJp: "馬名の意味由来",
+        recordTypeName: "HorseNameOrigin",
         formatNo: 24,
         totalBytes: 123,
         columns: [
@@ -14292,6 +14319,7 @@ export const DataFormat: DataFormatType = {
     YS: {
         recordTypeId: "YS",
         recrodTypeNameJp: "開催スケジュール",
+        recordTypeName: "EventSchedule",
         formatNo: 25,
         totalBytes: 382,
         columns: [
@@ -14562,6 +14590,7 @@ export const DataFormat: DataFormatType = {
     BT: {
         recordTypeId: "BT",
         recrodTypeNameJp: "系統情報",
+        recordTypeName: "BloodlineInfo",
         formatNo: 26,
         totalBytes: 6889,
         columns: [
@@ -14659,6 +14688,7 @@ export const DataFormat: DataFormatType = {
     CS: {
         recordTypeId: "CS",
         recrodTypeNameJp: "コース情報",
+        recordTypeName: "CourseInfo",
         formatNo: 27,
         totalBytes: 6829,
         columns: [
@@ -14768,6 +14798,7 @@ export const DataFormat: DataFormatType = {
     DM: {
         recordTypeId: "DM",
         recrodTypeNameJp: "タイム型データマイニング予想",
+        recordTypeName: "TimeBasedDataMiningForecast",
         formatNo: 28,
         totalBytes: 303,
         columns: [
@@ -14965,6 +14996,7 @@ export const DataFormat: DataFormatType = {
     TM: {
         recordTypeId: "TM",
         recrodTypeNameJp: "対戦型データマイニング予想",
+        recordTypeName: "MatchBasedDataMiningForecast",
         formatNo: 29,
         totalBytes: 141,
         columns: [
@@ -15138,6 +15170,7 @@ export const DataFormat: DataFormatType = {
     WF: {
         recordTypeId: "WF",
         recrodTypeNameJp: "重勝式(WIN5)",
+        recordTypeName: "Win5",
         formatNo: 30,
         totalBytes: 7215,
         columns: [
@@ -15446,6 +15479,7 @@ export const DataFormat: DataFormatType = {
     JG: {
         recordTypeId: "JG",
         recrodTypeNameJp: "競走馬除外情報",
+        recordTypeName: "HorseExclusionInfo",
         formatNo: 31,
         totalBytes: 80,
         columns: [
@@ -15628,6 +15662,7 @@ export const DataFormat: DataFormatType = {
     WC: {
         recordTypeId: "WC",
         recrodTypeNameJp: "ウッドチップ調教",
+        recordTypeName: "WoodChipTraining",
         formatNo: 32,
         totalBytes: 105,
         columns: [
@@ -15966,6 +16001,7 @@ export const DataFormat: DataFormatType = {
     WH: {
         recordTypeId: "WH",
         recrodTypeNameJp: "馬体重",
+        recordTypeName: "HorseWeight",
         formatNo: 101,
         totalBytes: 847,
         columns: [
@@ -16172,6 +16208,7 @@ export const DataFormat: DataFormatType = {
     WE: {
         recordTypeId: "WE",
         recrodTypeNameJp: "天候馬場状態",
+        recordTypeName: "WeatherTrackCondition",
         formatNo: 102,
         totalBytes: 42,
         columns: [
@@ -16371,6 +16408,7 @@ export const DataFormat: DataFormatType = {
     AV: {
         recordTypeId: "AV",
         recrodTypeNameJp: "出走取消・競走除外",
+        recordTypeName: "RaceCancellation",
         formatNo: 103,
         totalBytes: 78,
         columns: [
@@ -16534,6 +16572,7 @@ export const DataFormat: DataFormatType = {
     JC: {
         recordTypeId: "JC",
         recrodTypeNameJp: "騎手変更",
+        recordTypeName: "JockeyChange",
         formatNo: 104,
         totalBytes: 161,
         columns: [
@@ -16782,6 +16821,7 @@ export const DataFormat: DataFormatType = {
     TC: {
         recordTypeId: "TC",
         recrodTypeNameJp: "発走時刻変更",
+        recordTypeName: "StartTimeChange",
         formatNo: 105,
         totalBytes: 45,
         columns: [
@@ -16933,6 +16973,7 @@ export const DataFormat: DataFormatType = {
     CC: {
         recordTypeId: "CC",
         recrodTypeNameJp: "コース変更",
+        recordTypeName: "CourseChange",
         formatNo: 106,
         totalBytes: 50,
         columns: [
