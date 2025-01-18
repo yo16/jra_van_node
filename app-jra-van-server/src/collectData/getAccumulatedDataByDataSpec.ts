@@ -19,7 +19,12 @@ export async function getAccumulatedDataByDataSpec(
         while (repeatCount < repeatLimit) {
             // オープン
             try {
-                openJVLink(jvlink, dataSpec, fromTime, option);
+                const ret = openJVLink(jvlink, dataSpec, fromTime, option);
+                if (ret === 1) {
+                    // 該当データなし
+                    // 何もせず正常終了
+                    break;
+                }
             } catch (error) {
                 throw error;
             }
@@ -72,7 +77,7 @@ function openJVLink(
     dataSpec: string,
     fromTime: string,
     option: number
-) {
+): number {
     // オープン
     try {
         // readCount（出力引数）
@@ -87,7 +92,14 @@ function openJVLink(
             dataSpec, fromTime, option,
             out_readCount, out_downloadCount, out_lastFileTimestamp
         );
-        if (openResult < 0) {
+        if (openResult === -1) {
+            // 該当データなし
+            // 何もせず正常終了だが、Openの後にReadをしないように、1を返す
+            //console.log(`No data found for ${dataSpec} from ${fromTime}`);
+            return 1;
+        }
+        else if (openResult < 0) {
+            console.error(`jvlink.JVOpen(${dataSpec}, ${fromTime}, ${option})`);
             throw new Error(`jvlink.JVOpen failed with code: ${openResult}`);
         }
 
@@ -100,4 +112,5 @@ function openJVLink(
         }
         throw new Error("Failed to open JVLink");
     }
+    return 0;
 }
