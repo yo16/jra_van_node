@@ -117,10 +117,11 @@ export function loadTemp() {
 
 //loadTemp();
 
-import { getAccumulatedData } from "./collectData/getAccumulatedData";
+import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
 //import { DataSpecs } from "./dataFormatDefs";
 // 蓄積系のキー名(=dataSpec)を取得する
 //const dataSpecList = Object.keys(DataSpecs.Setup);
+
 const dataSpecList = [
     "TOKU",
     "RACE",
@@ -139,4 +140,23 @@ const dataSpecList = [
     "COMM",
     "WOOD",
 ];
-getAccumulatedData(dataSpecList, "19500101000000");
+//getAccumulatedData(dataSpecList, "20250118000000");
+
+import { getRealtimeData } from "./collectData/getRealtimeData.js";
+
+// key: “YYYYMMDDJJKKHHRR”
+const YYYYMMDD = "20250111";
+//   JJ=場コード[05: 東京競馬場 | 06: 中山競馬場]
+const JJ = "06";
+//   KK=回次
+const KK = "01";
+//   HH=日次
+const HH = "03";
+//   RR=レース番号
+// 1～12を前ゼロで2桁にする
+const RRs = Array.from({length: 12}, (_, i) => (i + 1).toString().padStart(2, '0'));
+console.log(RRs);
+for (const RR of RRs) {
+    await getRealtimeData(["0B42"], `${YYYYMMDD}${JJ}${KK}${HH}${RR}`);
+}
+

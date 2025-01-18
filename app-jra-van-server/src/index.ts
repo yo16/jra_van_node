@@ -4,7 +4,7 @@ import type { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { loadData } from "./loadData";
+import { loadData } from "./loadData.js";
 
 const app = express();
 const port = process.env.PORT || 3001;

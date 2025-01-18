@@ -1,14 +1,14 @@
-// 蓄積型データを、DataSpecを使って取得する
-
+/*
+    リアルタイム型のデータを取得する
+*/
 import winax from "winax";
 import { readJVLink } from "./readJVLink.js";
 import { LOCALDATA_DIR_BASE, DATATYPE_DIR_BASE } from "../defs/const.js";
 
-export async function getAccumulatedDataByDataSpec(
+export async function getRealtimeDataByDataSpec(
     jvlink: winax.Object,
     dataSpec: string,
-    fromTime: string,
-    option: number,
+    key: string,
     skipFileIfExists: boolean,
 ) {
     // オープンと読み込みを行う
@@ -19,7 +19,7 @@ export async function getAccumulatedDataByDataSpec(
         while (repeatCount < repeatLimit) {
             // オープン
             try {
-                const ret = openJVLink(jvlink, dataSpec, fromTime, option);
+                const ret = openRTJVLink(jvlink, dataSpec, key);
                 if (ret === 1) {
                     // 該当データなし
                     // 何もせず正常終了
@@ -35,7 +35,7 @@ export async function getAccumulatedDataByDataSpec(
                 await readJVLink(
                     jvlink,
                     skipFileIfExists,
-                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Accumulated}`
+                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Realtime}`
                 );
 
                 // 正常終了したので、ループを抜ける
@@ -72,35 +72,27 @@ export async function getAccumulatedDataByDataSpec(
     return;
 }
 
-function openJVLink(
+
+function openRTJVLink(
     jvlink: winax.Object,
     dataSpec: string,
-    fromTime: string,
-    option: number
+    key: string,
 ): number {
     // オープン
     try {
-        // readCount（出力引数）
-        const out_readCount = new winax.Variant(0, "pint32" as any);
-        // downloadCount（出力引数）
-        const out_downloadCount = new winax.Variant(0, "pint32" as any);
-        // lastfiletimestamp（出力引数）
-        const out_lastFileTimestamp = new winax.Variant("", "pstring" as any);
-
-        // JVOpen
-        const openResult = jvlink.JVOpen(
-            dataSpec, fromTime, option,
-            out_readCount, out_downloadCount, out_lastFileTimestamp
+        // JVRTOpen
+        const openResult = jvlink.JVRTOpen(
+            dataSpec,
+            key
         );
         if (openResult === -1) {
             // 該当データなし
             // 何もせず正常終了だが、Openの後にReadをしないように、1を返す
             //console.log(`No data found for ${dataSpec} from ${fromTime}`);
             return 1;
-        }
-        else if (openResult < 0) {
-            console.error(`jvlink.JVOpen(${dataSpec}, ${fromTime}, ${option})`);
-            throw new Error(`jvlink.JVOpen failed with code: ${openResult}`);
+        } else if (openResult < 0) {
+            console.error(`jvlink.JVRTOpen(${dataSpec}, ${key})`);
+            throw new Error(`jvlink.JVRTOpen failed with code: ${openResult}`);
         }
 
     } catch (error) {
@@ -110,7 +102,8 @@ function openJVLink(
         } else {
             console.error(error);
         }
-        throw new Error("Failed to open JVLink");
+        throw new Error("Failed to open realtime JVLink");
     }
+
     return 0;
 }

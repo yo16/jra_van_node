@@ -1,13 +1,13 @@
 /*
-    蓄積型のデータを取得する
+    リアルタイム型のデータを取得する
 */
-
 import winax from "winax";
-import { getAccumulatedDataByDataSpec } from "./getAccumulatedDataByDataSpec.js";
+import { getRealtimeDataByDataSpec } from "./getRealtimeDataByDataSpec.js";
 
-export async function getAccumulatedData(
+
+export async function getRealtimeData(
     dataSpecList: string[], // 複数のdataspecを指定する
-    fromTime: string,
+    key: string,
     skipFileIfExists: boolean = true,
 ) {
     // 初期化
@@ -33,13 +33,15 @@ export async function getAccumulatedData(
 
     // データ取得
     try {
-        // dataSpecごとに、getAccumulatedDataByDataSpecを呼ぶ
-        const option = 4;   // 4:ダイアログ無しセットアップデータ(初回のみ)
+        // キーを取得
+        //to do later
+
+        // dataSpecごとに、getRealtimeDataByDataSpecを呼ぶ
         for (const dataSpec of dataSpecList) {
             console.log(`dataSpec: ${dataSpec} start`);
-            await getAccumulatedDataByDataSpec(
+            await getRealtimeDataByDataSpec(
                 jvlink,
-                dataSpec, fromTime, option,
+                dataSpec, key,
                 skipFileIfExists,
             );
             console.log(`dataSpec: ${dataSpec} end`);
@@ -51,6 +53,6 @@ export async function getAccumulatedData(
         } else {
             console.error(error);
         }
-        throw new Error("getAccumulatedData failed");
+        throw new Error("getRealtimeDataByData failed");
     }
 }
