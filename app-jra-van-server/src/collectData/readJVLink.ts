@@ -6,11 +6,12 @@
 import winax from "winax";
 import fs from "fs";
 
-const LOCAL_DIR_BASE = "./data/Accumulated";
+
 
 export async function readJVLink(
     jvlink: winax.Object,
     skipFileIfExists: boolean,
+    topDir: string,
 ) {
     // ファイルを読み込みながら、同時にローカルファイルへ保存する
     let curFileName = "";
@@ -32,7 +33,7 @@ export async function readJVLink(
             // 戻り値のハンドリング
             if (readResult > 0) {   // 正常に読み込めた
                 // ファイルパスを決定, ファイル名の先頭２文字をサブディレクトリとする
-                const filePath = getFilePath(curFileName);
+                const filePath = getFilePath(curFileName,topDir);
 
                 // ローカルファイルのオープン前に、ファイルが存在する場合
                 if (checkFileExists(filePath) && (fileDescriptor < 0)) {    // ファイルが存在する
@@ -55,7 +56,7 @@ export async function readJVLink(
                 if (fileDescriptor < 0) {
                     // フォルダを作成
                     //console.log("DEBUG: mkdirSync start");
-                    fs.mkdirSync(getDirName(curFileName), { recursive: true });
+                    fs.mkdirSync(getDirName(curFileName,topDir), { recursive: true });
                     //console.log("DEBUG: mkdirSync end");
                     // ファイルを開く
                     //console.log("DEBUG: openSync start");
@@ -115,7 +116,7 @@ export async function readJVLink(
             // JVLink上のファイルを削除
             jvlink.JVFileDelete(curFileName);
             // ローカルファイルを削除
-            const localFilePath = getFilePath(curFileName);
+            const localFilePath = getFilePath(curFileName, topDir);
             if (checkFileExists(localFilePath)) {
                 //console.log("DEBUG: unlinkSync start");
                 fs.unlinkSync(localFilePath);
@@ -150,14 +151,14 @@ function checkFileExists(fileName: string) {
 }
 
 // ファイル名から、ファイルパスを決定する
-function getFilePath(fileName: string) {
+function getFilePath(fileName: string, topDir: string) {
     const subDir = fileName.slice(0, 2);
-    return `${LOCAL_DIR_BASE}/${subDir}/${fileName}`;
+    return `${topDir}/${subDir}/${fileName}`;
 }
 
 // ファイル名から、フォルダ名を決定する
-function getDirName(fileName: string) {
+function getDirName(fileName: string, topDir: string) {
     const subDir = fileName.slice(0, 2);
-    return `${LOCAL_DIR_BASE}/${subDir}`;
+    return `${topDir}/${subDir}`;
 }
 

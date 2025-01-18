@@ -2,6 +2,7 @@
 
 import winax from "winax";
 import { readJVLink } from "./readJVLink";
+import { LOCALDATA_DIR_BASE, DATATYPE_DIR_BASE } from "../defs/const";
 
 export async function getAccumulatedDataByDataSpec(
     jvlink: winax.Object,
@@ -26,7 +27,11 @@ export async function getAccumulatedDataByDataSpec(
             // 読み込みと、ローカルへの保存
             try {
                 // 読み込みと、ローカルへの保存
-                await readJVLink(jvlink, skipFileIfExists);
+                await readJVLink(
+                    jvlink,
+                    skipFileIfExists,
+                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Accumulated}`
+                );
 
                 // 正常終了したので、ループを抜ける
                 break;
