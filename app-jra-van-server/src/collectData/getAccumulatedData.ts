@@ -1,4 +1,6 @@
-// 蓄積型のデータを取得する
+/*
+    蓄積型のデータを取得する
+*/
 
 import winax from "winax";
 import { getAccumulatedDataByDataSpec } from "./getAccumulatedDataByDataSpec";
