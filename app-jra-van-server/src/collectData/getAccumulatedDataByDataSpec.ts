@@ -98,6 +98,6 @@ function openJVLink(
         } else {
             console.error(error);
         }
-        throw new Error("Failed to openJVLink");
+        throw new Error("Failed to open JVLink");
     }
 }
