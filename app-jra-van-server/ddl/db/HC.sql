@@ -1,16 +1,29 @@
 -- 坂路調教
 CREATE TABLE HillTraining (
+    -- データ区分 
     dataCategory TEXT NOT NULL,
+    -- データ作成年月日 
     creationDate TEXT NOT NULL,
+    -- トレセン区分 
     trainingCenterCategory TEXT NOT NULL,
+    -- 調教年月日 
     trainingDate TEXT NOT NULL,
+    -- 調教時刻 
     trainingTime TEXT NOT NULL,
+    -- 血統登録番号 
     bloodlineNumber TEXT NOT NULL,
+    -- 4ハロンタイム合計(800M～0M) 
     time800To0 REAL NOT NULL,
+    -- ラップタイム(800M～600M) 
     lapTime800To600 REAL NOT NULL,
+    -- 3ハロンタイム合計(600M～0M) 
     time600To0 REAL NOT NULL,
+    -- ラップタイム(600M～400M) 
     lapTime600To400 REAL NOT NULL,
+    -- 2ハロンタイム合計(400M～0M) 
     time400To0 REAL NOT NULL,
+    -- ラップタイム(400M～200M) 
     lapTime400To200 REAL NOT NULL,
+    -- ラップタイム(200M～0M) 
     lapTime200To0 REAL NOT NULL
 );

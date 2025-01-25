@@ -47,13 +47,9 @@ export function createDDLFromOneRecordType(
                 console.error("column.subColumnsInfo.repeatItemHandlingが不正", column.subColumnsInfo.repeatItemHandling);
             }
 
-        // サブカラムがない場合は、通常のカラムをパースする
+        // サブカラムがない場合は、通常のカラムの定義を出力する
         } else {
-            //console.log("debug: サブカラムがない場合は、通常のカラムをパースする");
-            const dataType = convertDataType(column.dataType, column.length, column.nullable);
-            query += "    " +
-                `${column.columnNameEn} ` +
-                `${dataType},\n`;
+            query += createOneColumnQuery(column);
         }
     }
     // 末尾の`,\n`を、`\n`に変える
@@ -99,17 +95,6 @@ function createYokoMochiQuery(column: ColumnType, paramPrefix: string = "") {
         SubColumnsLoop: for (const subColumn of column.subColumnsInfo.subColumns) {
             // ここで subColumn は、subSeq=a、subSeq=b、subSeq=c...の単位
 
-            // データタイプ
-            let dataType = "";
-            if (!subColumn.subColumnsInfo) { 
-                // サブカラムを持っていない場合は、型を決める
-                dataType = convertDataType(
-                    subColumn.dataType,
-                    subColumn.length,
-                    subColumn.nullable
-                );
-            }
-
             if (isSingleSubColumn) {
                 // singleの場合(subSeq=aしかない）
                 // さらにサブカラムを持っていたら、再帰的にサブカラムをパースする
@@ -126,9 +111,10 @@ function createYokoMochiQuery(column: ColumnType, paramPrefix: string = "") {
                         column.columnNameEn +
                         `_${repeatNumLoopIdentifer[i]}`;        // identiferは後ろに追加
                     ;
-                    query += "    " +
-                        `${columnName} ` +
-                        `${dataType},\n`;
+                    query += createOneColumnQuery({
+                        ...subColumn,
+                        columnNameEn: columnName
+                    });
                 }
             } else {
                 // 複数の場合は、その項目名のprefixはすべて共通
@@ -139,9 +125,10 @@ function createYokoMochiQuery(column: ColumnType, paramPrefix: string = "") {
                 }
                 // サブカラムを持っていない場合は、今のsubColumnをそのまま追加する
                 else {
-                    query += "    " +
-                        `${prefix}_${subColumn.columnNameEn} ` +
-                        `${dataType},\n`;
+                    query += createOneColumnQuery({
+                        ...subColumn,
+                        columnNameEn: `${prefix}_${subColumn.columnNameEn}`
+                    });
                 }
             }
         }
@@ -149,6 +136,18 @@ function createYokoMochiQuery(column: ColumnType, paramPrefix: string = "") {
 
     return query;
 }
+
+
+
+// CREATE TABLEの１列分のクエリを作成する
+function createOneColumnQuery(column: ColumnType) {
+    return "    " +
+        `-- ${column.columnNameJp} \n` +
+        "    " +
+        `${column.columnNameEn} ` +
+        `${convertDataType(column.dataType, column.length, column.nullable)},\n`
+}
+
 
 
 // Jsonに記述されているデータタイプから、使用するDBのデータタイプへ変換する
