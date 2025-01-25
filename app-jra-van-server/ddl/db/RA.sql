@@ -1,221 +1,221 @@
 -- レース詳細
 CREATE TABLE RaceDetail (
     -- データ区分 
-    dataCategory TEXT NULL,
+    dataCategory TEXT NOT NULL,
     -- データ作成年月日 
-    creationDate TEXT NULL,
+    creationDate TEXT NOT NULL,
     -- 開催年 
-    eventYear TEXT NULL,
+    eventYear TEXT NOT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NULL,
+    eventMonthDay TEXT NOT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NULL,
+    raceCourseCode TEXT NOT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NULL,
+    eventRound INTEGER NOT NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NULL,
+    eventDay INTEGER NOT NULL,
     -- レース番号 
-    raceNumber INTEGER NULL,
+    raceNumber INTEGER NOT NULL,
     -- 曜日コード 
-    weekdayCode TEXT NULL,
+    weekdayCode TEXT NOT NULL,
     -- 特別競走番号 
-    specialRaceNumber TEXT NOT NULL,
+    specialRaceNumber TEXT NULL,
     -- 競走名本題 
-    raceName TEXT NOT NULL,
+    raceName TEXT NULL,
     -- 競走名副題 
-    raceNameSub TEXT NOT NULL,
+    raceNameSub TEXT NULL,
     -- 競走名カッコ内 
-    raceNameParentheses TEXT NOT NULL,
+    raceNameParentheses TEXT NULL,
     -- 競走名本題欧字 
-    raceNameEng TEXT NOT NULL,
+    raceNameEng TEXT NULL,
     -- 競走名副題欧字 
-    raceNameSubEng TEXT NOT NULL,
+    raceNameSubEng TEXT NULL,
     -- 競走名カッコ内欧字 
-    raceNameParenthesesEng TEXT NOT NULL,
+    raceNameParenthesesEng TEXT NULL,
     -- 競走名略称10文字 
-    raceNameAbbr10 TEXT NOT NULL,
+    raceNameAbbr10 TEXT NULL,
     -- 競走名略称6文字 
-    raceNameAbbr6 TEXT NOT NULL,
+    raceNameAbbr6 TEXT NULL,
     -- 競走名略称3文字 
-    raceNameAbbr3 TEXT NOT NULL,
+    raceNameAbbr3 TEXT NULL,
     -- 競走名区分 
-    raceTitleCategory TEXT NOT NULL,
+    raceTitleCategory TEXT NULL,
     -- 重賞回次[第N回] 
-    gradeCount INTEGER NOT NULL,
+    gradeCount INTEGER NULL,
     -- グレードコード 
-    gradeCode TEXT NOT NULL,
+    gradeCode TEXT NULL,
     -- 変更前グレードコード 
-    previousGradeCode TEXT NOT NULL,
+    previousGradeCode TEXT NULL,
     -- 競走種別コード 
-    raceTypeCode TEXT NULL,
+    raceTypeCode TEXT NOT NULL,
     -- 競走記号コード 
-    raceSymbolCode TEXT NULL,
+    raceSymbolCode TEXT NOT NULL,
     -- 重量種別コード 
-    weightTypeCode TEXT NULL,
+    weightTypeCode TEXT NOT NULL,
     -- 競走条件コード 2歳条件 
-    raceConditionCode2YearOld TEXT NOT NULL,
+    raceConditionCode2YearOld TEXT NULL,
     -- 競走条件コード 3歳条件 
-    raceConditionCode3YearOld TEXT NOT NULL,
+    raceConditionCode3YearOld TEXT NULL,
     -- 競走条件コード 4歳条件 
-    raceConditionCode4YearOld TEXT NOT NULL,
+    raceConditionCode4YearOld TEXT NULL,
     -- 競走条件コード 5歳以上条件 
-    raceConditionCode5YearOldAndAbove TEXT NOT NULL,
+    raceConditionCode5YearOldAndAbove TEXT NULL,
     -- 競走条件コード 最若年条件 
-    raceConditionCodeYoungest TEXT NOT NULL,
+    raceConditionCodeYoungest TEXT NULL,
     -- 競走条件名称 
-    raceConditionName TEXT NOT NULL,
+    raceConditionName TEXT NULL,
     -- 距離 
-    distance INTEGER NULL,
+    distance INTEGER NOT NULL,
     -- 変更前距離 
-    previousDistance INTEGER NOT NULL,
+    previousDistance INTEGER NULL,
     -- トラックコード 
-    trackCode TEXT NULL,
+    trackCode TEXT NOT NULL,
     -- 変更前トラックコード 
-    previousTrackCode TEXT NOT NULL,
+    previousTrackCode TEXT NULL,
     -- コース区分 
-    courseCategory TEXT NOT NULL,
+    courseCategory TEXT NULL,
     -- 変更前コース区分 
-    previousCourseCategory TEXT NOT NULL,
+    previousCourseCategory TEXT NULL,
     -- 本賞金 
-    mainPrizeMoney_1 INTEGER NOT NULL,
+    mainPrizeMoney_1 INTEGER NULL,
     -- 本賞金 
-    mainPrizeMoney_2 INTEGER NOT NULL,
+    mainPrizeMoney_2 INTEGER NULL,
     -- 本賞金 
-    mainPrizeMoney_3 INTEGER NOT NULL,
+    mainPrizeMoney_3 INTEGER NULL,
     -- 本賞金 
-    mainPrizeMoney_4 INTEGER NOT NULL,
+    mainPrizeMoney_4 INTEGER NULL,
     -- 本賞金 
-    mainPrizeMoney_5 INTEGER NOT NULL,
+    mainPrizeMoney_5 INTEGER NULL,
     -- 本賞金 
-    mainPrizeMoney_6 INTEGER NOT NULL,
+    mainPrizeMoney_6 INTEGER NULL,
     -- 本賞金 
-    mainPrizeMoney_7 INTEGER NOT NULL,
+    mainPrizeMoney_7 INTEGER NULL,
     -- 変更前本賞金 
-    previousPrizeMoney_1 INTEGER NOT NULL,
+    previousPrizeMoney_1 INTEGER NULL,
     -- 変更前本賞金 
-    previousPrizeMoney_2 INTEGER NOT NULL,
+    previousPrizeMoney_2 INTEGER NULL,
     -- 変更前本賞金 
-    previousPrizeMoney_3 INTEGER NOT NULL,
+    previousPrizeMoney_3 INTEGER NULL,
     -- 変更前本賞金 
-    previousPrizeMoney_4 INTEGER NOT NULL,
+    previousPrizeMoney_4 INTEGER NULL,
     -- 変更前本賞金 
-    previousPrizeMoney_5 INTEGER NOT NULL,
+    previousPrizeMoney_5 INTEGER NULL,
     -- 付加賞金 
-    additionalPrizeMoney_1 INTEGER NOT NULL,
+    additionalPrizeMoney_1 INTEGER NULL,
     -- 付加賞金 
-    additionalPrizeMoney_2 INTEGER NOT NULL,
+    additionalPrizeMoney_2 INTEGER NULL,
     -- 付加賞金 
-    additionalPrizeMoney_3 INTEGER NOT NULL,
+    additionalPrizeMoney_3 INTEGER NULL,
     -- 付加賞金 
-    additionalPrizeMoney_4 INTEGER NOT NULL,
+    additionalPrizeMoney_4 INTEGER NULL,
     -- 付加賞金 
-    additionalPrizeMoney_5 INTEGER NOT NULL,
+    additionalPrizeMoney_5 INTEGER NULL,
     -- 変更前付加賞金 
-    previousAdditionalPrizeMoney_1 INTEGER NOT NULL,
+    previousAdditionalPrizeMoney_1 INTEGER NULL,
     -- 変更前付加賞金 
-    previousAdditionalPrizeMoney_2 INTEGER NOT NULL,
+    previousAdditionalPrizeMoney_2 INTEGER NULL,
     -- 変更前付加賞金 
-    previousAdditionalPrizeMoney_3 INTEGER NOT NULL,
+    previousAdditionalPrizeMoney_3 INTEGER NULL,
     -- 発走時刻 
-    startTime TEXT NULL,
+    startTime TEXT NOT NULL,
     -- 変更前発走時刻 
-    previousStartTime TEXT NOT NULL,
+    previousStartTime TEXT NULL,
     -- 登録頭数 
-    registeredHorsesCount INTEGER NULL,
+    registeredHorsesCount INTEGER NOT NULL,
     -- 出走頭数 
-    numberOfRunners INTEGER NOT NULL,
+    numberOfRunners INTEGER NULL,
     -- 入線頭数 
-    horsesFinishedCount INTEGER NOT NULL,
+    horsesFinishedCount INTEGER NULL,
     -- 天候コード 
-    weatherCode TEXT NOT NULL,
+    weatherCode TEXT NULL,
     -- 芝馬場状態コード 
-    turfConditionCode TEXT NOT NULL,
+    turfConditionCode TEXT NULL,
     -- ダート馬場状態コード 
-    dirtConditionCode TEXT NOT NULL,
+    dirtConditionCode TEXT NULL,
     -- ラップタイム 
-    lapTime_1 REAL NOT NULL,
+    lapTime_1 REAL NULL,
     -- ラップタイム 
-    lapTime_2 REAL NOT NULL,
+    lapTime_2 REAL NULL,
     -- ラップタイム 
-    lapTime_3 REAL NOT NULL,
+    lapTime_3 REAL NULL,
     -- ラップタイム 
-    lapTime_4 REAL NOT NULL,
+    lapTime_4 REAL NULL,
     -- ラップタイム 
-    lapTime_5 REAL NOT NULL,
+    lapTime_5 REAL NULL,
     -- ラップタイム 
-    lapTime_6 REAL NOT NULL,
+    lapTime_6 REAL NULL,
     -- ラップタイム 
-    lapTime_7 REAL NOT NULL,
+    lapTime_7 REAL NULL,
     -- ラップタイム 
-    lapTime_8 REAL NOT NULL,
+    lapTime_8 REAL NULL,
     -- ラップタイム 
-    lapTime_9 REAL NOT NULL,
+    lapTime_9 REAL NULL,
     -- ラップタイム 
-    lapTime_10 REAL NOT NULL,
+    lapTime_10 REAL NULL,
     -- ラップタイム 
-    lapTime_11 REAL NOT NULL,
+    lapTime_11 REAL NULL,
     -- ラップタイム 
-    lapTime_12 REAL NOT NULL,
+    lapTime_12 REAL NULL,
     -- ラップタイム 
-    lapTime_13 REAL NOT NULL,
+    lapTime_13 REAL NULL,
     -- ラップタイム 
-    lapTime_14 REAL NOT NULL,
+    lapTime_14 REAL NULL,
     -- ラップタイム 
-    lapTime_15 REAL NOT NULL,
+    lapTime_15 REAL NULL,
     -- ラップタイム 
-    lapTime_16 REAL NOT NULL,
+    lapTime_16 REAL NULL,
     -- ラップタイム 
-    lapTime_17 REAL NOT NULL,
+    lapTime_17 REAL NULL,
     -- ラップタイム 
-    lapTime_18 REAL NOT NULL,
+    lapTime_18 REAL NULL,
     -- ラップタイム 
-    lapTime_19 REAL NOT NULL,
+    lapTime_19 REAL NULL,
     -- ラップタイム 
-    lapTime_20 REAL NOT NULL,
+    lapTime_20 REAL NULL,
     -- ラップタイム 
-    lapTime_21 REAL NOT NULL,
+    lapTime_21 REAL NULL,
     -- ラップタイム 
-    lapTime_22 REAL NOT NULL,
+    lapTime_22 REAL NULL,
     -- ラップタイム 
-    lapTime_23 REAL NOT NULL,
+    lapTime_23 REAL NULL,
     -- ラップタイム 
-    lapTime_24 REAL NOT NULL,
+    lapTime_24 REAL NULL,
     -- ラップタイム 
-    lapTime_25 REAL NOT NULL,
+    lapTime_25 REAL NULL,
     -- 障害マイルタイム 
-    obstacleMileTime REAL NOT NULL,
+    obstacleMileTime REAL NULL,
     -- 前3ハロン 
-    first3Furlongs REAL NOT NULL,
+    first3Furlongs REAL NULL,
     -- 前4ハロン 
-    first4Furlongs REAL NOT NULL,
+    first4Furlongs REAL NULL,
     -- 後3ハロン 
-    last3Furlongs REAL NOT NULL,
+    last3Furlongs REAL NULL,
     -- 後4ハロン 
-    last4Furlongs REAL NOT NULL,
+    last4Furlongs REAL NULL,
     -- コーナー 
-    CornerPassingOrder_1_corner TEXT NOT NULL,
+    CornerPassingOrder_1_corner TEXT NULL,
     -- 周回数 
-    CornerPassingOrder_1_lapNumber TEXT NOT NULL,
+    CornerPassingOrder_1_lapNumber TEXT NULL,
     -- 各通過順位 
-    CornerPassingOrder_1_individualPassingOrder TEXT NOT NULL,
+    CornerPassingOrder_1_individualPassingOrder TEXT NULL,
     -- コーナー 
-    CornerPassingOrder_2_corner TEXT NOT NULL,
+    CornerPassingOrder_2_corner TEXT NULL,
     -- 周回数 
-    CornerPassingOrder_2_lapNumber TEXT NOT NULL,
+    CornerPassingOrder_2_lapNumber TEXT NULL,
     -- 各通過順位 
-    CornerPassingOrder_2_individualPassingOrder TEXT NOT NULL,
+    CornerPassingOrder_2_individualPassingOrder TEXT NULL,
     -- コーナー 
-    CornerPassingOrder_3_corner TEXT NOT NULL,
+    CornerPassingOrder_3_corner TEXT NULL,
     -- 周回数 
-    CornerPassingOrder_3_lapNumber TEXT NOT NULL,
+    CornerPassingOrder_3_lapNumber TEXT NULL,
     -- 各通過順位 
-    CornerPassingOrder_3_individualPassingOrder TEXT NOT NULL,
+    CornerPassingOrder_3_individualPassingOrder TEXT NULL,
     -- コーナー 
-    CornerPassingOrder_4_corner TEXT NOT NULL,
+    CornerPassingOrder_4_corner TEXT NULL,
     -- 周回数 
-    CornerPassingOrder_4_lapNumber TEXT NOT NULL,
+    CornerPassingOrder_4_lapNumber TEXT NULL,
     -- 各通過順位 
-    CornerPassingOrder_4_individualPassingOrder TEXT NOT NULL,
+    CornerPassingOrder_4_individualPassingOrder TEXT NULL,
     -- レコード更新区分 
-    recordUpdateCategory TEXT NOT NULL
+    recordUpdateCategory TEXT NULL
 );

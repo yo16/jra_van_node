@@ -1,73 +1,73 @@
 -- 特別登録馬
 CREATE TABLE SpecialRegisteredHorses (
     -- データ区分 
-    dataCategory TEXT NULL,
+    dataCategory TEXT NOT NULL,
     -- データ作成年月日 
-    creationDate TEXT NULL,
+    creationDate TEXT NOT NULL,
     -- 開催年 
-    eventYear TEXT NULL,
+    eventYear TEXT NOT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NULL,
+    eventMonthDay TEXT NOT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NULL,
+    raceCourseCode TEXT NOT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NULL,
+    eventRound INTEGER NOT NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NULL,
+    eventDay INTEGER NOT NULL,
     -- レース番号 
-    raceNumber INTEGER NULL,
+    raceNumber INTEGER NOT NULL,
     -- 曜日コード 
-    weekdayCode TEXT NULL,
+    weekdayCode TEXT NOT NULL,
     -- 特別競走番号 
-    specialRaceNumber TEXT NOT NULL,
+    specialRaceNumber TEXT NULL,
     -- 競走名本題 
-    raceName TEXT NOT NULL,
+    raceName TEXT NULL,
     -- 競走名副題 
-    raceNameSub TEXT NOT NULL,
+    raceNameSub TEXT NULL,
     -- 競走名カッコ内 
-    raceNameParentheses TEXT NOT NULL,
+    raceNameParentheses TEXT NULL,
     -- 競走名本題欧字 
-    raceNameEng TEXT NOT NULL,
+    raceNameEng TEXT NULL,
     -- 競走名副題欧字 
-    raceNameSubEng TEXT NOT NULL,
+    raceNameSubEng TEXT NULL,
     -- 競走名カッコ内欧字 
-    raceNameParenthesesEng TEXT NOT NULL,
+    raceNameParenthesesEng TEXT NULL,
     -- 競走名略称10文字 
-    raceNameAbbr10 TEXT NOT NULL,
+    raceNameAbbr10 TEXT NULL,
     -- 競走名略称6文字 
-    raceNameAbbr6 TEXT NOT NULL,
+    raceNameAbbr6 TEXT NULL,
     -- 競走名略称3文字 
-    raceNameAbbr3 TEXT NOT NULL,
+    raceNameAbbr3 TEXT NULL,
     -- 競走名区分 
-    raceTitleCategory TEXT NOT NULL,
+    raceTitleCategory TEXT NULL,
     -- 重賞回次[第N回] 
-    gradeCount INTEGER NOT NULL,
+    gradeCount INTEGER NULL,
     -- グレードコード 
-    gradeCode TEXT NOT NULL,
+    gradeCode TEXT NULL,
     -- 競走種別コード 
-    raceTypeCode TEXT NULL,
+    raceTypeCode TEXT NOT NULL,
     -- 競走記号コード 
-    raceSymbolCode TEXT NULL,
+    raceSymbolCode TEXT NOT NULL,
     -- 重量種別コード 
-    weightTypeCode TEXT NULL,
+    weightTypeCode TEXT NOT NULL,
     -- 競走条件コード 2歳条件 
-    raceConditionCode2YearOld TEXT NOT NULL,
+    raceConditionCode2YearOld TEXT NULL,
     -- 競走条件コード 3歳条件 
-    raceConditionCode3YearOld TEXT NOT NULL,
+    raceConditionCode3YearOld TEXT NULL,
     -- 競走条件コード 4歳条件 
-    raceConditionCode4YearOld TEXT NOT NULL,
+    raceConditionCode4YearOld TEXT NULL,
     -- 競走条件コード 5歳以上条件 
-    raceConditionCode5YearOldAndAbove TEXT NOT NULL,
+    raceConditionCode5YearOldAndAbove TEXT NULL,
     -- 競走条件コード 最若年条件 
-    raceConditionCodeYoungest TEXT NOT NULL,
+    raceConditionCodeYoungest TEXT NULL,
     -- 距離 
-    distance INTEGER NULL,
+    distance INTEGER NOT NULL,
     -- トラックコード 
-    trackCode TEXT NULL,
+    trackCode TEXT NOT NULL,
     -- コース区分 
-    courseCategory TEXT NOT NULL,
+    courseCategory TEXT NULL,
     -- ハンデ発表日 
-    handicapAnnouncementDate TEXT NOT NULL,
+    handicapAnnouncementDate TEXT NULL,
     -- 登録頭数 
-    registeredHorsesCount INTEGER NULL
+    registeredHorsesCount INTEGER NOT NULL
 );

@@ -1,391 +1,391 @@
 -- 競走馬マスタ
 CREATE TABLE HorseMaster (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 血統登録番号 
-    bloodlineNumber TEXT NOT NULL,
+    bloodlineNumber TEXT NULL,
     -- 競走馬抹消区分 
-    horseDeletionCategory TEXT NOT NULL,
+    horseDeletionCategory TEXT NULL,
     -- 競走馬登録年月日 
-    horseRegistrationDate TEXT NOT NULL,
+    horseRegistrationDate TEXT NULL,
     -- 競走馬抹消年月日 
-    horseDeletionDate TEXT NOT NULL,
+    horseDeletionDate TEXT NULL,
     -- 生年月日 
-    birthDate TEXT NOT NULL,
+    birthDate TEXT NULL,
     -- 馬名 
-    horseName TEXT NOT NULL,
+    horseName TEXT NULL,
     -- 馬名半角ｶﾅ 
-    horseNameKana TEXT NOT NULL,
+    horseNameKana TEXT NULL,
     -- 馬名欧字 
-    horseNameEng TEXT NOT NULL,
+    horseNameEng TEXT NULL,
     -- JRA施設在きゅうフラグ 
-    jraFacilityFlag TEXT NOT NULL,
+    jraFacilityFlag TEXT NULL,
     -- 馬記号コード 
-    horseSymbolCode TEXT NOT NULL,
+    horseSymbolCode TEXT NULL,
     -- 性別コード 
-    genderCode TEXT NOT NULL,
+    genderCode TEXT NULL,
     -- 品種コード 
-    breedCode TEXT NOT NULL,
+    breedCode TEXT NULL,
     -- 毛色コード 
-    coatColorCode TEXT NOT NULL,
+    coatColorCode TEXT NULL,
     -- 東西所属コード 
-    horseRegionAffiliationCode TEXT NOT NULL,
+    horseRegionAffiliationCode TEXT NULL,
     -- 調教師コード 
-    trainerCode TEXT NOT NULL,
+    trainerCode TEXT NULL,
     -- 招待地域名 
-    invitationRegionName TEXT NOT NULL,
+    invitationRegionName TEXT NULL,
     -- 生産者コード 
-    producerCode TEXT NOT NULL,
+    producerCode TEXT NULL,
     -- 産地名 
-    placeOfBirth TEXT NOT NULL,
+    placeOfBirth TEXT NULL,
     -- 馬主コード 
-    ownerCode TEXT NOT NULL,
+    ownerCode TEXT NULL,
     -- 平地本賞金累計 
-    flatMainPrizeMonayCumulative INTEGER NOT NULL,
+    flatMainPrizeMonayCumulative INTEGER NULL,
     -- 障害本賞金累計 
-    obstacleMainPrizeMoneyCumulative INTEGER NOT NULL,
+    obstacleMainPrizeMoneyCumulative INTEGER NULL,
     -- 平地付加賞金累計 
-    flatAdditinalPrizeMoneyCumulative INTEGER NOT NULL,
+    flatAdditinalPrizeMoneyCumulative INTEGER NULL,
     -- 障害付加賞金累計 
-    obstacleAdditionalPrizeMoneyCumulative INTEGER NOT NULL,
+    obstacleAdditionalPrizeMoneyCumulative INTEGER NULL,
     -- 平地収得賞金累計 
-    flatEarningsPrizeMoneyCumulative INTEGER NOT NULL,
+    flatEarningsPrizeMoneyCumulative INTEGER NULL,
     -- 障害収得賞金累計 
-    obstacleEarningsPrizeMoneyCumulative INTEGER NOT NULL,
+    obstacleEarningsPrizeMoneyCumulative INTEGER NULL,
     -- 総合着回数 
-    totalPlacementCount_1 INTEGER NOT NULL,
+    totalPlacementCount_1 INTEGER NULL,
     -- 総合着回数 
-    totalPlacementCount_2 INTEGER NOT NULL,
+    totalPlacementCount_2 INTEGER NULL,
     -- 総合着回数 
-    totalPlacementCount_3 INTEGER NOT NULL,
+    totalPlacementCount_3 INTEGER NULL,
     -- 総合着回数 
-    totalPlacementCount_4 INTEGER NOT NULL,
+    totalPlacementCount_4 INTEGER NULL,
     -- 総合着回数 
-    totalPlacementCount_5 INTEGER NOT NULL,
+    totalPlacementCount_5 INTEGER NULL,
     -- 総合着回数 
-    totalPlacementCount_6 INTEGER NOT NULL,
+    totalPlacementCount_6 INTEGER NULL,
     -- 中央合計着回数 
-    centralTotalPlacementCount_1 INTEGER NOT NULL,
+    centralTotalPlacementCount_1 INTEGER NULL,
     -- 中央合計着回数 
-    centralTotalPlacementCount_2 INTEGER NOT NULL,
+    centralTotalPlacementCount_2 INTEGER NULL,
     -- 中央合計着回数 
-    centralTotalPlacementCount_3 INTEGER NOT NULL,
+    centralTotalPlacementCount_3 INTEGER NULL,
     -- 中央合計着回数 
-    centralTotalPlacementCount_4 INTEGER NOT NULL,
+    centralTotalPlacementCount_4 INTEGER NULL,
     -- 中央合計着回数 
-    centralTotalPlacementCount_5 INTEGER NOT NULL,
+    centralTotalPlacementCount_5 INTEGER NULL,
     -- 中央合計着回数 
-    centralTotalPlacementCount_6 INTEGER NOT NULL,
+    centralTotalPlacementCount_6 INTEGER NULL,
     -- 芝直・着回数 
-    turfStraightPlacementCount_1 INTEGER NOT NULL,
+    turfStraightPlacementCount_1 INTEGER NULL,
     -- 芝直・着回数 
-    turfStraightPlacementCount_2 INTEGER NOT NULL,
+    turfStraightPlacementCount_2 INTEGER NULL,
     -- 芝直・着回数 
-    turfStraightPlacementCount_3 INTEGER NOT NULL,
+    turfStraightPlacementCount_3 INTEGER NULL,
     -- 芝直・着回数 
-    turfStraightPlacementCount_4 INTEGER NOT NULL,
+    turfStraightPlacementCount_4 INTEGER NULL,
     -- 芝直・着回数 
-    turfStraightPlacementCount_5 INTEGER NOT NULL,
+    turfStraightPlacementCount_5 INTEGER NULL,
     -- 芝直・着回数 
-    turfStraightPlacementCount_6 INTEGER NOT NULL,
+    turfStraightPlacementCount_6 INTEGER NULL,
     -- 芝右・着回数 
-    turfRightPlacementCount_1 INTEGER NOT NULL,
+    turfRightPlacementCount_1 INTEGER NULL,
     -- 芝右・着回数 
-    turfRightPlacementCount_2 INTEGER NOT NULL,
+    turfRightPlacementCount_2 INTEGER NULL,
     -- 芝右・着回数 
-    turfRightPlacementCount_3 INTEGER NOT NULL,
+    turfRightPlacementCount_3 INTEGER NULL,
     -- 芝右・着回数 
-    turfRightPlacementCount_4 INTEGER NOT NULL,
+    turfRightPlacementCount_4 INTEGER NULL,
     -- 芝右・着回数 
-    turfRightPlacementCount_5 INTEGER NOT NULL,
+    turfRightPlacementCount_5 INTEGER NULL,
     -- 芝右・着回数 
-    turfRightPlacementCount_6 INTEGER NOT NULL,
+    turfRightPlacementCount_6 INTEGER NULL,
     -- 芝左・着回数 
-    turfLeftPlacementCount_1 INTEGER NOT NULL,
+    turfLeftPlacementCount_1 INTEGER NULL,
     -- 芝左・着回数 
-    turfLeftPlacementCount_2 INTEGER NOT NULL,
+    turfLeftPlacementCount_2 INTEGER NULL,
     -- 芝左・着回数 
-    turfLeftPlacementCount_3 INTEGER NOT NULL,
+    turfLeftPlacementCount_3 INTEGER NULL,
     -- 芝左・着回数 
-    turfLeftPlacementCount_4 INTEGER NOT NULL,
+    turfLeftPlacementCount_4 INTEGER NULL,
     -- 芝左・着回数 
-    turfLeftPlacementCount_5 INTEGER NOT NULL,
+    turfLeftPlacementCount_5 INTEGER NULL,
     -- 芝左・着回数 
-    turfLeftPlacementCount_6 INTEGER NOT NULL,
+    turfLeftPlacementCount_6 INTEGER NULL,
     -- ダ直・着回数 
-    dirtStraightPlacementCount_1 INTEGER NOT NULL,
+    dirtStraightPlacementCount_1 INTEGER NULL,
     -- ダ直・着回数 
-    dirtStraightPlacementCount_2 INTEGER NOT NULL,
+    dirtStraightPlacementCount_2 INTEGER NULL,
     -- ダ直・着回数 
-    dirtStraightPlacementCount_3 INTEGER NOT NULL,
+    dirtStraightPlacementCount_3 INTEGER NULL,
     -- ダ直・着回数 
-    dirtStraightPlacementCount_4 INTEGER NOT NULL,
+    dirtStraightPlacementCount_4 INTEGER NULL,
     -- ダ直・着回数 
-    dirtStraightPlacementCount_5 INTEGER NOT NULL,
+    dirtStraightPlacementCount_5 INTEGER NULL,
     -- ダ直・着回数 
-    dirtStraightPlacementCount_6 INTEGER NOT NULL,
+    dirtStraightPlacementCount_6 INTEGER NULL,
     -- ダ右・着回数 
-    dirtRightPlacementCount_1 INTEGER NOT NULL,
+    dirtRightPlacementCount_1 INTEGER NULL,
     -- ダ右・着回数 
-    dirtRightPlacementCount_2 INTEGER NOT NULL,
+    dirtRightPlacementCount_2 INTEGER NULL,
     -- ダ右・着回数 
-    dirtRightPlacementCount_3 INTEGER NOT NULL,
+    dirtRightPlacementCount_3 INTEGER NULL,
     -- ダ右・着回数 
-    dirtRightPlacementCount_4 INTEGER NOT NULL,
+    dirtRightPlacementCount_4 INTEGER NULL,
     -- ダ右・着回数 
-    dirtRightPlacementCount_5 INTEGER NOT NULL,
+    dirtRightPlacementCount_5 INTEGER NULL,
     -- ダ右・着回数 
-    dirtRightPlacementCount_6 INTEGER NOT NULL,
+    dirtRightPlacementCount_6 INTEGER NULL,
     -- ダ左・着回数 
-    dirtLeftPlacementCount_1 INTEGER NOT NULL,
+    dirtLeftPlacementCount_1 INTEGER NULL,
     -- ダ左・着回数 
-    dirtLeftPlacementCount_2 INTEGER NOT NULL,
+    dirtLeftPlacementCount_2 INTEGER NULL,
     -- ダ左・着回数 
-    dirtLeftPlacementCount_3 INTEGER NOT NULL,
+    dirtLeftPlacementCount_3 INTEGER NULL,
     -- ダ左・着回数 
-    dirtLeftPlacementCount_4 INTEGER NOT NULL,
+    dirtLeftPlacementCount_4 INTEGER NULL,
     -- ダ左・着回数 
-    dirtLeftPlacementCount_5 INTEGER NOT NULL,
+    dirtLeftPlacementCount_5 INTEGER NULL,
     -- ダ左・着回数 
-    dirtLeftPlacementCount_6 INTEGER NOT NULL,
+    dirtLeftPlacementCount_6 INTEGER NULL,
     -- 障害・着回数 
-    obstaclePlacementCount_1 INTEGER NOT NULL,
+    obstaclePlacementCount_1 INTEGER NULL,
     -- 障害・着回数 
-    obstaclePlacementCount_2 INTEGER NOT NULL,
+    obstaclePlacementCount_2 INTEGER NULL,
     -- 障害・着回数 
-    obstaclePlacementCount_3 INTEGER NOT NULL,
+    obstaclePlacementCount_3 INTEGER NULL,
     -- 障害・着回数 
-    obstaclePlacementCount_4 INTEGER NOT NULL,
+    obstaclePlacementCount_4 INTEGER NULL,
     -- 障害・着回数 
-    obstaclePlacementCount_5 INTEGER NOT NULL,
+    obstaclePlacementCount_5 INTEGER NULL,
     -- 障害・着回数 
-    obstaclePlacementCount_6 INTEGER NOT NULL,
+    obstaclePlacementCount_6 INTEGER NULL,
     -- 芝良・着回数 
-    turfGoodPlacementCount_1 INTEGER NOT NULL,
+    turfGoodPlacementCount_1 INTEGER NULL,
     -- 芝良・着回数 
-    turfGoodPlacementCount_2 INTEGER NOT NULL,
+    turfGoodPlacementCount_2 INTEGER NULL,
     -- 芝良・着回数 
-    turfGoodPlacementCount_3 INTEGER NOT NULL,
+    turfGoodPlacementCount_3 INTEGER NULL,
     -- 芝良・着回数 
-    turfGoodPlacementCount_4 INTEGER NOT NULL,
+    turfGoodPlacementCount_4 INTEGER NULL,
     -- 芝良・着回数 
-    turfGoodPlacementCount_5 INTEGER NOT NULL,
+    turfGoodPlacementCount_5 INTEGER NULL,
     -- 芝良・着回数 
-    turfGoodPlacementCount_6 INTEGER NOT NULL,
+    turfGoodPlacementCount_6 INTEGER NULL,
     -- 芝稍・着回数 
-    turfSlightlyHeavyPlacementCount_1 INTEGER NOT NULL,
+    turfSlightlyHeavyPlacementCount_1 INTEGER NULL,
     -- 芝稍・着回数 
-    turfSlightlyHeavyPlacementCount_2 INTEGER NOT NULL,
+    turfSlightlyHeavyPlacementCount_2 INTEGER NULL,
     -- 芝稍・着回数 
-    turfSlightlyHeavyPlacementCount_3 INTEGER NOT NULL,
+    turfSlightlyHeavyPlacementCount_3 INTEGER NULL,
     -- 芝稍・着回数 
-    turfSlightlyHeavyPlacementCount_4 INTEGER NOT NULL,
+    turfSlightlyHeavyPlacementCount_4 INTEGER NULL,
     -- 芝稍・着回数 
-    turfSlightlyHeavyPlacementCount_5 INTEGER NOT NULL,
+    turfSlightlyHeavyPlacementCount_5 INTEGER NULL,
     -- 芝稍・着回数 
-    turfSlightlyHeavyPlacementCount_6 INTEGER NOT NULL,
+    turfSlightlyHeavyPlacementCount_6 INTEGER NULL,
     -- 芝重・着回数 
-    turfHeavyPlacementCount_1 INTEGER NOT NULL,
+    turfHeavyPlacementCount_1 INTEGER NULL,
     -- 芝重・着回数 
-    turfHeavyPlacementCount_2 INTEGER NOT NULL,
+    turfHeavyPlacementCount_2 INTEGER NULL,
     -- 芝重・着回数 
-    turfHeavyPlacementCount_3 INTEGER NOT NULL,
+    turfHeavyPlacementCount_3 INTEGER NULL,
     -- 芝重・着回数 
-    turfHeavyPlacementCount_4 INTEGER NOT NULL,
+    turfHeavyPlacementCount_4 INTEGER NULL,
     -- 芝重・着回数 
-    turfHeavyPlacementCount_5 INTEGER NOT NULL,
+    turfHeavyPlacementCount_5 INTEGER NULL,
     -- 芝重・着回数 
-    turfHeavyPlacementCount_6 INTEGER NOT NULL,
+    turfHeavyPlacementCount_6 INTEGER NULL,
     -- 芝不・着回数 
-    turfBadPlacementCount_1 INTEGER NOT NULL,
+    turfBadPlacementCount_1 INTEGER NULL,
     -- 芝不・着回数 
-    turfBadPlacementCount_2 INTEGER NOT NULL,
+    turfBadPlacementCount_2 INTEGER NULL,
     -- 芝不・着回数 
-    turfBadPlacementCount_3 INTEGER NOT NULL,
+    turfBadPlacementCount_3 INTEGER NULL,
     -- 芝不・着回数 
-    turfBadPlacementCount_4 INTEGER NOT NULL,
+    turfBadPlacementCount_4 INTEGER NULL,
     -- 芝不・着回数 
-    turfBadPlacementCount_5 INTEGER NOT NULL,
+    turfBadPlacementCount_5 INTEGER NULL,
     -- 芝不・着回数 
-    turfBadPlacementCount_6 INTEGER NOT NULL,
+    turfBadPlacementCount_6 INTEGER NULL,
     -- ダ良・着回数 
-    dirtGoodPlacementCount_1 INTEGER NOT NULL,
+    dirtGoodPlacementCount_1 INTEGER NULL,
     -- ダ良・着回数 
-    dirtGoodPlacementCount_2 INTEGER NOT NULL,
+    dirtGoodPlacementCount_2 INTEGER NULL,
     -- ダ良・着回数 
-    dirtGoodPlacementCount_3 INTEGER NOT NULL,
+    dirtGoodPlacementCount_3 INTEGER NULL,
     -- ダ良・着回数 
-    dirtGoodPlacementCount_4 INTEGER NOT NULL,
+    dirtGoodPlacementCount_4 INTEGER NULL,
     -- ダ良・着回数 
-    dirtGoodPlacementCount_5 INTEGER NOT NULL,
+    dirtGoodPlacementCount_5 INTEGER NULL,
     -- ダ良・着回数 
-    dirtGoodPlacementCount_6 INTEGER NOT NULL,
+    dirtGoodPlacementCount_6 INTEGER NULL,
     -- ダ稍・着回数 
-    dirtSlightlyHeavyPlacementCount_1 INTEGER NOT NULL,
+    dirtSlightlyHeavyPlacementCount_1 INTEGER NULL,
     -- ダ稍・着回数 
-    dirtSlightlyHeavyPlacementCount_2 INTEGER NOT NULL,
+    dirtSlightlyHeavyPlacementCount_2 INTEGER NULL,
     -- ダ稍・着回数 
-    dirtSlightlyHeavyPlacementCount_3 INTEGER NOT NULL,
+    dirtSlightlyHeavyPlacementCount_3 INTEGER NULL,
     -- ダ稍・着回数 
-    dirtSlightlyHeavyPlacementCount_4 INTEGER NOT NULL,
+    dirtSlightlyHeavyPlacementCount_4 INTEGER NULL,
     -- ダ稍・着回数 
-    dirtSlightlyHeavyPlacementCount_5 INTEGER NOT NULL,
+    dirtSlightlyHeavyPlacementCount_5 INTEGER NULL,
     -- ダ稍・着回数 
-    dirtSlightlyHeavyPlacementCount_6 INTEGER NOT NULL,
+    dirtSlightlyHeavyPlacementCount_6 INTEGER NULL,
     -- ダ重・着回数 
-    dirtHeavyPlacementCount_1 INTEGER NOT NULL,
+    dirtHeavyPlacementCount_1 INTEGER NULL,
     -- ダ重・着回数 
-    dirtHeavyPlacementCount_2 INTEGER NOT NULL,
+    dirtHeavyPlacementCount_2 INTEGER NULL,
     -- ダ重・着回数 
-    dirtHeavyPlacementCount_3 INTEGER NOT NULL,
+    dirtHeavyPlacementCount_3 INTEGER NULL,
     -- ダ重・着回数 
-    dirtHeavyPlacementCount_4 INTEGER NOT NULL,
+    dirtHeavyPlacementCount_4 INTEGER NULL,
     -- ダ重・着回数 
-    dirtHeavyPlacementCount_5 INTEGER NOT NULL,
+    dirtHeavyPlacementCount_5 INTEGER NULL,
     -- ダ重・着回数 
-    dirtHeavyPlacementCount_6 INTEGER NOT NULL,
+    dirtHeavyPlacementCount_6 INTEGER NULL,
     -- ダ不・着回数 
-    dirtBadPlacementCount_1 INTEGER NOT NULL,
+    dirtBadPlacementCount_1 INTEGER NULL,
     -- ダ不・着回数 
-    dirtBadPlacementCount_2 INTEGER NOT NULL,
+    dirtBadPlacementCount_2 INTEGER NULL,
     -- ダ不・着回数 
-    dirtBadPlacementCount_3 INTEGER NOT NULL,
+    dirtBadPlacementCount_3 INTEGER NULL,
     -- ダ不・着回数 
-    dirtBadPlacementCount_4 INTEGER NOT NULL,
+    dirtBadPlacementCount_4 INTEGER NULL,
     -- ダ不・着回数 
-    dirtBadPlacementCount_5 INTEGER NOT NULL,
+    dirtBadPlacementCount_5 INTEGER NULL,
     -- ダ不・着回数 
-    dirtBadPlacementCount_6 INTEGER NOT NULL,
+    dirtBadPlacementCount_6 INTEGER NULL,
     -- 障良・着回数 
-    obstacleGoodPlacementCount_1 INTEGER NOT NULL,
+    obstacleGoodPlacementCount_1 INTEGER NULL,
     -- 障良・着回数 
-    obstacleGoodPlacementCount_2 INTEGER NOT NULL,
+    obstacleGoodPlacementCount_2 INTEGER NULL,
     -- 障良・着回数 
-    obstacleGoodPlacementCount_3 INTEGER NOT NULL,
+    obstacleGoodPlacementCount_3 INTEGER NULL,
     -- 障良・着回数 
-    obstacleGoodPlacementCount_4 INTEGER NOT NULL,
+    obstacleGoodPlacementCount_4 INTEGER NULL,
     -- 障良・着回数 
-    obstacleGoodPlacementCount_5 INTEGER NOT NULL,
+    obstacleGoodPlacementCount_5 INTEGER NULL,
     -- 障良・着回数 
-    obstacleGoodPlacementCount_6 INTEGER NOT NULL,
+    obstacleGoodPlacementCount_6 INTEGER NULL,
     -- 障稍・着回数 
-    obstacleSlightlyHeavyPlacementCount_1 INTEGER NOT NULL,
+    obstacleSlightlyHeavyPlacementCount_1 INTEGER NULL,
     -- 障稍・着回数 
-    obstacleSlightlyHeavyPlacementCount_2 INTEGER NOT NULL,
+    obstacleSlightlyHeavyPlacementCount_2 INTEGER NULL,
     -- 障稍・着回数 
-    obstacleSlightlyHeavyPlacementCount_3 INTEGER NOT NULL,
+    obstacleSlightlyHeavyPlacementCount_3 INTEGER NULL,
     -- 障稍・着回数 
-    obstacleSlightlyHeavyPlacementCount_4 INTEGER NOT NULL,
+    obstacleSlightlyHeavyPlacementCount_4 INTEGER NULL,
     -- 障稍・着回数 
-    obstacleSlightlyHeavyPlacementCount_5 INTEGER NOT NULL,
+    obstacleSlightlyHeavyPlacementCount_5 INTEGER NULL,
     -- 障稍・着回数 
-    obstacleSlightlyHeavyPlacementCount_6 INTEGER NOT NULL,
+    obstacleSlightlyHeavyPlacementCount_6 INTEGER NULL,
     -- 障重・着回数 
-    obstacleHeavyPlacementCount_1 INTEGER NOT NULL,
+    obstacleHeavyPlacementCount_1 INTEGER NULL,
     -- 障重・着回数 
-    obstacleHeavyPlacementCount_2 INTEGER NOT NULL,
+    obstacleHeavyPlacementCount_2 INTEGER NULL,
     -- 障重・着回数 
-    obstacleHeavyPlacementCount_3 INTEGER NOT NULL,
+    obstacleHeavyPlacementCount_3 INTEGER NULL,
     -- 障重・着回数 
-    obstacleHeavyPlacementCount_4 INTEGER NOT NULL,
+    obstacleHeavyPlacementCount_4 INTEGER NULL,
     -- 障重・着回数 
-    obstacleHeavyPlacementCount_5 INTEGER NOT NULL,
+    obstacleHeavyPlacementCount_5 INTEGER NULL,
     -- 障重・着回数 
-    obstacleHeavyPlacementCount_6 INTEGER NOT NULL,
+    obstacleHeavyPlacementCount_6 INTEGER NULL,
     -- 障不・着回数 
-    obstacleBadPlacementCount_1 INTEGER NOT NULL,
+    obstacleBadPlacementCount_1 INTEGER NULL,
     -- 障不・着回数 
-    obstacleBadPlacementCount_2 INTEGER NOT NULL,
+    obstacleBadPlacementCount_2 INTEGER NULL,
     -- 障不・着回数 
-    obstacleBadPlacementCount_3 INTEGER NOT NULL,
+    obstacleBadPlacementCount_3 INTEGER NULL,
     -- 障不・着回数 
-    obstacleBadPlacementCount_4 INTEGER NOT NULL,
+    obstacleBadPlacementCount_4 INTEGER NULL,
     -- 障不・着回数 
-    obstacleBadPlacementCount_5 INTEGER NOT NULL,
+    obstacleBadPlacementCount_5 INTEGER NULL,
     -- 障不・着回数 
-    obstacleBadPlacementCount_6 INTEGER NOT NULL,
+    obstacleBadPlacementCount_6 INTEGER NULL,
     -- 芝16下・着回数 
-    turfUnder16PlacementCount_1 INTEGER NOT NULL,
+    turfUnder16PlacementCount_1 INTEGER NULL,
     -- 芝16下・着回数 
-    turfUnder16PlacementCount_2 INTEGER NOT NULL,
+    turfUnder16PlacementCount_2 INTEGER NULL,
     -- 芝16下・着回数 
-    turfUnder16PlacementCount_3 INTEGER NOT NULL,
+    turfUnder16PlacementCount_3 INTEGER NULL,
     -- 芝16下・着回数 
-    turfUnder16PlacementCount_4 INTEGER NOT NULL,
+    turfUnder16PlacementCount_4 INTEGER NULL,
     -- 芝16下・着回数 
-    turfUnder16PlacementCount_5 INTEGER NOT NULL,
+    turfUnder16PlacementCount_5 INTEGER NULL,
     -- 芝16下・着回数 
-    turfUnder16PlacementCount_6 INTEGER NOT NULL,
+    turfUnder16PlacementCount_6 INTEGER NULL,
     -- 芝22下・着回数 
-    turfUnder22PlacementCount_1 INTEGER NOT NULL,
+    turfUnder22PlacementCount_1 INTEGER NULL,
     -- 芝22下・着回数 
-    turfUnder22PlacementCount_2 INTEGER NOT NULL,
+    turfUnder22PlacementCount_2 INTEGER NULL,
     -- 芝22下・着回数 
-    turfUnder22PlacementCount_3 INTEGER NOT NULL,
+    turfUnder22PlacementCount_3 INTEGER NULL,
     -- 芝22下・着回数 
-    turfUnder22PlacementCount_4 INTEGER NOT NULL,
+    turfUnder22PlacementCount_4 INTEGER NULL,
     -- 芝22下・着回数 
-    turfUnder22PlacementCount_5 INTEGER NOT NULL,
+    turfUnder22PlacementCount_5 INTEGER NULL,
     -- 芝22下・着回数 
-    turfUnder22PlacementCount_6 INTEGER NOT NULL,
+    turfUnder22PlacementCount_6 INTEGER NULL,
     -- 芝22超・着回数 
-    turfOver22PlacementCount_1 INTEGER NOT NULL,
+    turfOver22PlacementCount_1 INTEGER NULL,
     -- 芝22超・着回数 
-    turfOver22PlacementCount_2 INTEGER NOT NULL,
+    turfOver22PlacementCount_2 INTEGER NULL,
     -- 芝22超・着回数 
-    turfOver22PlacementCount_3 INTEGER NOT NULL,
+    turfOver22PlacementCount_3 INTEGER NULL,
     -- 芝22超・着回数 
-    turfOver22PlacementCount_4 INTEGER NOT NULL,
+    turfOver22PlacementCount_4 INTEGER NULL,
     -- 芝22超・着回数 
-    turfOver22PlacementCount_5 INTEGER NOT NULL,
+    turfOver22PlacementCount_5 INTEGER NULL,
     -- 芝22超・着回数 
-    turfOver22PlacementCount_6 INTEGER NOT NULL,
+    turfOver22PlacementCount_6 INTEGER NULL,
     -- ダ16下・着回数 
-    dirtUnder16PlacementCount_1 INTEGER NOT NULL,
+    dirtUnder16PlacementCount_1 INTEGER NULL,
     -- ダ16下・着回数 
-    dirtUnder16PlacementCount_2 INTEGER NOT NULL,
+    dirtUnder16PlacementCount_2 INTEGER NULL,
     -- ダ16下・着回数 
-    dirtUnder16PlacementCount_3 INTEGER NOT NULL,
+    dirtUnder16PlacementCount_3 INTEGER NULL,
     -- ダ16下・着回数 
-    dirtUnder16PlacementCount_4 INTEGER NOT NULL,
+    dirtUnder16PlacementCount_4 INTEGER NULL,
     -- ダ16下・着回数 
-    dirtUnder16PlacementCount_5 INTEGER NOT NULL,
+    dirtUnder16PlacementCount_5 INTEGER NULL,
     -- ダ16下・着回数 
-    dirtUnder16PlacementCount_6 INTEGER NOT NULL,
+    dirtUnder16PlacementCount_6 INTEGER NULL,
     -- ダ22下・着回数 
-    dirtUnder22PlacementCount_1 INTEGER NOT NULL,
+    dirtUnder22PlacementCount_1 INTEGER NULL,
     -- ダ22下・着回数 
-    dirtUnder22PlacementCount_2 INTEGER NOT NULL,
+    dirtUnder22PlacementCount_2 INTEGER NULL,
     -- ダ22下・着回数 
-    dirtUnder22PlacementCount_3 INTEGER NOT NULL,
+    dirtUnder22PlacementCount_3 INTEGER NULL,
     -- ダ22下・着回数 
-    dirtUnder22PlacementCount_4 INTEGER NOT NULL,
+    dirtUnder22PlacementCount_4 INTEGER NULL,
     -- ダ22下・着回数 
-    dirtUnder22PlacementCount_5 INTEGER NOT NULL,
+    dirtUnder22PlacementCount_5 INTEGER NULL,
     -- ダ22下・着回数 
-    dirtUnder22PlacementCount_6 INTEGER NOT NULL,
+    dirtUnder22PlacementCount_6 INTEGER NULL,
     -- ダ22超・着回数 
-    dirtOver22PlacementCount_1 INTEGER NOT NULL,
+    dirtOver22PlacementCount_1 INTEGER NULL,
     -- ダ22超・着回数 
-    dirtOver22PlacementCount_2 INTEGER NOT NULL,
+    dirtOver22PlacementCount_2 INTEGER NULL,
     -- ダ22超・着回数 
-    dirtOver22PlacementCount_3 INTEGER NOT NULL,
+    dirtOver22PlacementCount_3 INTEGER NULL,
     -- ダ22超・着回数 
-    dirtOver22PlacementCount_4 INTEGER NOT NULL,
+    dirtOver22PlacementCount_4 INTEGER NULL,
     -- ダ22超・着回数 
-    dirtOver22PlacementCount_5 INTEGER NOT NULL,
+    dirtOver22PlacementCount_5 INTEGER NULL,
     -- ダ22超・着回数 
-    dirtOver22PlacementCount_6 INTEGER NOT NULL,
+    dirtOver22PlacementCount_6 INTEGER NULL,
     -- 脚質傾向 
-    runningStyleTendency_1 TEXT NOT NULL,
+    runningStyleTendency_1 TEXT NULL,
     -- 脚質傾向 
-    runningStyleTendency_2 TEXT NOT NULL,
+    runningStyleTendency_2 TEXT NULL,
     -- 脚質傾向 
-    runningStyleTendency_3 TEXT NOT NULL,
+    runningStyleTendency_3 TEXT NULL,
     -- 脚質傾向 
-    runningStyleTendency_4 TEXT NOT NULL,
+    runningStyleTendency_4 TEXT NULL,
     -- 登録レース数 
-    registeredRaceCount INTEGER NOT NULL
+    registeredRaceCount INTEGER NULL
 );

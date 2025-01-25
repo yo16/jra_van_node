@@ -1,25 +1,25 @@
 -- 産駒マスタ
 CREATE TABLE OffspringMaster (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 血統登録番号 
-    bloodlineNumber TEXT NOT NULL,
+    bloodlineNumber TEXT NULL,
     -- 生年月日 
-    birthDate TEXT NOT NULL,
+    birthDate TEXT NULL,
     -- 性別コード 
-    genderCode TEXT NOT NULL,
+    genderCode TEXT NULL,
     -- 品種コード 
-    breedCode TEXT NOT NULL,
+    breedCode TEXT NULL,
     -- 毛色コード 
-    coatColorCode TEXT NOT NULL,
+    coatColorCode TEXT NULL,
     -- 産駒持込区分 
-    offspringImportCategory TEXT NOT NULL,
+    offspringImportCategory TEXT NULL,
     -- 輸入年 
-    importYear TEXT NOT NULL,
+    importYear TEXT NULL,
     -- 生産者コード 
-    producerCode TEXT NOT NULL,
+    producerCode TEXT NULL,
     -- 産地名 
-    placeOfBirth TEXT NOT NULL
+    placeOfBirth TEXT NULL
 );

@@ -1,11 +1,11 @@
 -- 馬名の意味由来
 CREATE TABLE HorseNameOrigin (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 血統登録番号 
-    bloodlineNumber TEXT NOT NULL,
+    bloodlineNumber TEXT NULL,
     -- 馬名の意味由来 
-    HorseNameOrigin TEXT NOT NULL
+    HorseNameOrigin TEXT NULL
 );

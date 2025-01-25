@@ -1,35 +1,35 @@
 -- 繁殖馬マスタ
 CREATE TABLE BreedingHorseMaster (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 繁殖登録番号 
-    breedingRegistrationNumber TEXT NOT NULL,
+    breedingRegistrationNumber TEXT NULL,
     -- 血統登録番号 
-    bloodlineNumber TEXT NOT NULL,
+    bloodlineNumber TEXT NULL,
     -- 馬名 
-    horseName TEXT NOT NULL,
+    horseName TEXT NULL,
     -- 馬名半角ｶﾅ 
-    horseNameKana TEXT NOT NULL,
+    horseNameKana TEXT NULL,
     -- 馬名欧字 
-    horseNameEng TEXT NOT NULL,
+    horseNameEng TEXT NULL,
     -- 生年 
-    birthYear TEXT NOT NULL,
+    birthYear TEXT NULL,
     -- 性別コード 
-    genderCode TEXT NOT NULL,
+    genderCode TEXT NULL,
     -- 品種コード 
-    breedCode TEXT NOT NULL,
+    breedCode TEXT NULL,
     -- 毛色コード 
-    coatColorCode TEXT NOT NULL,
+    coatColorCode TEXT NULL,
     -- 繁殖馬持込区分 
-    breedingHorseImportDivision TEXT NOT NULL,
+    breedingHorseImportDivision TEXT NULL,
     -- 輸入年 
-    importYear TEXT NOT NULL,
+    importYear TEXT NULL,
     -- 産地名 
-    placeOfBirth TEXT NOT NULL,
+    placeOfBirth TEXT NULL,
     -- 父馬繁殖登録番号 
-    fatherHorseBreedingRegNumber TEXT NOT NULL,
+    fatherHorseBreedingRegNumber TEXT NULL,
     -- 母馬繁殖登録番号 
-    motherHorseBreedingRegNumber TEXT NOT NULL
+    motherHorseBreedingRegNumber TEXT NULL
 );

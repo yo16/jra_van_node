@@ -1,17 +1,17 @@
 -- コース情報
 CREATE TABLE CourseInfo (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NOT NULL,
+    raceCourseCode TEXT NULL,
     -- 距離 
-    distance INTEGER NOT NULL,
+    distance INTEGER NULL,
     -- トラックコード 
-    trackCode TEXT NOT NULL,
+    trackCode TEXT NULL,
     -- コース改修年月日 
-    courseRenovationDate TEXT NOT NULL,
+    courseRenovationDate TEXT NULL,
     -- コース説明 
-    courseDescription TEXT NOT NULL
+    courseDescription TEXT NULL
 );

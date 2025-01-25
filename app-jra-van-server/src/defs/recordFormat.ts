@@ -20,7 +20,7 @@ export type ColumnType = {
     bytesTotal: number,
     dataType: string,
     length: number,
-    nullable: boolean,
+    isNotNull: boolean,
     paddingCharacter: "0" | "sp" | "Ｓ" | "Ｓ sp" | null,
     comment: string | null,
     subColumnsInfo?: {
@@ -31,7 +31,7 @@ export type ColumnType = {
     },
 };
 
-type RecordFormatElement = {
+export type RecordFormatElement = {
     recordTypeId: string,
     recordTypeNameJp: string,
     recordTypeNameEn: string,
@@ -133,7 +133,7 @@ const convertColumnTypeJsonToColumnType = (
         length: (columnFormatJson.db_column_length instanceof Array )
             ? (columnFormatJson.db_column_length[0] + columnFormatJson.db_column_length[1] * 0.1)
             : columnFormatJson.db_column_length,
-        nullable: columnFormatJson.db_column_notnull,
+        isNotNull: columnFormatJson.db_column_notnull,
         paddingCharacter:
             (columnFormatJson.padding_character === "")
                 ? null

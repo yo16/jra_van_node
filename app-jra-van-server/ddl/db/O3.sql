@@ -1,29 +1,29 @@
 -- オッズ3（ワイド）
 CREATE TABLE OddsWide (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 開催年 
-    eventYear TEXT NOT NULL,
+    eventYear TEXT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NOT NULL,
+    eventMonthDay TEXT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NOT NULL,
+    raceCourseCode TEXT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NOT NULL,
+    eventRound INTEGER NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NOT NULL,
+    eventDay INTEGER NULL,
     -- レース番号 
-    raceNumber INTEGER NOT NULL,
+    raceNumber INTEGER NULL,
     -- 発表月日時分 
-    announcementDateTime TEXT NOT NULL,
+    announcementDateTime TEXT NULL,
     -- 登録頭数 
-    registeredHorsesCount INTEGER NOT NULL,
+    registeredHorsesCount INTEGER NULL,
     -- 出走頭数 
-    numberOfRunners INTEGER NOT NULL,
+    numberOfRunners INTEGER NULL,
     -- 発売フラグ　ワイド 
-    saleFlagWide TEXT NOT NULL,
+    saleFlagWide TEXT NULL,
     -- ワイド票数合計 
-    totalWideVotes INTEGER NOT NULL
+    totalWideVotes INTEGER NULL
 );

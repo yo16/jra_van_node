@@ -1,65 +1,65 @@
 -- 票数6（3連単）
 CREATE TABLE VoteCountTrifecta (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 開催年 
-    eventYear TEXT NOT NULL,
+    eventYear TEXT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NOT NULL,
+    eventMonthDay TEXT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NOT NULL,
+    raceCourseCode TEXT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NOT NULL,
+    eventRound INTEGER NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NOT NULL,
+    eventDay INTEGER NULL,
     -- レース番号 
-    raceNumber INTEGER NOT NULL,
+    raceNumber INTEGER NULL,
     -- 登録頭数 
-    registeredHorsesCount INTEGER NOT NULL,
+    registeredHorsesCount INTEGER NULL,
     -- 出走頭数 
-    numberOfRunners INTEGER NOT NULL,
+    numberOfRunners INTEGER NULL,
     -- 発売フラグ　3連単 
-    saleFlagTrifecta TEXT NOT NULL,
+    saleFlagTrifecta TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_1 TEXT NOT NULL,
+    refundHorseNumberInfo_1 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_2 TEXT NOT NULL,
+    refundHorseNumberInfo_2 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_3 TEXT NOT NULL,
+    refundHorseNumberInfo_3 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_4 TEXT NOT NULL,
+    refundHorseNumberInfo_4 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_5 TEXT NOT NULL,
+    refundHorseNumberInfo_5 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_6 TEXT NOT NULL,
+    refundHorseNumberInfo_6 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_7 TEXT NOT NULL,
+    refundHorseNumberInfo_7 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_8 TEXT NOT NULL,
+    refundHorseNumberInfo_8 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_9 TEXT NOT NULL,
+    refundHorseNumberInfo_9 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_10 TEXT NOT NULL,
+    refundHorseNumberInfo_10 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_11 TEXT NOT NULL,
+    refundHorseNumberInfo_11 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_12 TEXT NOT NULL,
+    refundHorseNumberInfo_12 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_13 TEXT NOT NULL,
+    refundHorseNumberInfo_13 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_14 TEXT NOT NULL,
+    refundHorseNumberInfo_14 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_15 TEXT NOT NULL,
+    refundHorseNumberInfo_15 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_16 TEXT NOT NULL,
+    refundHorseNumberInfo_16 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_17 TEXT NOT NULL,
+    refundHorseNumberInfo_17 TEXT NULL,
     -- 返還馬番情報(馬番01～18) 
-    refundHorseNumberInfo_18 TEXT NOT NULL,
+    refundHorseNumberInfo_18 TEXT NULL,
     -- 3連単票数合計 
-    totalTrifectaVotes INTEGER NOT NULL,
+    totalTrifectaVotes INTEGER NULL,
     -- 3連単返還票数合計 
-    totalTrifectaRefundVotes INTEGER NOT NULL
+    totalTrifectaRefundVotes INTEGER NULL
 );

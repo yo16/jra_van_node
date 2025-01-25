@@ -2,7 +2,8 @@
     レコードタイプ１つに対してDDLを作成する
 */
 
-import { RecordFormat, ColumnType } from "../recordFormat.js";
+import { RecordFormat } from "../recordFormat.js";
+import type { RecordFormatElement, ColumnType } from "../recordFormat.js";
 import { DB_TABLE_DDL_DIR_BASE, DB_SYSTEM_NAME } from "../const.js";
 import fs from "fs";
 import path from "path";
@@ -20,10 +21,10 @@ export function createDDLFromOneRecordType(
     console.log(recordTypeId);
 
     // RecordFormatElementを取得する
-    const curRecordFormatElement = RecordFormat()[recordTypeId];
+    const curRecordFormatElement: RecordFormatElement = RecordFormat()[recordTypeId];
 
     // クエリを生成する
-    const subTablesQuery: string[] = [];
+    const subTablesQuery: {query: string, tableNameEn: string}[] = [];
     let query = "";
     query += `-- ${curRecordFormatElement.recordTypeNameJp}\n`;
     query += `CREATE TABLE ${curRecordFormatElement.recordTypeNameEn} (\n`;
@@ -35,7 +36,7 @@ export function createDDLFromOneRecordType(
             // 別テーブルの場合は、別テーブルを作成するクエリを作る
             if (column.subColumnsInfo.repeatItemHandling === "別テーブル") {
                 //console.log("debug: 別テーブル");
-                subTablesQuery.push(createSubTableQuery(column));
+                subTablesQuery.push(createSubTableQuery(curRecordFormatElement, column));
             }
 
             // 横持ちの場合は、列名を変えて、今のテーブルに列を追加する
@@ -57,6 +58,7 @@ export function createDDLFromOneRecordType(
     query += ");\n";
 
     // 出力ファイルへ出力
+    // 1. トップのテーブル
     const outputFilePath = path.join(DB_TABLE_DDL_DIR_BASE, `${recordTypeId}.sql`);
     console.log({outputFilePath})
     fs.writeFile(outputFilePath, query, { encoding: "utf-8" }, (err) => {
@@ -66,12 +68,57 @@ export function createDDLFromOneRecordType(
             //console.log(`DDL for ${recordTypeId} created successfully.`);
         }
     });
+    // 2. 別テーブル
+    for (const subTableQuery of subTablesQuery) {
+        const outputFilePath = path.join(DB_TABLE_DDL_DIR_BASE, `${subTableQuery.tableNameEn}.sql`);
+        console.log({outputFilePath})
+        fs.writeFile(outputFilePath, subTableQuery.query, { encoding: "utf-8" }, (err) => {
+            if (err) {
+                console.error(err);
+            } else {
+                //console.log(`DDL for ${recordTypeId} created successfully.`);
+            }
+        });
+    }
 }
 
+
+
 // 別テーブルを作成するクエリを作る
-function createSubTableQuery(column: ColumnType) {
-    return "";
+function createSubTableQuery(recordFormat: RecordFormatElement, curColumn: ColumnType) {
+    // テーブル名
+    const tableNameJp = `${recordFormat.recordTypeNameJp}.${curColumn.columnNameJp}`;
+    const tableNameEn = `${recordFormat.recordTypeId}_${curColumn.columnNameEn}`;
+
+    // curColumn.subColumnsInfoがある前提
+    if (!curColumn.subColumnsInfo) {
+        const msg = `curColumn.subColumnsInfoがありません。${tableNameJp}(${tableNameEn})`;
+        console.error(msg);
+        throw new Error(msg);
+    }
+
+    // クエリを作成
+    let query = "";
+    query += `-- ${tableNameJp} \n`;
+    query += `CREATE TABLE ${tableNameEn} (\n`;
+    query += `    -- SEQ\n`;                                            // 固定
+    query += `    seq ${convertDataType("number", 5, true)},\n`;        // 固定
+    for (const column of curColumn.subColumnsInfo.subColumns) {
+        // サブカラムの中にサブカラムはない前提！
+        if (column.subColumnsInfo) {
+            const msg = `Error: Unexpected! サブカラムが存在します。${tableNameJp}(${tableNameEn})`;
+            console.error(msg);
+            throw new Error(msg);
+        }
+        query += createOneColumnQuery(column);
+    }
+    // 末尾の`,\n`を、`\n`に変える
+    query = query.replace(/,\n$/, "\n");
+    query += ");\n";
+
+    return {query, tableNameEn: tableNameEn};
 }
+
 
 
 // 横持ちの場合は、列名を変えて、今のテーブルに列を追加する
@@ -145,13 +192,13 @@ function createOneColumnQuery(column: ColumnType) {
         `-- ${column.columnNameJp} \n` +
         "    " +
         `${column.columnNameEn} ` +
-        `${convertDataType(column.dataType, column.length, column.nullable)},\n`
+        `${convertDataType(column.dataType, column.length, column.isNotNull)},\n`
 }
 
 
 
 // Jsonに記述されているデータタイプから、使用するDBのデータタイプへ変換する
-function convertDataType(dataType: string, length: number, nullable: boolean) {
+function convertDataType(dataType: string, length: number, isNotNull: boolean) {
     let dataTypeForDB = "";
     if (DB_SYSTEM_NAME === "SQLite") {
         // SQLiteの場合
@@ -171,10 +218,10 @@ function convertDataType(dataType: string, length: number, nullable: boolean) {
             default:
                 throw new Error(`dataType[${dataType}]は未対応`);
         }
-        if (nullable) {
-            dataTypeForDB += " NULL";
-        } else {
+        if (isNotNull) {
             dataTypeForDB += " NOT NULL";
+        } else {
+            dataTypeForDB += " NULL";
         }
     } else {
         throw new Error(`DB_SYSTEM_NAME[${DB_SYSTEM_NAME}]は未対応`);

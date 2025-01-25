@@ -1,27 +1,27 @@
 -- 競走馬除外情報
 CREATE TABLE HorseExclusionInfo (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 開催年 
-    eventYear TEXT NOT NULL,
+    eventYear TEXT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NOT NULL,
+    eventMonthDay TEXT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NOT NULL,
+    raceCourseCode TEXT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NOT NULL,
+    eventRound INTEGER NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NOT NULL,
+    eventDay INTEGER NULL,
     -- レース番号 
-    raceNumber INTEGER NOT NULL,
+    raceNumber INTEGER NULL,
     -- 血統登録番号 
-    bloodlineNumber TEXT NOT NULL,
+    bloodlineNumber TEXT NULL,
     -- 出馬投票受付順番 
-    entryOrder INTEGER NOT NULL,
+    entryOrder INTEGER NULL,
     -- 出走区分 
-    entryCategory TEXT NOT NULL,
+    entryCategory TEXT NULL,
     -- 除外状態区分 
-    exclusionStatus TEXT NOT NULL
+    exclusionStatus TEXT NULL
 );

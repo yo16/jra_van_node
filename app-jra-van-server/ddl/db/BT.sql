@@ -1,15 +1,15 @@
 -- 系統情報
 CREATE TABLE BloodlineInfo (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 繁殖登録番号 
-    breedingRegistrationNumber TEXT NOT NULL,
+    breedingRegistrationNumber TEXT NULL,
     -- 系統ID 
-    lineageId TEXT NOT NULL,
+    lineageId TEXT NULL,
     -- 系統名 
-    lineageName TEXT NOT NULL,
+    lineageName TEXT NULL,
     -- 系統説明 
-    lineageDescription TEXT NOT NULL
+    lineageDescription TEXT NULL
 );

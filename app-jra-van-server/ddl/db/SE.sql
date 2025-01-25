@@ -1,133 +1,133 @@
 -- 馬毎レース情報
 CREATE TABLE HorseRaceInformation (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 開催年 
-    eventYear TEXT NOT NULL,
+    eventYear TEXT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NOT NULL,
+    eventMonthDay TEXT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NOT NULL,
+    raceCourseCode TEXT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NOT NULL,
+    eventRound INTEGER NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NOT NULL,
+    eventDay INTEGER NULL,
     -- レース番号 
-    raceNumber INTEGER NOT NULL,
+    raceNumber INTEGER NULL,
     -- 枠番 
-    frameNumber INTEGER NOT NULL,
+    frameNumber INTEGER NULL,
     -- 馬番 
-    horseNumber INTEGER NOT NULL,
+    horseNumber INTEGER NULL,
     -- 血統登録番号 
-    bloodlineNumber TEXT NOT NULL,
+    bloodlineNumber TEXT NULL,
     -- 馬名 
-    horseName TEXT NOT NULL,
+    horseName TEXT NULL,
     -- 馬記号コード 
-    horseSymbolCode TEXT NOT NULL,
+    horseSymbolCode TEXT NULL,
     -- 性別コード 
-    genderCode TEXT NOT NULL,
+    genderCode TEXT NULL,
     -- 品種コード 
-    breedCode TEXT NOT NULL,
+    breedCode TEXT NULL,
     -- 毛色コード 
-    coatColorCode TEXT NOT NULL,
+    coatColorCode TEXT NULL,
     -- 馬齢 
-    age INTEGER NOT NULL,
+    age INTEGER NULL,
     -- 東西所属コード 
-    horseRegionAffiliationCode TEXT NOT NULL,
+    horseRegionAffiliationCode TEXT NULL,
     -- 調教師コード 
-    trainerCode TEXT NOT NULL,
+    trainerCode TEXT NULL,
     -- 調教師名略称 
-    trainerNameAbbreviation TEXT NOT NULL,
+    trainerNameAbbreviation TEXT NULL,
     -- 馬主コード 
-    ownerCode TEXT NOT NULL,
+    ownerCode TEXT NULL,
     -- 馬主名(法人格無) 
-    ownerNameWithoutCorp TEXT NOT NULL,
+    ownerNameWithoutCorp TEXT NULL,
     -- 服色標示 
-    jockeyUniformColor TEXT NOT NULL,
+    jockeyUniformColor TEXT NULL,
     -- 負担重量 
-    carriedWeight REAL NOT NULL,
+    carriedWeight REAL NULL,
     -- 変更前負担重量 
-    previousCarriedWeight REAL NOT NULL,
+    previousCarriedWeight REAL NULL,
     -- ブリンカー使用区分 
-    blinkerUsage TEXT NOT NULL,
+    blinkerUsage TEXT NULL,
     -- 騎手コード 
-    jockeyCode TEXT NOT NULL,
+    jockeyCode TEXT NULL,
     -- 変更前騎手コード 
-    previousJockeyCode TEXT NOT NULL,
+    previousJockeyCode TEXT NULL,
     -- 騎手名略称 
-    jockeyNameAbbreviation TEXT NOT NULL,
+    jockeyNameAbbreviation TEXT NULL,
     -- 変更前騎手名略称 
-    previousJockeyNameShort TEXT NOT NULL,
+    previousJockeyNameShort TEXT NULL,
     -- 騎手見習コード 
-    apprenticeJockeyCode TEXT NOT NULL,
+    apprenticeJockeyCode TEXT NULL,
     -- 変更前騎手見習コード 
-    previousApprenticeJockeyCode TEXT NOT NULL,
+    previousApprenticeJockeyCode TEXT NULL,
     -- 馬体重 
-    HorseWeight INTEGER NOT NULL,
+    HorseWeight INTEGER NULL,
     -- 増減符号 
-    weightChangeSign INTEGER NOT NULL,
+    weightChangeSign INTEGER NULL,
     -- 増減差 
-    weightChange INTEGER NOT NULL,
+    weightChange INTEGER NULL,
     -- 異常区分コード 
-    abnormalityCode TEXT NOT NULL,
+    abnormalityCode TEXT NULL,
     -- 入線順位 
-    finishOrder INTEGER NOT NULL,
+    finishOrder INTEGER NULL,
     -- 確定着順 
-    confirmedPlacement INTEGER NOT NULL,
+    confirmedPlacement INTEGER NULL,
     -- 同着区分 
-    deadHeatFlag TEXT NOT NULL,
+    deadHeatFlag TEXT NULL,
     -- 同着頭数 
-    deadHeatCount INTEGER NOT NULL,
+    deadHeatCount INTEGER NULL,
     -- 走破タイム 
-    raceTime REAL NOT NULL,
+    raceTime REAL NULL,
     -- 着差コード 
-    marginCode TEXT NOT NULL,
+    marginCode TEXT NULL,
     -- ＋着差コード 
-    plusMarginCode TEXT NOT NULL,
+    plusMarginCode TEXT NULL,
     -- ＋＋着差コード 
-    doublePlusMarginCode TEXT NOT NULL,
+    doublePlusMarginCode TEXT NULL,
     -- 1コーナーでの順位 
-    corner1Order INTEGER NOT NULL,
+    corner1Order INTEGER NULL,
     -- 2コーナーでの順位 
-    corner2Order INTEGER NOT NULL,
+    corner2Order INTEGER NULL,
     -- 3コーナーでの順位 
-    corner3Order INTEGER NOT NULL,
+    corner3Order INTEGER NULL,
     -- 4コーナーでの順位 
-    corner4Order INTEGER NOT NULL,
+    corner4Order INTEGER NULL,
     -- 単勝オッズ 
-    winOdds REAL NOT NULL,
+    winOdds REAL NULL,
     -- 単勝人気順 
-    winPopularityOrder INTEGER NOT NULL,
+    winPopularityOrder INTEGER NULL,
     -- 獲得本賞金 
-    prizeMoney INTEGER NOT NULL,
+    prizeMoney INTEGER NULL,
     -- 獲得付加賞金 
-    additionalPrizeMoney INTEGER NOT NULL,
+    additionalPrizeMoney INTEGER NULL,
     -- 後4ハロンタイム 
-    last4FTime REAL NOT NULL,
+    last4FTime REAL NULL,
     -- 後3ハロンタイム 
-    last3FTime REAL NOT NULL,
+    last3FTime REAL NULL,
     -- 血統登録番号 
-    FirstPlaceHorseInfo_1 TEXT NOT NULL,
+    FirstPlaceHorseInfo_1 TEXT NULL,
     -- 血統登録番号 
-    FirstPlaceHorseInfo_2 TEXT NOT NULL,
+    FirstPlaceHorseInfo_2 TEXT NULL,
     -- 血統登録番号 
-    FirstPlaceHorseInfo_3 TEXT NOT NULL,
+    FirstPlaceHorseInfo_3 TEXT NULL,
     -- タイム差 
-    timeDifference REAL NOT NULL,
+    timeDifference REAL NULL,
     -- レコード更新区分 
-    recordUpdateCategory TEXT NOT NULL,
+    recordUpdateCategory TEXT NULL,
     -- マイニング区分 
-    miningCategory TEXT NOT NULL,
+    miningCategory TEXT NULL,
     -- マイニング予想走破タイム 
-    miningEstimatedTime REAL NOT NULL,
+    miningEstimatedTime REAL NULL,
     -- マイニング予想誤差(信頼度)＋ 
-    miningEstimatedErrorPlus REAL NOT NULL,
+    miningEstimatedErrorPlus REAL NULL,
     -- マイニング予想誤差(信頼度)－ 
-    miningEstimatedErrorMinus REAL NOT NULL,
+    miningEstimatedErrorMinus REAL NULL,
     -- マイニング予想順位 
-    miningEstimatedRank INTEGER NOT NULL,
+    miningEstimatedRank INTEGER NULL,
     -- 今回レース脚質判定 
-    racePaceDetermination TEXT NOT NULL
+    racePaceDetermination TEXT NULL
 );

@@ -1,33 +1,33 @@
 -- 天候馬場状態
 CREATE TABLE WeatherTrackCondition (
     -- データ区分 
-    dataCategory TEXT NOT NULL,
+    dataCategory TEXT NULL,
     -- データ作成年月日 
-    creationDate TEXT NOT NULL,
+    creationDate TEXT NULL,
     -- 開催年 
-    eventYear TEXT NOT NULL,
+    eventYear TEXT NULL,
     -- 開催月日 
-    eventMonthDay TEXT NOT NULL,
+    eventMonthDay TEXT NULL,
     -- 競馬場コード 
-    raceCourseCode TEXT NOT NULL,
+    raceCourseCode TEXT NULL,
     -- 開催回[第N回] 
-    eventRound INTEGER NOT NULL,
+    eventRound INTEGER NULL,
     -- 開催日目[N日目] 
-    eventDay INTEGER NOT NULL,
+    eventDay INTEGER NULL,
     -- 発表月日時分 
-    announcementDateTime TEXT NOT NULL,
+    announcementDateTime TEXT NULL,
     -- 変更識別 
-    changeIdentifier TEXT NOT NULL,
+    changeIdentifier TEXT NULL,
     -- 天候状態 
-    currentWeatherCondition TEXT NOT NULL,
+    currentWeatherCondition TEXT NULL,
     -- 馬場状態・芝 
-    currentTurfCondition TEXT NOT NULL,
+    currentTurfCondition TEXT NULL,
     -- 馬場状態・ダート 
-    currentDirtCondition TEXT NOT NULL,
+    currentDirtCondition TEXT NULL,
     -- 天候状態 
-    currentWeatherCondition TEXT NOT NULL,
+    currentWeatherCondition TEXT NULL,
     -- 馬場状態・芝 
-    currentTurfCondition TEXT NOT NULL,
+    currentTurfCondition TEXT NULL,
     -- 馬場状態・ダート 
-    currentDirtCondition TEXT NOT NULL
+    currentDirtCondition TEXT NULL
 );
