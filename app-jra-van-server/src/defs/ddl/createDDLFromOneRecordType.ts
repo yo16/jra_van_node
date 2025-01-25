@@ -144,43 +144,6 @@ function createYokoMochiQuery(column: ColumnType, paramPrefix: string = "") {
                         `${dataType},\n`;
                 }
             }
-
-            /* 一応うまくできたロジックを保存、でも書き直したい
-            // さらにサブカラムを持っていたら、再帰的にサブカラムをパースする
-            if (subColumn.subColumnsInfo) { 
-                query += createYokoMochiQuery(subColumn, `${column.columnNameEn}_${repeatNumLoopIdentifer[i]}`);
-            }
-            // サブカラムを持っていない場合は、今のsubColumnをそのまま追加する
-            else {
-                let columnName = ``;
-                if (paramPrefix) {
-                    // prefixの指定がある場合は、それをつける
-                    columnName += `${paramPrefix}_`;
-                } else {
-                    // prefixの指定がない場合
-                    if (isSingleSubColumn) {
-                        // singleの場合は、何もつけない
-                        columnName += ``;
-                    } else {
-                        // 複数の場合は、親のカラム名をつける
-                        columnName += `${column.columnNameEn}_`;
-                    }
-                }   
-                if (isSingleSubColumn) {
-                    // singleの場合は、repeatNumLoopIdentiferを後ろにつける
-                    columnName += `${subColumn.columnNameEn}_${repeatNumLoopIdentifer[i]}`;
-                } else {
-                    // 複数の場合は、repeatNumLoopIdentiferを前につける
-                    // （さらにサブカラムを持っている場合と同じ形にする）
-                    columnName += `${repeatNumLoopIdentifer[i]}_${subColumn.columnNameEn}`;
-                }
-                query += "    " +
-                    `${columnName} ` +
-                    `${subColumn.dataType} ` +
-                    `${subColumn.length} ` +
-                    `${subColumn.nullable ? "NULL" : "NOT NULL"},\n`;
-            }
-            */
         }
     }
 
