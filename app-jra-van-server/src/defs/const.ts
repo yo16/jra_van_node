@@ -3,7 +3,7 @@
 // データフォルダ
 export const LOCALDATA_DIR_BASE = "./data";
 
-// テーブル定義(DDL)フォルダ
+// データ定義(DDL)フォルダ
 export const DDL_DIR_BASE = "./ddl";
 
 // データタイプごとのフォルダ
@@ -12,4 +12,10 @@ export const DATATYPE_DIR_BASE = {
     "Realtime": "/Realtime",
     "Setup": "/Setup",
 };
+
+// DBのテーブル定義フォルダ
+export const DB_TABLE_DDL_DIR_BASE = `${DDL_DIR_BASE}/db`;
+
+// DBシステム名（テーブルの列の型を決める際に使う）
+export const DB_SYSTEM_NAME = "SQLite";
 

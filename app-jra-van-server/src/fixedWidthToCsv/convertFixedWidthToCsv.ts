@@ -137,12 +137,12 @@ function parseFixedWidthString(fixedWidthString: string, recordTypeID: string) {
     const record: {key: string, value: string}[] = [];
 
     // パースする
-    for (const column of RecordFormat[recordTypeID].columns) {
+    for (const column of RecordFormat()[recordTypeID].columns) {
         // サブカラムがある場合は、サブカラムをパースする
         if (column.subColumnsInfo) {
             for (const subColumn of column.subColumnsInfo.subColumns) {
                 record.push({
-                    key: subColumn.columnName,
+                    key: subColumn.columnNameEn,
                     value: fixedWidthString.slice(
                         column.startPos + subColumn.startPos - 1,
                         column.startPos + subColumn.startPos - 1 + subColumn.bytes
@@ -153,7 +153,7 @@ function parseFixedWidthString(fixedWidthString: string, recordTypeID: string) {
         // サブカラムがない場合は、通常のカラムをパースする
         } else {
             record.push({
-                key: column.columnName,
+                key: column.columnNameEn,
                 value: fixedWidthString.slice(
                     column.startPos - 1,
                     column.startPos - 1 + column.bytes

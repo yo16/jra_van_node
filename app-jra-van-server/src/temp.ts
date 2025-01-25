@@ -122,6 +122,7 @@ import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
 // 蓄積系のキー名(=dataSpec)を取得する
 //const dataSpecList = Object.keys(DataSpecs.Setup);
 
+/*
 const dataSpecList = [
     "TOKU",
     "RACE",
@@ -140,8 +141,10 @@ const dataSpecList = [
     "COMM",
     "WOOD",
 ];
-//getAccumulatedData(dataSpecList, "20250118000000");
+getAccumulatedData(dataSpecList, "20250118000000");
+*/
 
+/*
 import { getRealtimeData } from "./collectData/getRealtimeData.js";
 
 // key: “YYYYMMDDJJKKHHRR”
@@ -159,4 +162,8 @@ console.log(RRs);
 for (const RR of RRs) {
     await getRealtimeData(["0B42"], `${YYYYMMDD}${JJ}${KK}${HH}${RR}`);
 }
+*/
+
+import { createDDLFromRecordFormat } from "./defs/ddl/createDDLFromRecordFormat.js";
+createDDLFromRecordFormat();
 
