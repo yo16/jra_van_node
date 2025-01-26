@@ -1,13 +1,32 @@
 /*
-    蓄積型のデータを取得する
+    蓄積型、またはセットアップのデータを取得する
 */
 
 import winax from "winax";
 import { getAccumulatedDataByDataSpec } from "./getAccumulatedDataByDataSpec.js";
 
+const ACCUMULATED_DATA_SPEC_LIST = [
+    "TOKU",
+    "RACE",
+    "DIFF",
+    "DIFN",
+    "BLOD",
+    "BLDN",
+    "MING",
+    "SNAP",
+    "SNPN",
+    "SLOP",
+    "YSCH",
+    "HOSE",
+    "HOSN",
+    "HOYU",
+    "COMM",
+    "WOOD",
+];
+
 export async function getAccumulatedData(
-    dataSpecList: string[], // 複数のdataspecを指定する
     fromTime: string,
+    dataSpecList: string[] = ACCUMULATED_DATA_SPEC_LIST, // 複数のdataspecを指定する
     skipFileIfExists: boolean = true,
 ) {
     // 初期化
@@ -53,4 +72,6 @@ export async function getAccumulatedData(
         }
         throw new Error("getAccumulatedData failed");
     }
+
+    return true;
 }

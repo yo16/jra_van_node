@@ -8,9 +8,8 @@ export const DDL_DIR_BASE = "./ddl";
 
 // データタイプごとのフォルダ
 export const DATATYPE_DIR_BASE = {
-    "Accumulated": "/Accumulated",
-    "Realtime": "/Realtime",
-    "Setup": "/Setup",
+    "Accumulated": "/JVRowData/Accumulated",
+    "Realtime": "/JVRowData/Realtime",
 };
 
 // DBのパス

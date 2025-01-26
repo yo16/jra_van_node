@@ -13,7 +13,7 @@ import { RecordFormat, ColumnType } from "../defs/recordFormat.js";
 // 複数のDataSpecに対するCSVファイルを作成する
 // nullのときは、dataTypeのすべてのDataSpecに対するCSVファイルを作成する
 export function convertFixedWidthToCsv(
-    dataType: "Accumulated" | "Realtime" | "Setup",
+    dataType: "Accumulated" | "Realtime",
     dataSpecNameList: string[] | null,
 ) {
     // 対象となるDataSpecを取得する
@@ -29,7 +29,7 @@ export function convertFixedWidthToCsv(
 
 // 1つのDataSpecのすべてのRecordTypeIdに対するCSVファイルを作成する
 export function convertFixedWidthToCsv_dataSpec(
-    dataType: "Accumulated" | "Realtime" | "Setup",
+    dataType: "Accumulated" | "Realtime",
     dataSpecName: string,
 ) {
     // 1つのDataSpecのすべてのRecordTypeIDに対するCSVファイルを作成する
@@ -42,7 +42,7 @@ export function convertFixedWidthToCsv_dataSpec(
 
 // 1つのRecordTypeIDに対するCSVファイルを作成する
 export function convertFixedWidthToCsv_recordType(
-    dataType: "Accumulated" | "Realtime" | "Setup",
+    dataType: "Accumulated" | "Realtime",
     recordTypeID: string,
 ) {
     // 読み込むフォルダパス

@@ -35,7 +35,7 @@ export async function getAccumulatedDataByDataSpec(
                 await readJVLink(
                     jvlink,
                     skipFileIfExists,
-                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Accumulated}`
+                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Accumulated}`,
                 );
 
                 // 正常終了したので、ループを抜ける

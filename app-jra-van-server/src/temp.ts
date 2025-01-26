@@ -37,14 +37,14 @@ export function loadTemp() {
         if (executeType === "chikuseki") {
             // 蓄積系
 
-            const dataSpec = "RACE";
+            const dataSpec = "DIFF";
             let fromTimestamp = "19860101000000";
             //const fromTimestamp = "20250101000000";
             //const option = 1;   // 1:通常データ
             //const option = 2;   // 2:今週データ
             //const option = 3;   // 3:セットアップデータ
             //const option = 4;   // 4:ダイアログなしのセットアップデータ
-            const option = 2;
+            const option = 3;
 
             // readCount（出力引数）
             const out_readCount = new winax.Variant(0, "pint32" as any);
@@ -115,14 +115,14 @@ export function loadTemp() {
 
 
 
-//loadTemp();
+loadTemp();
 
+/*
 import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
 //import { DataSpecs } from "./dataFormatDefs";
 // 蓄積系のキー名(=dataSpec)を取得する
 //const dataSpecList = Object.keys(DataSpecs.Setup);
 
-/*
 const dataSpecList = [
     "TOKU",
     "RACE",
@@ -164,6 +164,20 @@ for (const RR of RRs) {
 }
 */
 
+/*
+// 蓄積型データ取得
+import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
+getAccumulatedData(
+    "19860101000000",
+    ["DIFF","DIFN"],
+);
+*/
+
+
+
+/*
+// SQL作成
 import { createDDLFromRecordFormat } from "./defs/ddl/createDDLFromRecordFormat.js";
 createDDLFromRecordFormat();
+*/
 

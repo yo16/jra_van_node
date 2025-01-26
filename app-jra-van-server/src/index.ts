@@ -7,6 +7,8 @@ import cors from 'cors';
 import { loadData } from "./loadData.js";
 import { initializeDb } from "./initializeDb.js";
 import { createDDLFromRecordFormat } from "./defs/ddl/createDDLFromRecordFormat.js";
+import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
+import { createCSVFile } from "./createCSVFile.js";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -48,18 +50,42 @@ app.get('/', (req, res) => {
     res.status(200).json(ret);
 });
 
-app.get('/initializeDb', async (req, res) => {
-    const ret = await initializeDb();
-    res.status(200).json({OK: true});
-    return;
-});
 
-app.get('/createDDLFromRecordFormat', async (req, res) => {
-    console.log("createDDLFromRecordFormat---------");
+// ------ DB初期化関連 ----------------------------
+// CreateTable文を作成
+app.get('/generateQueryFile', async (req, res) => {
     const ret = await createDDLFromRecordFormat();
     res.status(200).json({OK: ret});
     return;
 });
+
+// CreateTable文を実行
+app.get('/executeQueryFile', async (req, res) => {
+    const ret = await initializeDb();
+    res.status(200).json({OK: ret});
+    return;
+});
+
+
+// ------ データロード関連 ----------------------------
+// 蓄積型・セットアップのデータを取得する
+app.get('/loadAccumulatedData', async (req, res) => {
+    const ret = await getAccumulatedData("20250000000000");
+    res.status(200).json({OK: ret});
+    return;
+});
+
+// CSVファイルを作成する
+app.get('/createCSVFile', async (req, res) => {
+    const ret = await createCSVFile();
+    res.status(200).json({OK: ret});
+    return;
+});
+
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

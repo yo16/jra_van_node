@@ -1,18 +1,44 @@
+
+import { Button, Stack, Box, Typography } from '@mui/material';
+
 import './App.css'
-import { Button } from '@mui/material';
+
+
 
 function App() {
+    const SERVER_URL = "http://localhost:3001";
 
-    function handleButtonInitializeDb() {
-        fetch("http://localhost:3001/initializeDb")
+    // 全Create Table文実行
+    function handleButtonExecuteQueryFile() {
+        fetch(`${SERVER_URL}/executeQueryFile`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
             });
     }
 
-    function handleButtonCreateDDLFromRecordFormat() {
-        fetch("http://localhost:3001/createDDLFromRecordFormat")
+    // Create Table文のSQLファイル作成
+    function handleButtonGenerateQueryFile() {
+        fetch(`${SERVER_URL}/generateQueryFile`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+    }
+
+    // データ取り込み
+    // 蓄積型
+    function handleButtonAccumulatedLoadData() {
+        fetch(`${SERVER_URL}/loadAccumulatedData`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+    
+    }
+    // セットアップ
+    function handleButtonSetupLoadData() {
+        fetch(`${SERVER_URL}/loadSetupData`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -20,22 +46,69 @@ function App() {
     }
 
     return (
-        <>
-
-            <Button
-                variant="contained"
-                onClick={handleButtonCreateDDLFromRecordFormat}
+        <Stack
+            direction="column"
+            spacing={5}
+        >
+            <Stack
+                direction="column"
+                spacing={2}
             >
-                SQLファイル作成
-            </Button>
-            <hr />
-            <Button
-                variant="contained"
-                onClick={handleButtonInitializeDb}
+                <Box>
+                    <Typography variant="h5">DB初期化関連</Typography>
+                </Box>
+                <Box
+                    sx={{
+                        paddingLeft: "30px",
+                    }}
+                >
+                    <Button
+                        variant="contained"
+                        onClick={handleButtonGenerateQueryFile}
+                    >
+                        Create Table文のSQLファイル作成
+                    </Button>
+                </Box>
+                <Box
+                    sx={{
+                        paddingLeft: "30px",
+                    }}
+                >
+                    <Button
+                        variant="contained"
+                        onClick={handleButtonExecuteQueryFile}
+                    >
+                        全Create Table文実行
+                    </Button>
+                </Box>
+            </Stack>
+            <Stack
+                direction="column"
+                spacing={2}
             >
-                Initialize DB
-            </Button>
-        </>
+                <Box>
+                    <Typography variant="h5">データ取り込み</Typography>
+                </Box>
+                <Box
+                    sx={{
+                        paddingLeft: "30px",
+                    }}
+                >
+                <Button
+                    variant="contained"
+                    onClick={handleButtonAccumulatedLoadData}
+                >
+                    JVデータ(蓄積型)
+                </Button>
+                <Button
+                    variant="contained"
+                    onClick={handleButtonSetupLoadData}
+                >
+                    JVデータ(セットアップ)
+                </Button>
+                </Box>
+            </Stack>
+        </Stack>
     )
 }
 

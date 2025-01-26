@@ -15,6 +15,7 @@ export async function initializeDb() {
             console.error(`DB_SYSTEM_NAME: ${DB_SYSTEM_NAME} is not supported`);
             break;
     }
+    return true;
 }
 
 
