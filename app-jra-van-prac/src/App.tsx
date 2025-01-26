@@ -36,14 +36,6 @@ function App() {
             });
     
     }
-    // セットアップ
-    function handleButtonSetupLoadData() {
-        fetch(`${SERVER_URL}/loadSetupData`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            });
-    }
 
     return (
         <Stack
@@ -99,12 +91,6 @@ function App() {
                     onClick={handleButtonAccumulatedLoadData}
                 >
                     JVデータ(蓄積型)
-                </Button>
-                <Button
-                    variant="contained"
-                    onClick={handleButtonSetupLoadData}
-                >
-                    JVデータ(セットアップ)
                 </Button>
                 </Box>
             </Stack>
