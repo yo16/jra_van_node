@@ -1,5 +1,5 @@
 -- 票数１.<馬単票数> 
-CREATE TABLE IF NOT EXISTS H1_ExactaVotes (
+CREATE TABLE IF NOT EXISTS VoteCount1_ExactaVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

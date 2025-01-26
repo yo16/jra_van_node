@@ -1,5 +1,5 @@
 -- 票数１.<枠連票数> 
-CREATE TABLE IF NOT EXISTS H1_BracketQuinellaVotes (
+CREATE TABLE IF NOT EXISTS VoteCount1_BracketQuinellaVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

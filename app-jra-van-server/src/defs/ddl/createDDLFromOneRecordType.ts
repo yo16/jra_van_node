@@ -59,7 +59,7 @@ export function createDDLFromOneRecordType(
 
     // 出力ファイルへ出力
     // 1. トップのテーブル
-    const outputFilePath = path.join(DB_TABLE_DDL_DIR_BASE, `${recordTypeId}.sql`);
+    const outputFilePath = path.join(DB_TABLE_DDL_DIR_BASE, `${curRecordFormatElement.recordTypeNameEn}.sql`);
     console.log({outputFilePath})
     fs.writeFile(outputFilePath, query, { encoding: "utf-8" }, (err) => {
         if (err) {
@@ -88,7 +88,7 @@ export function createDDLFromOneRecordType(
 function createSubTableQuery(recordFormat: RecordFormatElement, curColumn: ColumnType) {
     // テーブル名
     const tableNameJp = `${recordFormat.recordTypeNameJp}.${curColumn.columnNameJp}`;
-    const tableNameEn = `${recordFormat.recordTypeId}_${curColumn.columnNameEn}`;
+    const tableNameEn = `${recordFormat.recordTypeNameEn}_${curColumn.columnNameEn}`;
 
     // curColumn.subColumnsInfoがある前提
     if (!curColumn.subColumnsInfo) {

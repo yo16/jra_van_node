@@ -1,5 +1,5 @@
 -- オッズ1（単複枠）.<複勝オッズ> 
-CREATE TABLE IF NOT EXISTS O1_PlaceOdds (
+CREATE TABLE IF NOT EXISTS OddsFrame_PlaceOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 馬番 

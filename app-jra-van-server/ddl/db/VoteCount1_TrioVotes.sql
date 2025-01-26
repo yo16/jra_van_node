@@ -1,5 +1,5 @@
 -- 票数１.<3連複票数> 
-CREATE TABLE IF NOT EXISTS H1_TrioVotes (
+CREATE TABLE IF NOT EXISTS VoteCount1_TrioVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

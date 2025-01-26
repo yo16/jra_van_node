@@ -1,5 +1,5 @@
--- オッズ5（3連複）.<3連複オッズ> 
-CREATE TABLE IF NOT EXISTS O5_TrioOdds (
+-- オッズ4（馬単）.<馬単オッズ> 
+CREATE TABLE IF NOT EXISTS OddsWinExacta_ExactaOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 
