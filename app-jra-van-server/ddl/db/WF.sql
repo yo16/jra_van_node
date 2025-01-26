@@ -1,5 +1,5 @@
 -- 重勝式(WIN5)
-CREATE TABLE Win5 (
+CREATE TABLE IF NOT EXISTS Win5 (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

@@ -1,5 +1,5 @@
 -- オッズ6（3連単）
-CREATE TABLE OddsTriplet (
+CREATE TABLE IF NOT EXISTS OddsTriplet (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

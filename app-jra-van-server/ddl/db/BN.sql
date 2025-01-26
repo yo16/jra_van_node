@@ -1,5 +1,5 @@
 -- 馬主マスタ
-CREATE TABLE OwnerMaster (
+CREATE TABLE IF NOT EXISTS OwnerMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

@@ -13,9 +13,13 @@ export const DATATYPE_DIR_BASE = {
     "Setup": "/Setup",
 };
 
+// DBのパス
+export const DB_PATH = `${LOCALDATA_DIR_BASE}/db/jra_van_sqlite.db`;
+
 // DBのテーブル定義フォルダ
 export const DB_TABLE_DDL_DIR_BASE = `${DDL_DIR_BASE}/db`;
 
 // DBシステム名（テーブルの列の型を決める際に使う）
 export const DB_SYSTEM_NAME = "SQLite";
+
 

@@ -1,5 +1,5 @@
 -- 特別登録馬.<登録馬毎情報> 
-CREATE TABLE TK_RegisteredHorceInformation (
+CREATE TABLE IF NOT EXISTS TK_RegisteredHorceInformation (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 連番 

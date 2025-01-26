@@ -1,5 +1,5 @@
 -- オッズ3（ワイド）.<ワイドオッズ> 
-CREATE TABLE O3_WideOdds (
+CREATE TABLE IF NOT EXISTS O3_WideOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

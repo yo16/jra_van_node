@@ -1,5 +1,5 @@
 -- オッズ1（単複枠）
-CREATE TABLE OddsFrame (
+CREATE TABLE IF NOT EXISTS OddsFrame (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

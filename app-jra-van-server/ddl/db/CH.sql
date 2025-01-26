@@ -1,5 +1,5 @@
 -- 調教師マスタ
-CREATE TABLE TrainerMaster (
+CREATE TABLE IF NOT EXISTS TrainerMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

@@ -1,5 +1,5 @@
 -- 天候馬場状態
-CREATE TABLE WeatherTrackCondition (
+CREATE TABLE IF NOT EXISTS WeatherTrackCondition (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 
@@ -25,9 +25,9 @@ CREATE TABLE WeatherTrackCondition (
     -- 馬場状態・ダート 
     currentDirtCondition TEXT NULL,
     -- 天候状態 
-    currentWeatherCondition TEXT NULL,
+    oldWeatherCondition TEXT NULL,
     -- 馬場状態・芝 
-    currentTurfCondition TEXT NULL,
+    oldTurfCondition TEXT NULL,
     -- 馬場状態・ダート 
-    currentDirtCondition TEXT NULL
+    oldDirtCondition TEXT NULL
 );

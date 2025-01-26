@@ -1,5 +1,5 @@
 -- 票数１.<単勝票数> 
-CREATE TABLE H1_WinVotes (
+CREATE TABLE IF NOT EXISTS H1_WinVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 馬番 

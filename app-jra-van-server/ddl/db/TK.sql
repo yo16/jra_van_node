@@ -1,5 +1,5 @@
 -- 特別登録馬
-CREATE TABLE SpecialRegisteredHorses (
+CREATE TABLE IF NOT EXISTS SpecialRegisteredHorses (
     -- データ区分 
     dataCategory TEXT NOT NULL,
     -- データ作成年月日 

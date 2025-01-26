@@ -1,5 +1,5 @@
 -- 払戻
-CREATE TABLE Payout (
+CREATE TABLE IF NOT EXISTS Payout (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

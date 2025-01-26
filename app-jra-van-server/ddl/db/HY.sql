@@ -1,5 +1,5 @@
 -- 馬名の意味由来
-CREATE TABLE HorseNameOrigin (
+CREATE TABLE IF NOT EXISTS HorseNameOrigin (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

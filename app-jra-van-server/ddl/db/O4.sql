@@ -1,5 +1,5 @@
 -- オッズ4（馬単）
-CREATE TABLE OddsWinExacta (
+CREATE TABLE IF NOT EXISTS OddsWinExacta (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

@@ -1,5 +1,5 @@
 -- 坂路調教
-CREATE TABLE HillTraining (
+CREATE TABLE IF NOT EXISTS HillTraining (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

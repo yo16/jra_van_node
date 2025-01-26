@@ -1,5 +1,5 @@
 -- コース変更
-CREATE TABLE CourseChange (
+CREATE TABLE IF NOT EXISTS CourseChange (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

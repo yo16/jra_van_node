@@ -1,5 +1,5 @@
 -- レコードマスタ
-CREATE TABLE RecordMaster (
+CREATE TABLE IF NOT EXISTS RecordMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

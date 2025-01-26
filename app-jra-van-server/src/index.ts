@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import { loadData } from "./loadData.js";
+import { initializeDb } from "./initializeDb.js";
+import { createDDLFromRecordFormat } from "./defs/ddl/createDDLFromRecordFormat.js";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -44,6 +46,19 @@ app.get('/', (req, res) => {
     }
     
     res.status(200).json(ret);
+});
+
+app.get('/initializeDb', async (req, res) => {
+    const ret = await initializeDb();
+    res.status(200).json({OK: true});
+    return;
+});
+
+app.get('/createDDLFromRecordFormat', async (req, res) => {
+    console.log("createDDLFromRecordFormat---------");
+    const ret = await createDDLFromRecordFormat();
+    res.status(200).json({OK: ret});
+    return;
 });
 
 app.listen(port, () => {

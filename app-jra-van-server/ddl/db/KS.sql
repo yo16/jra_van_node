@@ -1,5 +1,5 @@
 -- 騎手マスタ
-CREATE TABLE JockeyMaster (
+CREATE TABLE IF NOT EXISTS JockeyMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

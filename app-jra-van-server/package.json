@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/index.js",
+    "start": "npm run build && node ./dist/index.js",
     "dev": "nodemon src/index.ts",
     "ondemand": "npm run build && node ./dist/onDemandLoad.js",
     "temp": "npm run build && node ./dist/temp.js"
@@ -19,12 +19,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "sqlite3": "^5.1.7",
     "winax": "^3.6.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.5",
+    "@types/node": "^22.10.10",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"

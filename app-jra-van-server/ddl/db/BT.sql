@@ -1,5 +1,5 @@
 -- 系統情報
-CREATE TABLE BloodlineInfo (
+CREATE TABLE IF NOT EXISTS BloodlineInfo (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

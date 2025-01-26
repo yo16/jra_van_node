@@ -1,5 +1,5 @@
 -- ウッドチップ調教
-CREATE TABLE WoodChipTraining (
+CREATE TABLE IF NOT EXISTS WoodChipTraining (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

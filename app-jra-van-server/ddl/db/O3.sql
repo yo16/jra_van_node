@@ -1,5 +1,5 @@
 -- オッズ3（ワイド）
-CREATE TABLE OddsWide (
+CREATE TABLE IF NOT EXISTS OddsWide (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

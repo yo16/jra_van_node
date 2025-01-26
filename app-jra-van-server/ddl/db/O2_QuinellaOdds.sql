@@ -1,5 +1,5 @@
 -- オッズ2（馬連）.<馬連オッズ> 
-CREATE TABLE O2_QuinellaOdds (
+CREATE TABLE IF NOT EXISTS O2_QuinellaOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

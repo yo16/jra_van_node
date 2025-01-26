@@ -1,5 +1,5 @@
 -- 重勝式(WIN5).<重勝式払戻情報> 
-CREATE TABLE WF_PayoutInfo (
+CREATE TABLE IF NOT EXISTS WF_PayoutInfo (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

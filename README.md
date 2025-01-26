@@ -61,6 +61,8 @@ JRA-VANで、データを取得したり通信をする練習 Nodeで！
   - システムのパスに、"C:\Program Files (x86)\nodejs32"が追加されているので消しておく
 - PowerShellで`npm run dev`などと実行する前に、パスを設定する
   - `$env:Path = "C:\Program Files (x86)\nodejs32;$env:Path"`
+  - nvmの場合
+    - `$env:Path = "C:\Users\yoichiro\AppData\Local\nvm\v22.12.0;$env:Path"`
 
 ### `npm run dev`でエラー
 - 下記のエラー

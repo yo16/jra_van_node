@@ -1,5 +1,5 @@
 -- 馬体重
-CREATE TABLE HorseWeight (
+CREATE TABLE IF NOT EXISTS HorseWeight (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

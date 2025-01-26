@@ -1,5 +1,5 @@
 -- タイム型データマイニング予想.<マイニング予想> 
-CREATE TABLE DM_Prediction (
+CREATE TABLE IF NOT EXISTS DM_Prediction (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 馬番 

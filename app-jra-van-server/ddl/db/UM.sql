@@ -1,5 +1,5 @@
 -- 競走馬マスタ
-CREATE TABLE HorseMaster (
+CREATE TABLE IF NOT EXISTS HorseMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

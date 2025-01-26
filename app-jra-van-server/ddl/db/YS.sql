@@ -1,5 +1,5 @@
 -- 開催スケジュール
-CREATE TABLE EventSchedule (
+CREATE TABLE IF NOT EXISTS EventSchedule (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

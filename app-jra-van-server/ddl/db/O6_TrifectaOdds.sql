@@ -1,5 +1,5 @@
 -- オッズ6（3連単）.<3連単オッズ> 
-CREATE TABLE O6_TrifectaOdds (
+CREATE TABLE IF NOT EXISTS O6_TrifectaOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

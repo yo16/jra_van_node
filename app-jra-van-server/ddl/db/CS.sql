@@ -1,5 +1,5 @@
 -- コース情報
-CREATE TABLE CourseInfo (
+CREATE TABLE IF NOT EXISTS CourseInfo (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

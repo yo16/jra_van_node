@@ -1,5 +1,5 @@
 -- 票数6（3連単）.<3連単票数> 
-CREATE TABLE H6_TrifectaVotes (
+CREATE TABLE IF NOT EXISTS H6_TrifectaVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

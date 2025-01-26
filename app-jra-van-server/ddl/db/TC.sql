@@ -1,5 +1,5 @@
 -- 発走時刻変更
-CREATE TABLE StartTimeChange (
+CREATE TABLE IF NOT EXISTS StartTimeChange (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

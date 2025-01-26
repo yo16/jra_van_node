@@ -1,5 +1,5 @@
 -- 票数１.<ワイド票数> 
-CREATE TABLE H1_WideVotes (
+CREATE TABLE IF NOT EXISTS H1_WideVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

@@ -1,5 +1,5 @@
 -- 対戦型データマイニング予想
-CREATE TABLE MatchBasedDataMiningForecast (
+CREATE TABLE IF NOT EXISTS MatchBasedDataMiningForecast (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

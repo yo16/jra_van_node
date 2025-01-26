@@ -1,5 +1,5 @@
 -- レース詳細
-CREATE TABLE RaceDetail (
+CREATE TABLE IF NOT EXISTS RaceDetail (
     -- データ区分 
     dataCategory TEXT NOT NULL,
     -- データ作成年月日 

@@ -1,5 +1,5 @@
 -- オッズ2（馬連）
-CREATE TABLE OddsExacta (
+CREATE TABLE IF NOT EXISTS OddsExacta (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

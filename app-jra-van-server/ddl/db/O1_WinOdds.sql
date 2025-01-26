@@ -1,5 +1,5 @@
 -- オッズ1（単複枠）.<単勝オッズ> 
-CREATE TABLE O1_WinOdds (
+CREATE TABLE IF NOT EXISTS O1_WinOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 馬番 

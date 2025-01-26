@@ -1,5 +1,5 @@
 -- 票数１
-CREATE TABLE VoteCount1 (
+CREATE TABLE IF NOT EXISTS VoteCount1 (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

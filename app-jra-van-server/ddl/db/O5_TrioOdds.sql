@@ -1,5 +1,5 @@
 -- オッズ5（3連複）.<3連複オッズ> 
-CREATE TABLE O5_TrioOdds (
+CREATE TABLE IF NOT EXISTS O5_TrioOdds (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

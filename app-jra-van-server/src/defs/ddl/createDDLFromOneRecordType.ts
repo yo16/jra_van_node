@@ -27,7 +27,7 @@ export function createDDLFromOneRecordType(
     const subTablesQuery: {query: string, tableNameEn: string}[] = [];
     let query = "";
     query += `-- ${curRecordFormatElement.recordTypeNameJp}\n`;
-    query += `CREATE TABLE ${curRecordFormatElement.recordTypeNameEn} (\n`;
+    query += `CREATE TABLE IF NOT EXISTS ${curRecordFormatElement.recordTypeNameEn} (\n`;
     for (const column of curRecordFormatElement.columns) {
         //console.log("debug: column: ", column.columnNameEn);
         // サブカラムがある場合は、サブカラムをパースする
@@ -100,7 +100,7 @@ function createSubTableQuery(recordFormat: RecordFormatElement, curColumn: Colum
     // クエリを作成
     let query = "";
     query += `-- ${tableNameJp} \n`;
-    query += `CREATE TABLE ${tableNameEn} (\n`;
+    query += `CREATE TABLE IF NOT EXISTS ${tableNameEn} (\n`;
     query += `    -- SEQ\n`;                                            // 固定
     query += `    seq ${convertDataType("number", 5, true)},\n`;        // 固定
     for (const column of curColumn.subColumnsInfo.subColumns) {

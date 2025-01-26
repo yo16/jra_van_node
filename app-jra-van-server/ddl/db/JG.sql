@@ -1,5 +1,5 @@
 -- 競走馬除外情報
-CREATE TABLE HorseExclusionInfo (
+CREATE TABLE IF NOT EXISTS HorseExclusionInfo (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

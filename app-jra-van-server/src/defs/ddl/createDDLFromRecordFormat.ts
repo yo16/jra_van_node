@@ -6,10 +6,11 @@ import { RecordFormat } from "../recordFormat.js";
 import { createDDLFromOneRecordType } from "./createDDLFromOneRecordType.js";
 
 // RecordFormatからDDLを作成する
-export function createDDLFromRecordFormat() {
+export async function createDDLFromRecordFormat() {
     for (const recordTypeId of Object.keys(RecordFormat())) {
-        createDDLFromOneRecordType(recordTypeId);
+        await createDDLFromOneRecordType(recordTypeId);
     }
+    return true;
 }
 
 

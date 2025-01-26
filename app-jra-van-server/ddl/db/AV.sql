@@ -1,5 +1,5 @@
 -- 出走取消・競走除外
-CREATE TABLE RaceCancellation (
+CREATE TABLE IF NOT EXISTS RaceCancellation (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

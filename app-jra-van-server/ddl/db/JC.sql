@@ -1,5 +1,5 @@
 -- 騎手変更
-CREATE TABLE JockeyChange (
+CREATE TABLE IF NOT EXISTS JockeyChange (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 
@@ -23,15 +23,15 @@ CREATE TABLE JockeyChange (
     -- 馬名 
     horseName TEXT NULL,
     -- 負担重量 
-    carriedWeight REAL NULL,
+    newCarriedWeight REAL NULL,
     -- 騎手コード 
-    jockeyCode TEXT NULL,
+    newJockeyCode TEXT NULL,
     -- 騎手見習コード 
-    apprenticeJockeyCode TEXT NULL,
+    newApprenticeJockeyCode TEXT NULL,
     -- 負担重量 
-    carriedWeight REAL NULL,
+    oldCarriedWeight REAL NULL,
     -- 騎手コード 
-    jockeyCode TEXT NULL,
+    oldJockeyCode TEXT NULL,
     -- 騎手見習コード 
-    apprenticeJockeyCode TEXT NULL
+    oldApprenticeJockeyCode TEXT NULL
 );

@@ -1,5 +1,5 @@
 -- オッズ5（3連複）
-CREATE TABLE OddsTrio (
+CREATE TABLE IF NOT EXISTS OddsTrio (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

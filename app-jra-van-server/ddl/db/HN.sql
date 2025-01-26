@@ -1,5 +1,5 @@
 -- 繁殖馬マスタ
-CREATE TABLE BreedingHorseMaster (
+CREATE TABLE IF NOT EXISTS BreedingHorseMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

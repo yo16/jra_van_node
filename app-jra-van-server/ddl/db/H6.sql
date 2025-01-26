@@ -1,5 +1,5 @@
 -- 票数6（3連単）
-CREATE TABLE VoteCountTrifecta (
+CREATE TABLE IF NOT EXISTS VoteCountTrifecta (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

@@ -1,5 +1,5 @@
 -- 票数１.<複勝票数> 
-CREATE TABLE H1_PlaceVotes (
+CREATE TABLE IF NOT EXISTS H1_PlaceVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 馬番 

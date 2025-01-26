@@ -1,5 +1,5 @@
 -- タイム型データマイニング予想
-CREATE TABLE TimeBasedDataMiningForecast (
+CREATE TABLE IF NOT EXISTS TimeBasedDataMiningForecast (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

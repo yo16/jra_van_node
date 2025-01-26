@@ -1,5 +1,5 @@
 -- 票数１.<馬連票数> 
-CREATE TABLE H1_QuinellaVotes (
+CREATE TABLE IF NOT EXISTS H1_QuinellaVotes (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 組番 

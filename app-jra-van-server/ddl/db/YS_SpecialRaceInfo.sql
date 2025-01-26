@@ -1,5 +1,5 @@
 -- 開催スケジュール.<重賞案内> 
-CREATE TABLE YS_SpecialRaceInfo (
+CREATE TABLE IF NOT EXISTS YS_SpecialRaceInfo (
     -- SEQ
     seq INTEGER NOT NULL,
     -- 特別競走番号 

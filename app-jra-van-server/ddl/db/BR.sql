@@ -1,5 +1,5 @@
 -- 生産者マスタ
-CREATE TABLE BreederMaster (
+CREATE TABLE IF NOT EXISTS BreederMaster (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

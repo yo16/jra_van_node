@@ -1,5 +1,5 @@
 -- 競走馬市場取引価格
-CREATE TABLE HorseMarketTransactionPrice (
+CREATE TABLE IF NOT EXISTS HorseMarketTransactionPrice (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 

@@ -1,5 +1,5 @@
 -- 馬毎レース情報
-CREATE TABLE HorseRaceInformation (
+CREATE TABLE IF NOT EXISTS HorseRaceInformation (
     -- データ区分 
     dataCategory TEXT NULL,
     -- データ作成年月日 
