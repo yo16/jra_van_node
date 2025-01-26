@@ -48,7 +48,7 @@ export async function readJVLink(
                         fs.unlinkSync(filePath);
                         //console.log("DEBUG: unlinkSync end");
                         console.log(`${curFileName} deleted(1)`);
-                        }
+                    }
                 }
 
                 // ファイルをローカルファイルへ出力する
