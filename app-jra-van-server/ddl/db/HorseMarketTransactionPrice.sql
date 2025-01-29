@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS HorseMarketTransactionPrice (
     -- 取引時の競走馬の年齢 
     horseAgeAtTransaction INTEGER NULL,
     -- 取引価格 
-    transactionPrice INTEGER NULL
+    transactionPrice INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (bloodlineNumber, marketCode, marketStartDate)
 );

@@ -17,5 +17,7 @@ CREATE TABLE IF NOT EXISTS HorseWeight (
     -- レース番号 
     raceNumber INTEGER NULL,
     -- 発表月日時分 
-    announcementDateTime TEXT NULL
+    announcementDateTime TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

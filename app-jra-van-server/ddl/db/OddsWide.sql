@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS OddsWide (
     -- 発売フラグ　ワイド 
     saleFlagWide TEXT NULL,
     -- ワイド票数合計 
-    totalWideVotes INTEGER NULL
+    totalWideVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

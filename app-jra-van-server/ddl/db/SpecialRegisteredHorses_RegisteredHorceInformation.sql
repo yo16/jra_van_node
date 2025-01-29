@@ -1,5 +1,17 @@
 -- 特別登録馬.<登録馬毎情報> 
 CREATE TABLE IF NOT EXISTS SpecialRegisteredHorses_RegisteredHorceInformation (
+    -- 開催年 
+    eventYear TEXT NOT NULL,
+    -- 開催月日 
+    eventMonthDay TEXT NOT NULL,
+    -- 競馬場コード 
+    raceCourseCode TEXT NOT NULL,
+    -- 開催回[第N回] 
+    eventRound INTEGER NOT NULL,
+    -- 開催日目[N日目] 
+    eventDay INTEGER NOT NULL,
+    -- レース番号 
+    raceNumber INTEGER NOT NULL,
     -- SEQ
     seq INTEGER NOT NULL,
     -- 連番 
@@ -21,5 +33,7 @@ CREATE TABLE IF NOT EXISTS SpecialRegisteredHorses_RegisteredHorceInformation (
     -- 負担重量 
     carriedWeight REAL NULL,
     -- 交流区分 
-    interactionCategory TEXT NULL
+    interactionCategory TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, seq)
 );

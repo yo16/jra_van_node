@@ -3433,5 +3433,7 @@ CREATE TABLE IF NOT EXISTS RunPlacementStats (
     -- 着回数 
     ProducerCurrentAndCumulativeInfo_cumulative_PlacementCount_5 INTEGER NULL,
     -- 着回数 
-    ProducerCurrentAndCumulativeInfo_cumulative_PlacementCount_6 INTEGER NULL
+    ProducerCurrentAndCumulativeInfo_cumulative_PlacementCount_6 INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, bloodlineNumber)
 );

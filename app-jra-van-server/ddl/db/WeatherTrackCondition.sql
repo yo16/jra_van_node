@@ -29,5 +29,7 @@ CREATE TABLE IF NOT EXISTS WeatherTrackCondition (
     -- 馬場状態・芝 
     oldTurfCondition TEXT NULL,
     -- 馬場状態・ダート 
-    oldDirtCondition TEXT NULL
+    oldDirtCondition TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, announcementDateTime, changeIdentifier)
 );

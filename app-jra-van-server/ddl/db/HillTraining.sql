@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS HillTraining (
     -- ラップタイム(400M～200M) 
     lapTime400To200 REAL NULL,
     -- ラップタイム(200M～0M) 
-    lapTime200To0 REAL NULL
+    lapTime200To0 REAL NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (trainingCenterCategory, trainingDate, trainingTime, bloodlineNumber)
 );

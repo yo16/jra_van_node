@@ -387,5 +387,7 @@ CREATE TABLE IF NOT EXISTS HorseMaster (
     -- 脚質傾向 
     runningStyleTendency_4 TEXT NULL,
     -- 登録レース数 
-    registeredRaceCount INTEGER NULL
+    registeredRaceCount INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (bloodlineNumber)
 );

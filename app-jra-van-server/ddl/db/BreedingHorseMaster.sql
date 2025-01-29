@@ -31,5 +31,7 @@ CREATE TABLE IF NOT EXISTS BreedingHorseMaster (
     -- 父馬繁殖登録番号 
     fatherHorseBreedingRegNumber TEXT NULL,
     -- 母馬繁殖登録番号 
-    motherHorseBreedingRegNumber TEXT NULL
+    motherHorseBreedingRegNumber TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (breedingRegistrationNumber)
 );

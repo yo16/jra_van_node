@@ -371,5 +371,7 @@ CREATE TABLE IF NOT EXISTS Payout (
     -- 払戻金 
     TrifectaPayout_6_payoutAmountTrifecta INTEGER NULL,
     -- 人気順 
-    TrifectaPayout_6_popularityTrifecta INTEGER NULL
+    TrifectaPayout_6_popularityTrifecta INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

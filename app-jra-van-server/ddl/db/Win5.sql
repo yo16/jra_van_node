@@ -69,5 +69,7 @@ CREATE TABLE IF NOT EXISTS Win5 (
     -- キャリーオーバー金額初期 
     initialCarryoverAmount INTEGER NULL,
     -- キャリーオーバー金額残高 
-    remainingCarryoverAmount INTEGER NULL
+    remainingCarryoverAmount INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay)
 );

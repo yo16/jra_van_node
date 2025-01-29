@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS OddsExacta (
     -- 発売フラグ　馬連 
     saleFlagQuinella TEXT NULL,
     -- 馬連票数合計 
-    totalQuinellaVotes INTEGER NULL
+    totalQuinellaVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, announcementDateTime)
 );

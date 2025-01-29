@@ -217,5 +217,7 @@ CREATE TABLE IF NOT EXISTS RaceDetail (
     -- 各通過順位 
     CornerPassingOrder_4_individualPassingOrder TEXT NULL,
     -- レコード更新区分 
-    recordUpdateCategory TEXT NULL
+    recordUpdateCategory TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

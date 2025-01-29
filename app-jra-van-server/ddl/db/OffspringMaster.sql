@@ -21,5 +21,7 @@ CREATE TABLE IF NOT EXISTS OffspringMaster (
     -- 生産者コード 
     producerCode TEXT NULL,
     -- 産地名 
-    placeOfBirth TEXT NULL
+    placeOfBirth TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (bloodlineNumber)
 );

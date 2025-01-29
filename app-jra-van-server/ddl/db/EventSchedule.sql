@@ -15,5 +15,7 @@ CREATE TABLE IF NOT EXISTS EventSchedule (
     -- 開催日目[N日目] 
     eventDay INTEGER NULL,
     -- 曜日コード 
-    weekdayCode TEXT NULL
+    weekdayCode TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay)
 );

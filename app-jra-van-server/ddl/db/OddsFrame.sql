@@ -35,5 +35,7 @@ CREATE TABLE IF NOT EXISTS OddsFrame (
     -- 複勝票数合計 
     totalPlaceVotes INTEGER NULL,
     -- 枠連票数合計 
-    totalBracketQuinellaVotes INTEGER NULL
+    totalBracketQuinellaVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, announcementDateTime)
 );

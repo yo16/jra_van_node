@@ -7,5 +7,7 @@ CREATE TABLE IF NOT EXISTS HorseNameOrigin (
     -- 血統登録番号 
     bloodlineNumber TEXT NULL,
     -- 馬名の意味由来 
-    HorseNameOrigin TEXT NULL
+    HorseNameOrigin TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (bloodlineNumber)
 );

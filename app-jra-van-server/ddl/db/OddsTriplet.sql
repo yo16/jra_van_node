@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS OddsTriplet (
     -- 発売フラグ　3連単 
     saleFlagTrifecta TEXT NULL,
     -- 3連単票数合計 
-    totalTrifectaVotes INTEGER NULL
+    totalTrifectaVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

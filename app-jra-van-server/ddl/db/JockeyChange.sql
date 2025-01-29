@@ -33,5 +33,7 @@ CREATE TABLE IF NOT EXISTS JockeyChange (
     -- 騎手コード 
     oldJockeyCode TEXT NULL,
     -- 騎手見習コード 
-    oldApprenticeJockeyCode TEXT NULL
+    oldApprenticeJockeyCode TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, announcementDateTime, horseNumber)
 );

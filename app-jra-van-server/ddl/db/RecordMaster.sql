@@ -63,5 +63,7 @@ CREATE TABLE IF NOT EXISTS RecordMaster (
     -- 負担重量 
     RecordHolderHorseInfo_3_carriedWeight TEXT NULL,
     -- 騎手コード 
-    RecordHolderHorseInfo_3_jockeyCode TEXT NULL
+    RecordHolderHorseInfo_3_jockeyCode TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (recordIdentificationDivision, eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, specialRaceNumber, raceTypeCode, distance, trackCode)
 );

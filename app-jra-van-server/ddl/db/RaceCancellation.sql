@@ -23,5 +23,7 @@ CREATE TABLE IF NOT EXISTS RaceCancellation (
     -- 馬名 
     horseName TEXT NULL,
     -- 事由区分 
-    reasonCategory TEXT NULL
+    reasonCategory TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, horseNumber)
 );

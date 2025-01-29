@@ -27,5 +27,7 @@ CREATE TABLE IF NOT EXISTS CourseChange (
     -- 変更前 トラックコード 
     oldTrackCode TEXT NULL,
     -- 事由区分 
-    reasonCategory TEXT NULL
+    reasonCategory TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

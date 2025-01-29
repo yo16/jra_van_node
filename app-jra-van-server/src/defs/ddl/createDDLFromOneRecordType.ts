@@ -28,6 +28,7 @@ export function createDDLFromOneRecordType(
     let query = "";
     query += `-- ${curRecordFormatElement.recordTypeNameJp}\n`;
     query += `CREATE TABLE IF NOT EXISTS ${curRecordFormatElement.recordTypeNameEn} (\n`;
+    let pkColumns: ColumnType[] = [];
     for (const column of curRecordFormatElement.columns) {
         //console.log("debug: column: ", column.columnNameEn);
         // サブカラムがある場合は、サブカラムをパースする
@@ -36,7 +37,7 @@ export function createDDLFromOneRecordType(
             // 別テーブルの場合は、別テーブルを作成するクエリを作る
             if (column.subColumnsInfo.repeatItemHandling === "別テーブル") {
                 //console.log("debug: 別テーブル");
-                subTablesQuery.push(createSubTableQuery(curRecordFormatElement, column));
+                subTablesQuery.push(createSubTableQuery(curRecordFormatElement, column, pkColumns));
             }
 
             // 横持ちの場合は、列名を変えて、今のテーブルに列を追加する
@@ -50,11 +51,17 @@ export function createDDLFromOneRecordType(
 
         // サブカラムがない場合は、通常のカラムの定義を出力する
         } else {
-            query += createOneColumnQuery(column);
+            const curColumnQuery = createOneColumnQuery(column);
+            query += curColumnQuery;
+
+            // 主キーの場合は、pkColumnsへ追加する
+            if (column.isPk) {
+                pkColumns.push(column);
+            }
         }
     }
-    // 末尾の`,\n`を、`\n`に変える
-    query = query.replace(/,\n$/, "\n");
+    query += '    -- PRIMARY KEY\n';
+    query += `    PRIMARY KEY (${pkColumns.map(column => column.columnNameEn).join(", ")})\n`;
     query += ");\n";
 
     // 出力ファイルへ出力
@@ -85,7 +92,11 @@ export function createDDLFromOneRecordType(
 
 
 // 別テーブルを作成するクエリを作る
-function createSubTableQuery(recordFormat: RecordFormatElement, curColumn: ColumnType) {
+function createSubTableQuery(
+    recordFormat: RecordFormatElement,
+    curColumn: ColumnType,
+    parentTablePkColumns: ColumnType[]
+) {
     // テーブル名
     const tableNameJp = `${recordFormat.recordTypeNameJp}.${curColumn.columnNameJp}`;
     const tableNameEn = `${recordFormat.recordTypeNameEn}_${curColumn.columnNameEn}`;
@@ -101,6 +112,7 @@ function createSubTableQuery(recordFormat: RecordFormatElement, curColumn: Colum
     let query = "";
     query += `-- ${tableNameJp} \n`;
     query += `CREATE TABLE IF NOT EXISTS ${tableNameEn} (\n`;
+    query += parentTablePkColumns.map(column => createOneColumnQuery(column)).join("");  // 親テーブルの主キーを先頭に追加
     query += `    -- SEQ\n`;                                            // 固定
     query += `    seq ${convertDataType("number", 5, true)},\n`;        // 固定
     for (const column of curColumn.subColumnsInfo.subColumns) {
@@ -112,8 +124,10 @@ function createSubTableQuery(recordFormat: RecordFormatElement, curColumn: Colum
         }
         query += createOneColumnQuery(column);
     }
-    // 末尾の`,\n`を、`\n`に変える
-    query = query.replace(/,\n$/, "\n");
+    
+    // 主キーの定義
+    query += '    -- PRIMARY KEY\n';
+    query += `    PRIMARY KEY (${parentTablePkColumns.map(column => column.columnNameEn).join(", ")}, seq)\n`;
     query += ");\n";
 
     return {query, tableNameEn: tableNameEn};

@@ -1,5 +1,17 @@
 -- タイム型データマイニング予想.<マイニング予想> 
 CREATE TABLE IF NOT EXISTS TimeBasedDataMiningForecast_Prediction (
+    -- 開催年 
+    eventYear TEXT NULL,
+    -- 開催月日 
+    eventMonthDay TEXT NULL,
+    -- 競馬場コード 
+    raceCourseCode TEXT NULL,
+    -- 開催回[第N回] 
+    eventRound INTEGER NULL,
+    -- 開催日目[N日目] 
+    eventDay INTEGER NULL,
+    -- レース番号 
+    raceNumber INTEGER NULL,
     -- SEQ
     seq INTEGER NOT NULL,
     -- 馬番 
@@ -9,5 +21,7 @@ CREATE TABLE IF NOT EXISTS TimeBasedDataMiningForecast_Prediction (
     -- 予想誤差(信頼度)＋ 
     predictionErrorPlus REAL NULL,
     -- 予想誤差(信頼度)－ 
-    predictionErrorMinus REAL NULL
+    predictionErrorMinus REAL NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, seq)
 );

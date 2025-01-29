@@ -11,5 +11,7 @@ CREATE TABLE IF NOT EXISTS BloodlineInfo (
     -- 系統名 
     lineageName TEXT NULL,
     -- 系統説明 
-    lineageDescription TEXT NULL
+    lineageDescription TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (breedingRegistrationNumber)
 );

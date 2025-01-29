@@ -61,5 +61,7 @@ CREATE TABLE IF NOT EXISTS VoteCountTrifecta (
     -- 3連単票数合計 
     totalTrifectaVotes INTEGER NULL,
     -- 3連単返還票数合計 
-    totalTrifectaRefundVotes INTEGER NULL
+    totalTrifectaRefundVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

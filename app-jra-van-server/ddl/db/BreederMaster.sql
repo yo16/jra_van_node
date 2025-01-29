@@ -51,5 +51,7 @@ CREATE TABLE IF NOT EXISTS BreederMaster (
     -- 着回数 
     CurrentAndCumulativeInfo_cumulative_PlacementCount_5 INTEGER NULL,
     -- 着回数 
-    CurrentAndCumulativeInfo_cumulative_PlacementCount_6 INTEGER NULL
+    CurrentAndCumulativeInfo_cumulative_PlacementCount_6 INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (producerCode)
 );

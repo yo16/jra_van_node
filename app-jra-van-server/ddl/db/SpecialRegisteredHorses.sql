@@ -69,5 +69,7 @@ CREATE TABLE IF NOT EXISTS SpecialRegisteredHorses (
     -- ハンデ発表日 
     handicapAnnouncementDate TEXT NULL,
     -- 登録頭数 
-    registeredHorsesCount INTEGER NOT NULL
+    registeredHorsesCount INTEGER NOT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

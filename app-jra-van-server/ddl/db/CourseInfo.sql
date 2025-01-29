@@ -13,5 +13,7 @@ CREATE TABLE IF NOT EXISTS CourseInfo (
     -- コース改修年月日 
     courseRenovationDate TEXT NULL,
     -- コース説明 
-    courseDescription TEXT NULL
+    courseDescription TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (raceCourseCode, distance, trackCode, courseRenovationDate)
 );

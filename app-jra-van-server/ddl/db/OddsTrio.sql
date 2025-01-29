@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS OddsTrio (
     -- 発売フラグ　3連複 
     saleFlagTrio TEXT NULL,
     -- 3連複票数合計 
-    totalTrioVotes INTEGER NULL
+    totalTrioVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

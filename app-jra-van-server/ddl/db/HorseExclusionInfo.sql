@@ -23,5 +23,7 @@ CREATE TABLE IF NOT EXISTS HorseExclusionInfo (
     -- 出走区分 
     entryCategory TEXT NULL,
     -- 除外状態区分 
-    exclusionStatus TEXT NULL
+    exclusionStatus TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, bloodlineNumber, entryOrder)
 );

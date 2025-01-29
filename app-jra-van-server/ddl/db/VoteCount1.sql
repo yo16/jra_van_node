@@ -151,5 +151,7 @@ CREATE TABLE IF NOT EXISTS VoteCount1 (
     -- 馬単返還票数合計 
     totalExactaRefundVotes INTEGER NULL,
     -- 3連複返還票数合計 
-    totalTrioReundVotes INTEGER NULL
+    totalTrioReundVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

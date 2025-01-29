@@ -129,5 +129,7 @@ CREATE TABLE IF NOT EXISTS HorseRaceInformation (
     -- マイニング予想順位 
     miningEstimatedRank INTEGER NULL,
     -- 今回レース脚質判定 
-    racePaceDetermination TEXT NULL
+    racePaceDetermination TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber, horseNumber, bloodlineNumber)
 );

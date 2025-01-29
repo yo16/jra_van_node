@@ -1151,5 +1151,7 @@ CREATE TABLE IF NOT EXISTS JockeyMaster (
     -- ダ22超・着回数 
     CurrentAndPreviousYearTotalStats_cumulative_dirtOver22PlacementCount_5 INTEGER NULL,
     -- ダ22超・着回数 
-    CurrentAndPreviousYearTotalStats_cumulative_dirtOver22PlacementCount_6 INTEGER NULL
+    CurrentAndPreviousYearTotalStats_cumulative_dirtOver22PlacementCount_6 INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (jockeyCode)
 );

@@ -21,5 +21,7 @@ CREATE TABLE IF NOT EXISTS StartTimeChange (
     -- 変更後 発走時刻 
     newStartTime TEXT NULL,
     -- 変更前 発走時刻 
-    oldStartTime TEXT NULL
+    oldStartTime TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

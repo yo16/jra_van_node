@@ -17,5 +17,7 @@ CREATE TABLE IF NOT EXISTS MatchBasedDataMiningForecast (
     -- レース番号 
     raceNumber INTEGER NULL,
     -- データ作成時分 
-    creationTime TEXT NULL
+    creationTime TEXT NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );

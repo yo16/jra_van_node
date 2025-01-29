@@ -25,5 +25,7 @@ CREATE TABLE IF NOT EXISTS OddsWinExacta (
     -- 発売フラグ　馬単 
     saleFlagExacta TEXT NULL,
     -- 馬単票数合計 
-    totalExactaVotes INTEGER NULL
+    totalExactaVotes INTEGER NULL,
+    -- PRIMARY KEY
+    PRIMARY KEY (eventYear, eventMonthDay, raceCourseCode, eventRound, eventDay, raceNumber)
 );
