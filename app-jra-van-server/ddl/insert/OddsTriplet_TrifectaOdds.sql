@@ -1,0 +1,44 @@
+DELETE FROM 
+    OddsTriplet_TrifectaOdds 
+;
+
+WITH 
+    ranked AS ( 
+        SELECT 
+            *, 
+            ROW_NUMBER() OVER ( 
+                PARTITION BY 
+                    eventYear,
+                    eventMonthDay,
+                    raceCourseCode,
+                    eventRound,
+                    eventDay,
+                    raceNumber,
+                    seq
+                ORDER BY 
+                    creationDate DESC 
+            ) AS rn 
+        FROM 
+            OddsTriplet_TrifectaOdds_NoPK 
+    ) 
+INSERT INTO 
+    OddsTriplet_TrifectaOdds 
+SELECT 
+    eventYear,
+    eventMonthDay,
+    raceCourseCode,
+    eventRound,
+    eventDay,
+    raceNumber,
+    seq,
+    combination,
+    odds,
+    popularity
+FROM 
+    ranked 
+WHERE 
+    rn = 1 
+;
+
+COMMIT;
+

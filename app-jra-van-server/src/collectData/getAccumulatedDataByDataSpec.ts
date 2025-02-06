@@ -2,7 +2,7 @@
 
 import winax from "winax";
 import { readJVLink } from "./readJVLink.js";
-import { LOCALDATA_DIR_BASE, DATATYPE_DIR_BASE } from "../defs/const.js";
+import { DATATYPE_DIR_BASE } from "../defs/const.js";
 
 export async function getAccumulatedDataByDataSpec(
     jvlink: winax.Object,
@@ -35,7 +35,7 @@ export async function getAccumulatedDataByDataSpec(
                 await readJVLink(
                     jvlink,
                     skipFileIfExists,
-                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Accumulated}`,
+                    `${DATATYPE_DIR_BASE.Accumulated}`,
                 );
 
                 // 正常終了したので、ループを抜ける

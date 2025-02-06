@@ -3,7 +3,7 @@
 */
 import winax from "winax";
 import { readJVLink } from "./readJVLink.js";
-import { LOCALDATA_DIR_BASE, DATATYPE_DIR_BASE } from "../defs/const.js";
+import { DATATYPE_DIR_BASE } from "../defs/const.js";
 
 export async function getRealtimeDataByDataSpec(
     jvlink: winax.Object,
@@ -35,7 +35,7 @@ export async function getRealtimeDataByDataSpec(
                 await readJVLink(
                     jvlink,
                     skipFileIfExists,
-                    `${LOCALDATA_DIR_BASE}${DATATYPE_DIR_BASE.Realtime}`
+                    `${DATATYPE_DIR_BASE.Realtime}`
                 );
 
                 // 正常終了したので、ループを抜ける

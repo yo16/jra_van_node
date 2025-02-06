@@ -1,0 +1,142 @@
+DELETE FROM 
+    RaceDetail 
+;
+
+WITH 
+    ranked AS ( 
+        SELECT 
+            *, 
+            ROW_NUMBER() OVER ( 
+                PARTITION BY 
+                    eventYear,
+                    eventMonthDay,
+                    raceCourseCode,
+                    eventRound,
+                    eventDay,
+                    raceNumber
+                ORDER BY 
+                    creationDate DESC 
+            ) AS rn 
+        FROM 
+            RaceDetail_NoPK 
+    ) 
+INSERT INTO 
+    RaceDetail 
+SELECT 
+    dataCategory,
+    creationDate,
+    eventYear,
+    eventMonthDay,
+    raceCourseCode,
+    eventRound,
+    eventDay,
+    raceNumber,
+    weekdayCode,
+    specialRaceNumber,
+    raceName,
+    raceNameSub,
+    raceNameParentheses,
+    raceNameEng,
+    raceNameSubEng,
+    raceNameParenthesesEng,
+    raceNameAbbr10,
+    raceNameAbbr6,
+    raceNameAbbr3,
+    raceTitleCategory,
+    gradeCount,
+    gradeCode,
+    previousGradeCode,
+    raceTypeCode,
+    raceSymbolCode,
+    weightTypeCode,
+    raceConditionCode2YearOld,
+    raceConditionCode3YearOld,
+    raceConditionCode4YearOld,
+    raceConditionCode5YearOldAndAbove,
+    raceConditionCodeYoungest,
+    raceConditionName,
+    distance,
+    previousDistance,
+    trackCode,
+    previousTrackCode,
+    courseCategory,
+    previousCourseCategory,
+    mainPrizeMoney_1,
+    mainPrizeMoney_2,
+    mainPrizeMoney_3,
+    mainPrizeMoney_4,
+    mainPrizeMoney_5,
+    mainPrizeMoney_6,
+    mainPrizeMoney_7,
+    previousPrizeMoney_1,
+    previousPrizeMoney_2,
+    previousPrizeMoney_3,
+    previousPrizeMoney_4,
+    previousPrizeMoney_5,
+    additionalPrizeMoney_1,
+    additionalPrizeMoney_2,
+    additionalPrizeMoney_3,
+    additionalPrizeMoney_4,
+    additionalPrizeMoney_5,
+    previousAdditionalPrizeMoney_1,
+    previousAdditionalPrizeMoney_2,
+    previousAdditionalPrizeMoney_3,
+    startTime,
+    previousStartTime,
+    registeredHorsesCount,
+    numberOfRunners,
+    horsesFinishedCount,
+    weatherCode,
+    turfConditionCode,
+    dirtConditionCode,
+    lapTime_1,
+    lapTime_2,
+    lapTime_3,
+    lapTime_4,
+    lapTime_5,
+    lapTime_6,
+    lapTime_7,
+    lapTime_8,
+    lapTime_9,
+    lapTime_10,
+    lapTime_11,
+    lapTime_12,
+    lapTime_13,
+    lapTime_14,
+    lapTime_15,
+    lapTime_16,
+    lapTime_17,
+    lapTime_18,
+    lapTime_19,
+    lapTime_20,
+    lapTime_21,
+    lapTime_22,
+    lapTime_23,
+    lapTime_24,
+    lapTime_25,
+    obstacleMileTime,
+    first3Furlongs,
+    first4Furlongs,
+    last3Furlongs,
+    last4Furlongs,
+    CornerPassingOrder_1_corner,
+    CornerPassingOrder_1_lapNumber,
+    CornerPassingOrder_1_individualPassingOrder,
+    CornerPassingOrder_2_corner,
+    CornerPassingOrder_2_lapNumber,
+    CornerPassingOrder_2_individualPassingOrder,
+    CornerPassingOrder_3_corner,
+    CornerPassingOrder_3_lapNumber,
+    CornerPassingOrder_3_individualPassingOrder,
+    CornerPassingOrder_4_corner,
+    CornerPassingOrder_4_lapNumber,
+    CornerPassingOrder_4_individualPassingOrder,
+    recordUpdateCategory
+FROM 
+    ranked 
+WHERE 
+    rn = 1 
+;
+
+COMMIT;
+

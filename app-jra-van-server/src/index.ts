@@ -8,7 +8,7 @@ import { loadData } from "./loadData.js";
 import { initializeDb } from "./initializeDb.js";
 import { createDDLFromRecordFormat } from "./defs/ddl/createDDLFromRecordFormat.js";
 import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
-import { createCSVFile } from "./createCSVFile.js";
+import { convertFixedWidthToCsv } from "./fixedWidthToCsv/convertFixedWidthToCsv.js";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -76,8 +76,8 @@ app.get('/loadAccumulatedData', async (req, res) => {
 });
 
 // CSVファイルを作成する
-app.get('/createCSVFile', async (req, res) => {
-    const ret = await createCSVFile();
+app.get('/createCSVFileAccumulated', async (req, res) => {
+    const ret = await convertFixedWidthToCsv("Accumulated", null);
     res.status(200).json({OK: ret});
     return;
 });

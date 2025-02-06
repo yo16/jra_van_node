@@ -1,8 +1,10 @@
+/*
+
+
 import winax from "winax";
 import fs from "fs";
 
 //import {RecordSpecs} from "./dataFormat";
-
 const fileDir = "./data";
 
 export function loadTemp() {
@@ -114,8 +116,9 @@ export function loadTemp() {
 }
 
 
+//loadTemp();
 
-loadTemp();
+*/
 
 /*
 import { getAccumulatedData } from "./collectData/getAccumulatedData.js";
@@ -176,8 +179,56 @@ getAccumulatedData(
 
 
 /*
-// SQL作成
+// SQL（Create Table文）作成
 import { createDDLFromRecordFormat } from "./defs/ddl/createDDLFromRecordFormat.js";
 createDDLFromRecordFormat();
 */
+
+
+
+/*
+// データベース初期化（Create Table文の実行）
+import { initializeDb } from "./initializeDb.js";
+initializeDb();
+*/
+
+
+
+/*
+// Insert Query 作成
+import { createInsertQuery } from "./defs/createInsertQuery.js";
+createInsertQuery();
+*/
+
+
+
+/*
+// JVLinkの固定長データをCSVに変換
+import { convertFixedWidthToCsv } from "./fixedWidthToCsv/convertFixedWidthToCsv.js";
+//await convertFixedWidthToCsv("Accumulated", ["TOKU"]);
+
+
+
+await convertFixedWidthToCsv("Accumulated");
+*/
+
+
+/*
+// CsvToDb（CSVファイルをデータベースにインポート）
+import { csvToDb } from "./csvToDb/csvToDb.js";
+
+csvToDb();
+*/
+
+
+
+/*
+// Insert Query 実行（NoPKから、通常のテーブルへInsert）
+import { executeQuery } from "./csvToDb/executeQuery.js";
+executeQuery();
+*/
+
+
+
+
 
