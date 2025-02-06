@@ -5,8 +5,7 @@
     "strict": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "esModuleInterop": true,
-    "target": "ESNext"
+    "esModuleInterop": true
   },
   "include": ["src/**/*"],
   "exclude": ["dist"]

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "nodemon --exec ts-node src/index.ts --loader ts-node/esm"
+    "dev": "nodemon --loader ts-node/esm src/index.ts"
   },
   "dependencies": {
     "@types/express": "^5.0.0",
