@@ -20,9 +20,7 @@ export async function loadJVDataFromJVServer(
 ): Promise<{success: boolean, error?: string}> {    
     let jvLink: winax.Object | null = null;
     try {
-
         // JVServerのCOMオブジェクトを作成
-
         jvLink = new winax.Object("JVDTLab.JVLink");
 
         // JVLinkの初期化
