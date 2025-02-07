@@ -16,7 +16,7 @@ export async function loadJVDataFromJVServer(
     // DataSpec
     dataSpec: string = "RACE",
     // 出力ファイルが既に存在している場合はスキップするフラグ
-    skipExistingFiles: boolean = false,
+    skipExistingFiles: boolean = true,
 ): Promise<{success: boolean, error?: string}> {    
     let jvLink: winax.Object | null = null;
     try {

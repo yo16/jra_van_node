@@ -44,12 +44,14 @@ export async function readAndSaveJVLinkData(
 
                 // スキップフラグがtrueで、ファイルが既に存在していたら、スキップ
                 if (skipExistingFiles && fs.existsSync(filePath)) {
+                    console.log(`${filePath} Skipped!`);
                     jvLink.JVSkip();
                     continue;
                 }
 
                 // ファイルを開く
                 if (fd < 0) {
+                    console.log(`${filePath} Opening...`);
                     fd = fs.openSync(filePath, "w");
                 }
 
@@ -65,7 +67,9 @@ export async function readAndSaveJVLinkData(
             } else if (readResult === 0) {
                 // 全ファイル終了
                 // ループを抜ける
+                console.log("All files finished!");
                 break;
+
 
             } else if (readResult === -3) {
                 // ダウンロード中
