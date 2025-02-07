@@ -3,6 +3,6 @@
 */
 
 // JVLinkから取得するファイルのパス
-export const JV_DATA_PATH = "./data/JVData";
+export const JV_DATA_PATH = "../data/JVData";
 
 

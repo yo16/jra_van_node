@@ -42,8 +42,8 @@ export async function readAndSaveJVLinkData(
                 // ファイルパスを決定
                 const filePath = getFilePath(out_varFileName.valueOf());
 
-                // スキップフラグがtrueで、ファイルが既に存在していたら、スキップ
-                if (skipExistingFiles && fs.existsSync(filePath)) {
+                // スキップフラグがtrueで、ファイルが既に存在していて、未オープンの状態だったら、スキップ
+                if (skipExistingFiles && fs.existsSync(filePath) && (fd < 0)) {
                     console.log(`${filePath} Skipped!`);
                     jvLink.JVSkip();
                     continue;
