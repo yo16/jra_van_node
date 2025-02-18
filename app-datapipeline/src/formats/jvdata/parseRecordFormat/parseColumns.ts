@@ -27,68 +27,40 @@ export function parseColumns(
     // 再帰的に呼び出して得た「別テーブル」の情報を格納する変数
     const subTableColumns: TableColumnType[] = [];
 
-
     // 列情報をパースする
-    for (const column of recordTypeColumns) {
-
+    let nextColumnTypeSeq: number = 1;
+    for (const [columnIndex, column] of recordTypeColumns.entries()) {
         // サブカラムがある場合は、サブカラムをパースする
         if (column.sub_columns_info) {
             if (column.sub_columns_info.repeat_item_handling === "別テーブル") {
                 // サブカラムが「別テーブル」の場合は、
                 // 再帰的に別テーブルの情報を取得し、subTableColumnsに追加する
-                const subTableColumnTypes: TableColumnType[]
-                    = parseColumns(
-                        {
-                            ...recordTypeHeader,
-                            format_name_jp: `${recordTypeHeader.format_name_jp}_${column.column_name_jp}`,
-                            format_name_en: `${recordTypeHeader.format_name_en}_${column.column_name_en}`,
-                            total_bytes: column.bytes_total,
-                        },
-                        column.sub_columns_info.sub_columns,
-                    );
-
-                subTableColumns.push(...subTableColumnTypes);
+                const curBetsuTableColumns: TableColumnType[] = getBetsuTableColumns(
+                    recordTypeHeader,
+                    recordTypeColumns,
+                    columnIndex
+                );
+                subTableColumns.push(...curBetsuTableColumns);
 
             } else if (column.sub_columns_info.repeat_item_handling === "横持ち") {
                 // サブカラムが横持ちの場合は、
                 // 列名を変えて、curTableColumnsへ追加する
-                const curColumns: ColumnType[] = getYokomochiColumns(column);
+                const {
+                    yokomochiColumns: curColumns,
+                    nextColumnTypeSeq: retNextColumnTypeSeq,
+                }: { yokomochiColumns: ColumnType[], nextColumnTypeSeq: number } = getYokomochiColumns(column, nextColumnTypeSeq);
                 curTableColumns.columns.push(...curColumns);
+                nextColumnTypeSeq = retNextColumnTypeSeq;
             }
-
 
         // サブカラムがない場合は、curTableColumnsへ追加する
         } else {
             // 列の基本情報を取得
-            const curColumn: ColumnType = parseBasicColumn(column);
+            const curColumn: ColumnType = parseBasicColumn(column, nextColumnTypeSeq);
             // 列を追加
             curTableColumns.columns.push(curColumn);
+            nextColumnTypeSeq++;
         }
-    }
-
-
-    // 別テーブルに、TableColumnTypeのPKの列と、"seq"列を追加する
-    for (const subTableColumn of subTableColumns) {
-        // seqを追加
-        subTableColumn.columns.unshift({
-            seq: 0,
-            subSeq: null,
-            isPk: true,
-            columnNameJp: "SEQ",
-            columnNameEn: "seq",
-            startPos: 0,
-            bytes: 0,
-            bytesTotal: 0,
-            dataType: "number",
-            length: 5,
-            isNotNull: true,
-            paddingCharacter: null,
-            comment: null,
-        });
-        // curTableColumnsのpk列群を追加
-        subTableColumn.columns.unshift(
-            ...(curTableColumns.columns.filter((column) => column.isPk))
-        );
     }
 
     // 戻り値へ追加
@@ -112,15 +84,15 @@ export function parseBasicTableHeader(header: RecordTypeJson_Header): TableColum
     };
 }
 // json形式からColumnType形式へ、基本情報を変換する
-const validPaddingCharacters = ["0", "sp", "Ｓ"] as const;
-export function parseBasicColumn(column: RecordTypeJson_ColumnType): ColumnType {
+export function parseBasicColumn(column: RecordTypeJson_ColumnType, columnTypeSeq: number): ColumnType {
     return {
         seq: column.seq,
         subSeq: column.sub_seq ?? null,
+        columnTypeSeq: columnTypeSeq,
         isPk: column.is_pk,
         columnNameJp: column.column_name_jp,
         columnNameEn: column.column_name_en,
-        startPos: column.start_pos,
+        startPos: (column.start_pos === null)? null: (column.start_pos - 1),      // 0-basedに変換
         bytes: column.bytes,
         bytesTotal: column.bytes_total,
         dataType: column.db_column_type,
@@ -138,21 +110,133 @@ export function parseBasicColumn(column: RecordTypeJson_ColumnType): ColumnType 
 
 
 
+// 別テーブルのTableColumnTypeを作成する
+export function getBetsuTableColumns(
+    baseRecordTypeHeader: RecordTypeJson_Header,
+    baseRecordTypeColumns: RecordTypeJson_ColumnType[],
+    curRecordTypeColumnIndex: number,
+): TableColumnType[] {
+    // RecordTypeJson_ColumnType
+    const curBaseRTJson_Column: RecordTypeJson_ColumnType = baseRecordTypeColumns[curRecordTypeColumnIndex];
+    if (!curBaseRTJson_Column.sub_columns_info) {
+        console.error("curBaseRTJson_Column.sub_columns_infoがない");
+        throw new Error("curBaseRTJson_Column.sub_columns_infoがない");
+    }
+    if (curBaseRTJson_Column.sub_columns_info.repeat_item_handling !== "別テーブル") {
+        console.error("curRTJson_Column.sub_columns_info.repeat_item_handlingが別テーブルではない");
+        throw new Error("curRTJson_Column.sub_columns_info.repeat_item_handlingが別テーブルではない");
+    }
+
+    // 別テーブルとして、parseColumnsを呼び出すための、引数を作成する
+    // ベースのRecordTypeJson_Headerに対して、curRecordTypeColumnの値で加工する
+    const curRTJson_Header: RecordTypeJson_Header = {
+        ...baseRecordTypeHeader,
+        format_name_jp: `${baseRecordTypeHeader.format_name_jp}_${curBaseRTJson_Column.column_name_jp}`,
+        format_name_en: `${baseRecordTypeHeader.format_name_en}_${curBaseRTJson_Column.column_name_en}`,
+        total_bytes: curBaseRTJson_Column.bytes_total,
+    };
+
+    // ベースのRecordTypeColumnsから、PKだけを取り出してパースし、
+    // 今回の列情報に追加する
+    const curRTJson_Columns: RecordTypeJson_ColumnType[] = baseRecordTypeColumns.filter((column) => column.is_pk);
+    // 固定でSEQ列をPKとして追加する
+    curRTJson_Columns.push({
+        seq: curBaseRTJson_Column.seq,
+        sub_seq: undefined,
+        is_pk: true,
+        column_name_jp: "SEQ",
+        column_name_en: "seq",
+        start_pos: null,
+        bytes: 0,
+        bytes_total: 4,
+        padding_character: "",
+        comment: "",
+        db_column_type: "number",
+        db_column_length: 4,
+        db_column_notnull: true,
+    } as RecordTypeJson_ColumnType);
+    // curRTJson_Columnのsub_columns_infoを、repeat分繰り返して追加する
+    const baseStartPos: number = curBaseRTJson_Column.start_pos? (curBaseRTJson_Column.start_pos - 1): 0;   // 0-basedに変換
+    for (let i = 0; i < curBaseRTJson_Column.sub_columns_info.repeats; i++) {
+        for (const curSubColumnInfo of curBaseRTJson_Column.sub_columns_info.sub_columns) {
+            curRTJson_Columns.push({
+                ...curSubColumnInfo,
+                column_name_jp: `${curBaseRTJson_Column.column_name_jp}_${curSubColumnInfo.column_name_jp}_${i}`,
+                column_name_en: `${curBaseRTJson_Column.column_name_en}_${curSubColumnInfo.column_name_en}_${i}`,
+                start_pos: baseStartPos + (curBaseRTJson_Column.bytes * i) + (curSubColumnInfo.start_pos ?? 0),
+            });
+        }
+    }
+
+    return parseColumns(curRTJson_Header, curRTJson_Columns);
+
+
+
+
+    //const curRTColumn: RecordTypeJson_ColumnType = 
+    
+
+    //const subTableColumnTypes: TableColumnType[]
+    //    = parseColumns(
+    //        {
+    //            ...recordTypeHeader,
+    //            format_name_jp: `${recordTypeHeader.format_name_jp}_${column.column_name_jp}`,
+    //            format_name_en: `${recordTypeHeader.format_name_en}_${column.column_name_en}`,
+    //            total_bytes: column.bytes_total,
+    //        },
+    //        column.sub_columns_info.sub_columns,
+    //    );
+    //
+    //subTableColumns.push(...subTableColumnTypes);
+
+
+    //// 別テーブルに、TableColumnTypeのPKの列と、"seq"列を追加する
+    //for (const [subTableColumnIndex, subTableColumn] of subTableColumns.entries()) {
+    //    // seqを追加
+    //    subTableColumn.columns.unshift({
+    //        seq: 0,
+    //        subSeq: null,
+    //        columnTypeSeq: subTableColumnIndex,
+    //        isPk: true,
+    //        columnNameJp: "SEQ",
+    //        columnNameEn: "seq",
+    //        startPos: 0,
+    //        bytes: 0,
+    //        bytesTotal: 0,
+    //        dataType: "number",
+    //        length: 5,
+    //        isNotNull: true,
+    //        paddingCharacter: null,
+    //        comment: null,
+    //    });
+    //    // curTableColumnsのpk列群を追加
+    //    subTableColumn.columns.unshift(
+    //        ...(curTableColumns.columns.filter((column) => column.isPk))
+    //    );
+    //}
+
+
+}
+
+
+
 // 横持ちの列を作成する
 export function getYokomochiColumns(
     column: RecordTypeJson_ColumnType,
+    nextColumnTypeSeq: number,
     paramPrefixJp: string = "",
     paramPrefixEn: string = "",
-): ColumnType[] {
+): { yokomochiColumns: ColumnType[], nextColumnTypeSeq: number } {
     if (!column.sub_columns_info) {
         console.error("column.sub_columns_infoがない");
-
         throw new Error("column.sub_columns_infoがない");
     }
 
     // 戻り値
     const retColumns: ColumnType[] = [];
 
+    // columnを変換
+    const topColumn: ColumnType = parseBasicColumn(column, 0);  // nextColumnTypeSeqはダミー
     // 繰り返し回数
     const repeatCount: number = column.sub_columns_info.repeats;
     // ループ識別子
@@ -179,7 +263,7 @@ export function getYokomochiColumns(
                 } else {
                     // サブカラムを持っていないケース
                     // 今のsub_columnを追加する
-                    const curColumn: ColumnType = parseBasicColumn(sub_column);
+                    const curColumn: ColumnType = parseBasicColumn(sub_column, nextColumnTypeSeq++);
                     const column_name_jp =
                         ((paramPrefixJp) ? `${paramPrefixJp}_` : "") +
                             sub_column.column_name_jp +
@@ -195,6 +279,7 @@ export function getYokomochiColumns(
                         ...curColumn,
                         columnNameJp: column_name_jp,
                         columnNameEn: column_name_en,
+                        startPos: (topColumn.startPos ?? 0) + (curColumn.bytes * i),
                     });
                 }
 
@@ -206,20 +291,26 @@ export function getYokomochiColumns(
 
                 // さらにサブカラムを持っていたら、再帰的にサブカラムをパースする
                 if (sub_column.sub_columns_info) {
-                    const subColumns: ColumnType[] = getYokomochiColumns(
+                    const {
+                        yokomochiColumns: subColumns,
+                        nextColumnTypeSeq: retNextColumnTypeSeq,
+                    }: { yokomochiColumns: ColumnType[], nextColumnTypeSeq: number } = getYokomochiColumns(
                         sub_column,
+                        nextColumnTypeSeq,
                         prefix_jp,
                         prefix_en,
                     );
                     retColumns.push(...subColumns);
+                    nextColumnTypeSeq = retNextColumnTypeSeq;
                 } else {
                     // サブカラムを持っていないケース
-                    const basicColumn: ColumnType = parseBasicColumn(sub_column);
+                    const basicColumn: ColumnType = parseBasicColumn(sub_column, nextColumnTypeSeq++);
                     // 今のsub_columnを追加する
                     retColumns.push({
                         ...basicColumn,
                         columnNameJp: `${prefix_jp}_${basicColumn.columnNameJp}`,
                         columnNameEn: `${prefix_en}_${basicColumn.columnNameEn}`,
+                        startPos: (basicColumn.startPos ?? 0) + (column.start_pos ?? 0) + (column.bytes * i),
                     });
                 }
             }
@@ -227,8 +318,10 @@ export function getYokomochiColumns(
         }
     }
 
-
-    return retColumns;
+    return {
+        yokomochiColumns: retColumns,
+        nextColumnTypeSeq: nextColumnTypeSeq,
+    };
 }
 
 

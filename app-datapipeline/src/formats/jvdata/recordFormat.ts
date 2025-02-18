@@ -40,7 +40,7 @@ export type RecordFormatElement = {
     columns: ColumnType[],
 };
 
-type RecordFormatType = {
+export type RecordFormatType = {
     [recordTypeId: string]: RecordFormatElement,
 };
 
@@ -80,7 +80,7 @@ interface RecordFormatJson {
 }
 
 
-
+/*
 // JSONファイルを読み込み、RecordFormatType型に変換する
 let savedRecordFormat: RecordFormatType | null = null;
 export const RecordFormat = (): RecordFormatType => {
@@ -151,3 +151,4 @@ const convertColumnTypeJsonToColumnType = (
     return retObj;
 }
 
+*/

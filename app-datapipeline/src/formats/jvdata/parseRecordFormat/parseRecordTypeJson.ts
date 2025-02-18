@@ -13,10 +13,13 @@ import { parseColumns } from "./parseColumns.js";
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const RECORD_FORMAT_JSON_PATH = path.join(__dirname, "recordFormat.json");
+const RECORD_FORMAT_JSON_PATH = path.join(__dirname, "..", "recordFormat.json");
 
 
 
+// 定義情報（recordFormat.json）を読み取り、すべてのテーブル名と列名を取得し、
+// TableColumnsMap型にする
+// 本来は、exportすべきでない関数だがテストのためにexportしている。getTableColumnMap関数を使うべきである
 export function parseRecordTypeJson(): TableColumnTypeMap {
     // JSONファイルを読み込む
     const inputFile = fs.readFileSync(path.join(RECORD_FORMAT_JSON_PATH), 'utf8');

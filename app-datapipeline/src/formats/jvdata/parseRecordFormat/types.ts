@@ -5,10 +5,11 @@
 export type ColumnType = {
     seq: number,
     subSeq: string | null,
+    columnTypeSeq: number,
     isPk: boolean,
     columnNameJp: string,
     columnNameEn: string,
-    startPos: number,
+    startPos: number | null,    // nullの場合は、JVDataから読む必要はない。（SEQ列の場合）
     bytes: number,
     bytesTotal: number,
     dataType: string,
@@ -47,7 +48,7 @@ export interface RecordTypeJson_ColumnType {
     is_pk: boolean,
     column_name_jp: string,
     column_name_en: string,
-    start_pos: number,
+    start_pos: number | null,     // SEQ列の場合、元情報がないため、nullとする。JVDataから読む必要はない。
     bytes: number,
     bytes_total: number,
     padding_character: "0" | "sp" | "Ｓ" | "Ｓ sp" | "",
