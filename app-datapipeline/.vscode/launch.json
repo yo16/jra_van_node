@@ -19,7 +19,7 @@
           "--runTestsByPath",
           "${workspaceFolder}/src/formats/jvdata/parseRecordFormat/__tests__/parseColumns.test.ts",
           "-t",
-          "単一列の横持ち、サフィックスルールなしの列が正しくパースされること"
+          "「別テーブル」の情報が正しくパースされること"
         ],
         "console": "integratedTerminal",
         "internalConsoleOptions": "neverOpen"

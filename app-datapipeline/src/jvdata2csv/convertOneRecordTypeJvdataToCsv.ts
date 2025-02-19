@@ -75,12 +75,25 @@ export async function convertOneTableColumnTypeJvdataToCsv(
     // 出力ファイルを管理するマップ
     const outputFiles = new Map();
 
+    // tcTypesの中で、startPosが配列になっているindexを取得する
+    // （そのindexのtcTypesは、別テーブルの列である）
+    const betsuTableColumnTypesIndexes: number[] = [];
+    for (let i = 0; i < tcTypes.length; i++) {
+        for (const column of tcTypes[i].columns) {
+            if (Array.isArray(column.startPos)) {
+                betsuTableColumnTypesIndexes.push(i);
+                break;
+            }
+        }
+    }
+
     try {
         for await (const line of inRl) {
             // 行をパースして、ファイル名ごとの要素に分解する
             const outputLines = parseLine(
                 line,
                 tcTypes,
+                betsuTableColumnTypesIndexes,
             );
 
             // 出力ファイルを開いていない場合は開く
@@ -104,9 +117,11 @@ export async function convertOneTableColumnTypeJvdataToCsv(
             }
 
             // 出力ファイルに書き込む
-            for (const { fileName, csvLine } of outputLines) {
+            for (const { fileName, csvLines } of outputLines) {
                 const outputFileStream = outputFiles.get(fileName);
-                outputFileStream.write(csvLine + "\n");
+                for (const csvLine of csvLines) {
+                    outputFileStream.write(csvLine + "\n");
+                }
             }
 
         }
@@ -132,19 +147,34 @@ export async function convertOneTableColumnTypeJvdataToCsv(
 export function parseLine(
     jvdataLine: string,
     tcTypes: TableColumnType[],
+    betsuTableColumnTypesIndexes: number[],    // tcTypesの中で、startPosが配列になっているindex
 ): {
     fileName: string,
-    csvLine: string,
+    csvLines: string[],
 }[] {
     const outputLines: {
         fileName: string,
-        csvLine: string,
+        csvLines: string[],
     }[] = [];
 
     // tcTypesごとに、出力用のlineを作成する
-    for (const tcType of tcTypes) {
-        const { fileName, csvLine } = createCsvLine(jvdataLine, tcType);
-        outputLines.push({ fileName, csvLine });
+    for (const [index, tcType] of tcTypes.entries()) {
+        if (betsuTableColumnTypesIndexes.includes(index)) {
+            // 別テーブルの場合
+            const { fileName, csvLines } = createCsvLine_BetsuTable(
+                jvdataLine,
+                tcType,
+            );
+            outputLines.push({ fileName, csvLines });
+        } else {
+            // 通常の列の場合
+            // 列のstartPosから、列のlength分の文字列を取得する
+            const { fileName, csvLine } = createCsvLine(
+                jvdataLine,
+                tcType,
+            );
+            outputLines.push({ fileName, csvLines: [csvLine] });
+        }
     }
 
     return outputLines;
@@ -161,13 +191,109 @@ export function createCsvLine(
     fileName: string,
     csvLine: string,
 } {
+    // elementsを、CSVの1行に変換して返す
+    return {
+        fileName: `${tcType.tableNameEn}.csv`,
+        csvLine: readColumns(jvdataLine, tcType.columns),
+    };
+}
+
+
+
+// １行のJVDataを、ファイルごとの出力行に分解する（別テーブル用）
+// テスト用にexportしている
+export function createCsvLine_BetsuTable(
+    jvdataLine: string,
+    tcType: TableColumnType,
+): {
+    fileName: string,
+    csvLines: string[],
+} {
     const fileName = `${tcType.tableNameEn}.csv`;
-    const csvElements: string[] = [];
+    const csvLines: string[] = [];
+
+    const retLines: string[] = [];
+
+    const singleLineColumns: ColumnType[] = [];
+    let multiLineColumnStartingIndex = -1;
+    for (let i=0; i<tcType.columns.length; i++) {
+        // 単一行→複数行になった判定
+        if (Array.isArray(tcType.columns[i].startPos)) {
+            multiLineColumnStartingIndex = i;
+            break;
+        }
+
+        // 単一行の場合は、ColumnTypeへ詰める
+        singleLineColumns.push(tcType.columns[i]);
+    }
+    // 必ず見つかり、必ず単一行も存在するはず
+    console.assert(multiLineColumnStartingIndex > 0, "multiLineColumnStartingIndexが0以下です");
+    // 単一行の最終項目は、seqのはず
+    console.assert(tcType.columns[multiLineColumnStartingIndex - 1].columnNameEn === "seq", "単一行の最終項目は、seqのはず");
+
+    // ColumnType[]を、CSVの1行に変換する
+    const csvLineSingleLine = readColumns(jvdataLine, tcType.columns);
+
+    // multiLineColumnStartingIndex 以降は、複数行の列
+    const multiLineStartPos = tcType.columns[multiLineColumnStartingIndex].startPos;
+
+    // 複数行の列の情報を得る
+    const csvLineMultiLine: string[] = [];
+    const multiLineRowCount = (multiLineStartPos as number[]).length;
+    const multiLineColCount = tcType.columns.length - multiLineColumnStartingIndex;
+    const multiLineColumns = tcType.columns.slice(multiLineColumnStartingIndex);
+    // １行分の列をコピー（複数行で、更新しながら使いまわす）
+    const oneLineColumns: ColumnType[] = structuredClone(multiLineColumns);
+    // 複数行の１行分のデータを取得
+    for (let i=0; i<multiLineRowCount; i++) {       // i: 行
+        // i行目のデータだけにする
+        for( let j=0; j<multiLineColCount; j++) {       // j: 列
+            oneLineColumns[j].startPos = (multiLineColumns[j].startPos as number[])[i];
+        }
+        // １行分のデータを取得
+        const oneLineCsvLine = readColumns(jvdataLine, oneLineColumns);
+        // 空の行の場合は、スキップする
+        if (oneLineCsvLine.length === 0) {
+            continue;
+        }
+        // 空の行でない場合は、複数行のデータに追加する
+        csvLineMultiLine.push(oneLineCsvLine);
+    }
+
+    // 単一行のデータと、複数行のデータ（作れた行だけ）を結合する
+    for (let i=0; i<csvLineMultiLine.length; i++) {
+        retLines.push(
+            `${csvLineSingleLine},"${i}",${csvLineMultiLine[i]}`
+        );
+    }
+
+    return {
+        fileName,
+        csvLines: retLines,
+    };
+}
+
+
+
+// １行のJVDataを、ColumnType[]にしたがって読み、CSVの1行に変換する
+function readColumns(
+    jvdataLine: string,
+    columns: ColumnType[],
+): string {
+    const retCsvElements: string[] = [];
+
+    // 何かの要素が含まれているかどうか（空の行を判定する）
+    let hasElements = false;
 
     // 列のstartPosから、列のlength分の文字列を取得する
-    for (const column of tcType.columns) {
+    for (const column of columns) {
         // startPosがnullの場合は、CSVとしては使用しないので、スキップする
         if (column.startPos === null) {
+            continue;
+        }
+        if (Array.isArray(column.startPos)) {
+            // 別テーブルの項目がある場合は、この関数が呼ばれていないはずだが、
+            // 万が一入った場合は、スキップする
             continue;
         }
 
@@ -177,18 +303,28 @@ export function createCsvLine(
         // トリム
         const valueStrTrimmed = trimValue(valueStr, column);
 
+        // トリムした文字列が空文字列でない場合は、hasElementsをtrueにする
+        if (valueStrTrimmed.length > 0) {
+            hasElements = true;
+        }
+
         // トリムした文字列を、CSVの要素として追加する
-        csvElements.push(valueStrTrimmed);
+        retCsvElements.push(valueStrTrimmed);
     }
 
-    // elementsを、CSVの1行に変換して返す
-    return {
-        fileName,
-        csvLine: csvElements
-            .map(element => element.length > 0 ? `"${element}"` : element)
-            .join(","),
+    // 空の行の場合は、空文字列を返す
+    if (!hasElements) {
+        return "";
     }
+
+    // elementsを、CSV要素の配列として返す
+    return retCsvElements
+            .map(element => element.length > 0 ? `"${element}"` : element)
+            .join(",");
 }
+
+
+
 
 
 

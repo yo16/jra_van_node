@@ -129,129 +129,76 @@ describe('convertOneRecordTypeJvdataToCsv', () => {
             }];
 
             // 実行
-            const results = parseLine(jvdataLine, tcTypes);
+            const results = parseLine(jvdataLine, tcTypes, []);
 
             // 検証
             expect(results).toHaveLength(2);
-            expect(results[0]).toEqual({
-                fileName: 'test_table1.csv',
-                csvLine: '"AB","CD12"'
-            });
-            expect(results[1]).toEqual({
-                fileName: 'test_table2.csv',
-                csvLine: '"34","あい"'
-            });
-        });
-    });
 
+            expect(results[0].fileName).toBe('test_table1.csv');
+            expect(results[0].csvLines).toHaveLength(1);
+            expect(results[0].csvLines[0]).toBe('"AB","CD12"');
 
-
-    /*
-    describe('convertOneTableColumnTypeJvdataToCsv', () => {
-        const mockParseLine = jest.fn();
-        jest.mock('parseLine', mockParseLine);
-
-        it('JVデータファイルを指定のテーブル定義に従ってCSVに変換できること', async () => {
-
-            // テストデータ
-            const recordTypeId = 'TE';
-            const jvdataFilePath = 'input.txt';
-            const tcTypes: TableColumnType[] = [{
-                ...baseTt,
-                tableNameEn: 'test_table',
-                columns: [
-                    { ...baseCt, startPos: 0, length: 2 },
-                    { ...baseCt, startPos: 2, length: 4 },
-                ],
-            }];
-            const outputFolderPath = path.join(CSV_SAVE_PATH, recordTypeId);
-
-            // モックの設定
-            const mockReadStream = new EventEmitter();
-            const mockWriteStream = {
-                write: jest.fn(),
-                end: jest.fn(),
-            };
-            
-            // ディレクトリの存在チェックと作成のモック
-            mockExistsSync.mockReturnValue(false);  // ディレクトリが存在しないと仮定
-            mockMkdirSync.mockReturnValue(undefined);  // ディレクトリを作成する
-
-            mockCreateReadStream.mockReturnValue(mockReadStream);
-            
-            const mockLineReader = new EventEmitter();
-            mockCreateInterface.mockReturnValue(mockLineReader);
-
-            mockCreateWriteStream.mockReturnValue(mockWriteStream);
-
-            mockParseLine.mockReturnValue([
-                {
-                    fileName: 'test_table.csv',
-                    csvLine: '"AB","CD12"'
-                }]);
-
-            // 関数の実行
-            const promise = convertOneTableColumnTypeJvdataToCsv(
-                recordTypeId, jvdataFilePath, tcTypes
-            );
-
-            // データの読み込みをシミュレート
-            mockLineReader.emit('line', 'ABCD1234');
-            mockLineReader.emit('close');
-
-            await promise;
-
-            // 検証
-            expect(mockExistsSync).toHaveBeenCalledWith(outputFolderPath);
-            expect(mockMkdirSync).toHaveBeenCalledWith(outputFolderPath, { recursive: true });
-            expect(fs.createReadStream).toHaveBeenCalledWith(jvdataFilePath);
-            expect(fs.createWriteStream).toHaveBeenCalledWith(path.join(outputFolderPath, 'test_table.csv'));
-            expect(mockWriteStream.write).toHaveBeenCalledWith('"AB","CD12"\n');
-            expect(mockWriteStream.end).toHaveBeenCalled();
+            expect(results[1].fileName).toBe('test_table2.csv');
+            expect(results[1].csvLines).toHaveLength(1);
+            expect(results[1].csvLines[0]).toBe('"34","あい"');
         });
 
-        /*
-        it('空のJVデータファイルを処理できること', async () => {
-            // モックの設定
-            const mockReadStream = new EventEmitter();
-            const mockWriteStream = {
-                write: jest.fn(),
-                end: jest.fn(),
-            };
-            
-            mockCreateReadStream.mockReturnValue(mockReadStream);
-            mockCreateWriteStream.mockReturnValue(mockWriteStream);
-            
-            const mockLineReader = new EventEmitter();
-            mockCreateInterface.mockReturnValue(mockLineReader);
-
-            // テストデータ
-            const inputPath = 'empty.txt';
-            const outputDir = 'output';
+        it('「別テーブル」のテーブル定義に対して正しくCSV行を生成できること', () => {
+            // テストデータの準備
+            const jvdataLine = 'ABCD123あい456うえ789おか';
             const tcTypes: TableColumnType[] = [{
                 ...baseTt,
-                tableNameEn: 'test_table',
+                tableNameEn: 'test_table1',
                 columns: [
                     { ...baseCt, startPos: 0, length: 2 },
+                    { ...baseCt, startPos: 2, length: 2 },
+                    { ...baseCt, startPos: null, columnNameEn: 'seq'},
+                    { ...baseCt, startPos: [4, 11, 18], length: 3 },
+                    { ...baseCt, startPos: [7, 14, 21], length: 4 },
                 ],
             }];
 
-            // 関数の実行
-            const promise = convertOneTableColumnTypeJvdataToCsv(inputPath, outputDir, tcTypes);
-
-            // ファイルが空の場合をシミュレート
-            mockLineReader.emit('close');
-
-            await promise;
+            // 実行
+            const results = parseLine(jvdataLine, tcTypes, [0]);
 
             // 検証
-            expect(fs.createWriteStream).toHaveBeenCalledWith(`${outputDir}/test_table.csv`);
-            expect(mockWriteStream.write).not.toHaveBeenCalled();
-            expect(mockWriteStream.end).toHaveBeenCalled();
+            expect(results).toHaveLength(1);
+
+            expect(results[0].fileName).toBe('test_table1.csv');
+            expect(results[0].csvLines).toHaveLength(3);
+            expect(results[0].csvLines[0]).toBe('"AB","CD","0","123","あい"');
+            expect(results[0].csvLines[1]).toBe('"AB","CD","1","456","うえ"');
+            expect(results[0].csvLines[2]).toBe('"AB","CD","2","789","おか"');
         });
-        * /
+
+        it('「別テーブル」のテーブル定義に対して、空行の場合はレコードを作らないこと', () => {
+            // テストデータの準備
+            const jvdataLine = 'ABCD123あい456うえ   　　';
+            const tcTypes: TableColumnType[] = [{
+                ...baseTt,
+                tableNameEn: 'test_table1',
+                columns: [
+                    { ...baseCt, startPos: 0, length: 2 },
+                    { ...baseCt, startPos: 2, length: 2 },
+                    { ...baseCt, startPos: null, columnNameEn: 'seq'},
+                    { ...baseCt, startPos: [4, 11, 18], length: 3, paddingCharacter: "sp" },
+                    { ...baseCt, startPos: [7, 14, 21], length: 4, paddingCharacter: "Ｓ" },
+                ],
+            }];
+
+            // 実行
+            const results = parseLine(jvdataLine, tcTypes, [0]);
+
+            // 検証
+            expect(results).toHaveLength(1);
+
+            expect(results[0].fileName).toBe('test_table1.csv');
+            expect(results[0].csvLines).toHaveLength(2);
+            expect(results[0].csvLines[0]).toBe('"AB","CD","0","123","あい"');
+            expect(results[0].csvLines[1]).toBe('"AB","CD","1","456","うえ"');
+        });
     });
-    */
+
 });
 
 

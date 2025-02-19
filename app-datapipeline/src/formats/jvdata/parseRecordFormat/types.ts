@@ -9,7 +9,7 @@ export type ColumnType = {
     isPk: boolean,
     columnNameJp: string,
     columnNameEn: string,
-    startPos: number | null,    // nullの場合は、JVDataから読む必要はない。（SEQ列の場合）
+    startPos: number | number[] | null,    // nullの場合は、JVDataから読む必要はない。（SEQ列の場合）
     bytes: number,
     bytesTotal: number,
     dataType: string,
@@ -48,7 +48,9 @@ export interface RecordTypeJson_ColumnType {
     is_pk: boolean,
     column_name_jp: string,
     column_name_en: string,
-    start_pos: number | null,     // SEQ列の場合、元情報がないため、nullとする。JVDataから読む必要はない。
+    start_pos: number | number[] | null,
+        // SEQ列の場合、元情報がないため、nullとする。JVDataから読む必要はない。
+        // number[]は、別テーブル用。jsonファイル上は設定されていない。プログラム内で生成するためのもの。
     bytes: number,
     bytes_total: number,
     padding_character: "0" | "sp" | "Ｓ" | "Ｓ sp" | "",

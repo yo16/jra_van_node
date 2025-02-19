@@ -28,7 +28,14 @@ export function makeCreateTable(tableColumnType: TableColumnType) {
 
 
 // テーブルの作成クエリを作成する
-function makeCreateTableQuery(tableColumnType: TableColumnType, withPk: boolean = true) {
+function makeCreateTableQuery(tableColumnType: TableColumnType, withPk: boolean = true)
+{
+    // 列数が2,000以上の場合は、警告を出しておく
+    if (tableColumnType.columns.length >= 2000) {
+        console.warn(`${tableColumnType.tableNameJp}の列数が2,000を超えています。(${tableColumnType.columns.length})`);
+    }
+
+
     let query = "";
 
     // テーブル

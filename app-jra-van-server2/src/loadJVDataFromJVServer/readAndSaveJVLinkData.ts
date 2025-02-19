@@ -14,7 +14,7 @@ export async function readAndSaveJVLinkData(
     // JVLinkのCOMオブジェクト
     jvLink: winax.Object,
     // 出力ファイルが既に存在している場合はスキップするフラグ
-    skipExistingFiles: boolean = true,
+    skipExistingFiles: boolean = false,
 ): Promise<void> {
     try {
         // 読み込むデータのバッファ

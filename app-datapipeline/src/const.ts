@@ -13,6 +13,9 @@ const QUERY_SAVE_PATH = path.join("..", "data", "queries");
 // テーブルの作成クエリの保存パス
 export const QUERY_CREATE_TABLE_PATH = path.join(QUERY_SAVE_PATH, "create_table");
 
+
+// DB
 // データベースシステム名
 export const DB_SYSTEM_NAME = "SQLite";
-
+// データベースファイルパス
+export const DB_FILE_PATH = path.join("..", "data", "db", "jra_van_sqlite.db");

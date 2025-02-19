@@ -144,7 +144,7 @@ describe('parseColumns', () => {
 
         expect(result[1].tableNameJp).toBe('テスト_テスト列2');
         expect(result[1].tableNameEn).toBe('TEST_test_column2');
-        expect(result[1].columns).toHaveLength(8);
+        expect(result[1].columns).toHaveLength(4);
         expect(result[1].columns[0].columnNameJp).toBe('テスト列');
         expect(result[1].columns[0].columnNameEn).toBe('test_column');
         expect(result[1].columns[0].columnTypeSeq).toBe(1);
@@ -156,42 +156,34 @@ describe('parseColumns', () => {
         expect(result[1].columns[1].columnTypeSeq).toBe(2);
         expect(result[1].columns[1].isPk).toBe(true);
         expect(result[1].columns[1].startPos).toBe(null);
-        expect(result[1].columns[2].columnNameJp).toBe('テスト列2_テスト列2-1_0');
-        expect(result[1].columns[2].columnNameEn).toBe('test_column2_test_column2-1_0');
+        expect(result[1].columns[2].columnNameJp).toBe('テスト列2_テスト列2-1');
+        expect(result[1].columns[2].columnNameEn).toBe('test_column2_test_column2-1');
         expect(result[1].columns[2].columnTypeSeq).toBe(3);
         expect(result[1].columns[2].isPk).toBe(false);
-        expect(result[1].columns[2].startPos).toBe(10);
+        //expect(result[1].columns[2].startPos).toBe(10);
+        expect(result[1].columns[2].startPos).toHaveLength(3);
+        // 型がnumber[]になっていることを確認
+        expect(Array.isArray(result[1].columns[2].startPos)).toBe(true);
+        if (Array.isArray(result[1].columns[2].startPos)) {
+            expect(result[1].columns[2].startPos[0]).toBe(10);
+            expect(result[1].columns[2].startPos[1]).toBe(16);
+            expect(result[1].columns[2].startPos[2]).toBe(22);
+        }
         expect(result[1].columns[2].bytes).toBe(4);
-        expect(result[1].columns[3].columnNameJp).toBe('テスト列2_テスト列2-2_0');
-        expect(result[1].columns[3].columnNameEn).toBe('test_column2_test_column2-2_0');
+        expect(result[1].columns[3].columnNameJp).toBe('テスト列2_テスト列2-2');
+        expect(result[1].columns[3].columnNameEn).toBe('test_column2_test_column2-2');
         expect(result[1].columns[3].columnTypeSeq).toBe(4);
         expect(result[1].columns[3].isPk).toBe(false);
-        expect(result[1].columns[3].startPos).toBe(14);
+        //expect(result[1].columns[3].startPos).toBe(14);
+        expect(result[1].columns[3].startPos).toHaveLength(3);
+        // 型がnumber[]になっていることを確認
+        expect(Array.isArray(result[1].columns[2].startPos)).toBe(true);
+        if (Array.isArray(result[1].columns[3].startPos)) {
+            expect(result[1].columns[3].startPos[0]).toBe(14);
+            expect(result[1].columns[3].startPos[1]).toBe(20);
+            expect(result[1].columns[3].startPos[2]).toBe(26);
+        }
         expect(result[1].columns[3].bytes).toBe(2);
-        expect(result[1].columns[4].columnNameJp).toBe('テスト列2_テスト列2-1_1');
-        expect(result[1].columns[4].columnNameEn).toBe('test_column2_test_column2-1_1');
-        expect(result[1].columns[4].columnTypeSeq).toBe(5);
-        expect(result[1].columns[4].isPk).toBe(false);
-        expect(result[1].columns[4].startPos).toBe(16);
-        expect(result[1].columns[4].bytes).toBe(4);
-        expect(result[1].columns[5].columnNameJp).toBe('テスト列2_テスト列2-2_1');
-        expect(result[1].columns[5].columnNameEn).toBe('test_column2_test_column2-2_1');
-        expect(result[1].columns[5].columnTypeSeq).toBe(6);
-        expect(result[1].columns[5].isPk).toBe(false);
-        expect(result[1].columns[5].startPos).toBe(20);
-        expect(result[1].columns[5].bytes).toBe(2);
-        expect(result[1].columns[6].columnNameJp).toBe('テスト列2_テスト列2-1_2');
-        expect(result[1].columns[6].columnNameEn).toBe('test_column2_test_column2-1_2');
-        expect(result[1].columns[6].columnTypeSeq).toBe(7);
-        expect(result[1].columns[6].isPk).toBe(false);
-        expect(result[1].columns[6].startPos).toBe(22);
-        expect(result[1].columns[6].bytes).toBe(4);
-        expect(result[1].columns[7].columnNameJp).toBe('テスト列2_テスト列2-2_2');
-        expect(result[1].columns[7].columnNameEn).toBe('test_column2_test_column2-2_2');
-        expect(result[1].columns[7].columnTypeSeq).toBe(8);
-        expect(result[1].columns[7].isPk).toBe(false);
-        expect(result[1].columns[7].startPos).toBe(26);
-        expect(result[1].columns[7].bytes).toBe(2);
     });
 });
 
@@ -290,7 +282,7 @@ describe('getYokomochiColumns', () => {
         is_pk: true,
         column_name_jp: 'テスト列1',
         column_name_en: 'test_column1',
-        start_pos: 10,
+        start_pos: 11,
         bytes: 6,
         bytes_total: 18,
         db_column_type: 'string',

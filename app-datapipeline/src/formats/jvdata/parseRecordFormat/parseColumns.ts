@@ -92,7 +92,11 @@ export function parseBasicColumn(column: RecordTypeJson_ColumnType, columnTypeSe
         isPk: column.is_pk,
         columnNameJp: column.column_name_jp,
         columnNameEn: column.column_name_en,
-        startPos: (column.start_pos === null)? null: (column.start_pos - 1),      // 0-basedに変換
+        startPos: (column.start_pos === null)
+            ? null
+            : (Array.isArray(column.start_pos)
+                ? column.start_pos.map((pos) => pos - 1)
+                : (column.start_pos - 1)),      // 0-basedに変換
         bytes: column.bytes,
         bytesTotal: column.bytes_total,
         dataType: column.db_column_type,
@@ -111,6 +115,8 @@ export function parseBasicColumn(column: RecordTypeJson_ColumnType, columnTypeSe
 
 
 // 別テーブルのTableColumnTypeを作成する
+// 繰り返し列は、繰り返さず、そのままの列を追加する
+// ただしstartPosに配列要素を追加する
 export function getBetsuTableColumns(
     baseRecordTypeHeader: RecordTypeJson_Header,
     baseRecordTypeColumns: RecordTypeJson_ColumnType[],
@@ -156,66 +162,46 @@ export function getBetsuTableColumns(
         db_column_notnull: true,
     } as RecordTypeJson_ColumnType);
     // curRTJson_Columnのsub_columns_infoを、repeat分繰り返して追加する
-    const baseStartPos: number = curBaseRTJson_Column.start_pos? (curBaseRTJson_Column.start_pos - 1): 0;   // 0-basedに変換
-    for (let i = 0; i < curBaseRTJson_Column.sub_columns_info.repeats; i++) {
-        for (const curSubColumnInfo of curBaseRTJson_Column.sub_columns_info.sub_columns) {
-            curRTJson_Columns.push({
-                ...curSubColumnInfo,
-                column_name_jp: `${curBaseRTJson_Column.column_name_jp}_${curSubColumnInfo.column_name_jp}_${i}`,
-                column_name_en: `${curBaseRTJson_Column.column_name_en}_${curSubColumnInfo.column_name_en}_${i}`,
-                start_pos: baseStartPos + (curBaseRTJson_Column.bytes * i) + (curSubColumnInfo.start_pos ?? 0),
-            });
-        }
+    const baseStartPos: number = (curBaseRTJson_Column.start_pos === null)
+        ? 0
+        : (Array.isArray(curBaseRTJson_Column.start_pos)
+            ? (curBaseRTJson_Column.start_pos[0] - 1)   // たぶんこれはない
+            : (curBaseRTJson_Column.start_pos - 1)      // 0-basedに変換
+        );
+    
+    for (const curSubColumnInfo of curBaseRTJson_Column.sub_columns_info.sub_columns) {
+        curRTJson_Columns.push({
+            ...curSubColumnInfo,
+            column_name_jp: `${curBaseRTJson_Column.column_name_jp}_${curSubColumnInfo.column_name_jp}`,
+            column_name_en: `${curBaseRTJson_Column.column_name_en}_${curSubColumnInfo.column_name_en}`,
+            start_pos: Array.from(
+                { length: curBaseRTJson_Column.sub_columns_info.repeats },
+                (_, i) =>
+                    baseStartPos +
+                    (curBaseRTJson_Column.bytes * i) +
+                    (
+                        (curSubColumnInfo.start_pos === null)
+                            ? 0
+                            : (Array.isArray(curSubColumnInfo.start_pos)
+                                ? curSubColumnInfo.start_pos[i]     // たぶんこれはない
+                                : curSubColumnInfo.start_pos)
+                    )
+            ),
+        });
     }
 
-    return parseColumns(curRTJson_Header, curRTJson_Columns);
-
-
-
-
-    //const curRTColumn: RecordTypeJson_ColumnType = 
-    
-
-    //const subTableColumnTypes: TableColumnType[]
-    //    = parseColumns(
-    //        {
-    //            ...recordTypeHeader,
-    //            format_name_jp: `${recordTypeHeader.format_name_jp}_${column.column_name_jp}`,
-    //            format_name_en: `${recordTypeHeader.format_name_en}_${column.column_name_en}`,
-    //            total_bytes: column.bytes_total,
-    //        },
-    //        column.sub_columns_info.sub_columns,
-    //    );
-    //
-    //subTableColumns.push(...subTableColumnTypes);
-
-
-    //// 別テーブルに、TableColumnTypeのPKの列と、"seq"列を追加する
-    //for (const [subTableColumnIndex, subTableColumn] of subTableColumns.entries()) {
-    //    // seqを追加
-    //    subTableColumn.columns.unshift({
-    //        seq: 0,
-    //        subSeq: null,
-    //        columnTypeSeq: subTableColumnIndex,
-    //        isPk: true,
-    //        columnNameJp: "SEQ",
-    //        columnNameEn: "seq",
-    //        startPos: 0,
-    //        bytes: 0,
-    //        bytesTotal: 0,
-    //        dataType: "number",
-    //        length: 5,
-    //        isNotNull: true,
-    //        paddingCharacter: null,
-    //        comment: null,
-    //    });
-    //    // curTableColumnsのpk列群を追加
-    //    subTableColumn.columns.unshift(
-    //        ...(curTableColumns.columns.filter((column) => column.isPk))
-    //    );
+    //for (let i = 0; i < curBaseRTJson_Column.sub_columns_info.repeats; i++) {
+    //    for (const curSubColumnInfo of curBaseRTJson_Column.sub_columns_info.sub_columns) {
+    //        curRTJson_Columns.push({
+    //            ...curSubColumnInfo,
+    //            column_name_jp: `${curBaseRTJson_Column.column_name_jp}_${curSubColumnInfo.column_name_jp}_${i}`,
+    //            column_name_en: `${curBaseRTJson_Column.column_name_en}_${curSubColumnInfo.column_name_en}_${i}`,
+    //            start_pos: baseStartPos + (curBaseRTJson_Column.bytes * i) + (curSubColumnInfo.start_pos ?? 0),
+    //        });
+    //    }
     //}
 
-
+    return parseColumns(curRTJson_Header, curRTJson_Columns);
 }
 
 
@@ -243,6 +229,12 @@ export function getYokomochiColumns(
     const repeatNumLoopIdentifers: string[]
         = column.sub_columns_info.repeat_suffix_rule ??
             Array.from({ length: repeatCount }, (_, i) => `${i}`);
+    // トップのstartPos
+    const topStartPos: number = (topColumn.startPos === null)
+        ? 0
+        : (Array.isArray(topColumn.startPos)
+            ? topColumn.startPos[0]                 // 単一の横持ちの場合
+            : topColumn.startPos);
 
     // サブカラムから、列定義を生成する
     RepeatNumLoop: for (let i = 0; i < repeatCount; i++) {
@@ -279,8 +271,15 @@ export function getYokomochiColumns(
                         ...curColumn,
                         columnNameJp: column_name_jp,
                         columnNameEn: column_name_en,
-                        startPos: (topColumn.startPos ?? 0) + (curColumn.bytes * i),
+                        startPos: (
+                            (topColumn.startPos === null)
+                                ? 0
+                                : (Array.isArray(topColumn.startPos)
+                                    ? topColumn.startPos[0]         // たぶんこれはない
+                                    : topColumn.startPos)
+                        ) + (curColumn.bytes * i),
                     });
+                    console.assert((topColumn.startPos === null) || !Array.isArray(topColumn.startPos));   // 念のためassert
                 }
 
             } else {
@@ -305,12 +304,18 @@ export function getYokomochiColumns(
                 } else {
                     // サブカラムを持っていないケース
                     const basicColumn: ColumnType = parseBasicColumn(sub_column, nextColumnTypeSeq++);
+                    const basicColumnStartPos: number = (basicColumn.startPos === null)
+                        ? 0
+                        : (Array.isArray(basicColumn.startPos)
+                            ? basicColumn.startPos[0]         // たぶんこれはない
+                            : basicColumn.startPos);
+                    console.assert((basicColumn.startPos === null) || !Array.isArray(basicColumn.startPos));    // 念のためassert
                     // 今のsub_columnを追加する
                     retColumns.push({
                         ...basicColumn,
                         columnNameJp: `${prefix_jp}_${basicColumn.columnNameJp}`,
                         columnNameEn: `${prefix_en}_${basicColumn.columnNameEn}`,
-                        startPos: (basicColumn.startPos ?? 0) + (column.start_pos ?? 0) + (column.bytes * i),
+                        startPos: topStartPos + basicColumnStartPos + (column.bytes * i),
                     });
                 }
             }
