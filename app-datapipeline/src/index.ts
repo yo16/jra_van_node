@@ -1,4 +1,3 @@
-
 /* テーブル作成関連
 
 // Create Table文を作成
@@ -35,9 +34,18 @@ await convertOneRecordTypeJvdataToCsv(tcMap["RA"]);
 
 
 
-// csvをDBへインポート
+/*
+// csvを、PKなしのDBへインポート
 import { csv2Db } from "./csv2db/csv2db.js";
 csv2Db(false);    // pkなしテーブルへinsert
+*/
+
+
+// 最新のレコードを抽出し、PKありのDBへinsertするクエリを作成
+import { makeQuery_ExtractAndInsertLatestRecord } from "./formats/queries/makeExtractAndInsertLatestRecords/makeQuery_ExtractAndInsertLatestRecord.js";
+makeQuery_ExtractAndInsertLatestRecord();
+
+
 
 
 
