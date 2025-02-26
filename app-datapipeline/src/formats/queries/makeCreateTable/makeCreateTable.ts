@@ -6,12 +6,18 @@ import fs from "fs";
 import path from "path";
 
 import { TableColumnType, ColumnType } from "../../jvdata/parseRecordFormat/types.js";
-import { QUERY_CREATE_TABLE_PATH, DB_SYSTEM_NAME } from "../../../const.js";
+import { QUERY_CREATE_TABLE_PATH, QUERY_CREATE_TABLE_NOPK_PATH, DB_SYSTEM_NAME } from "../../../const.js";
 
 
-export function makeCreateTable(tableColumnType: TableColumnType) {
+export function makeCreateTable(
+    tableColumnType: TableColumnType,
+    withPk: boolean = true
+) {
     // 出力するファイルパス
-    const outputFilePath = path.join(QUERY_CREATE_TABLE_PATH, `${tableColumnType.tableNameEn}.sql`);
+    const outputFilePath = path.join(
+        withPk ? QUERY_CREATE_TABLE_PATH : QUERY_CREATE_TABLE_NOPK_PATH,
+        `${tableColumnType.tableNameEn}.sql`
+    );
     fs.mkdirSync(path.dirname(outputFilePath), { recursive: true });
 
     // ファイルを作成する
@@ -19,7 +25,7 @@ export function makeCreateTable(tableColumnType: TableColumnType) {
     fs.writeFileSync(outputFilePath, "");
 
     // クエリを作成する
-    const query = makeCreateTableQuery(tableColumnType);
+    const query = makeCreateTableQuery(tableColumnType, withPk);
 
     // クエリをファイルに書き込む
     fs.writeFileSync(outputFilePath, query);
@@ -28,8 +34,10 @@ export function makeCreateTable(tableColumnType: TableColumnType) {
 
 
 // テーブルの作成クエリを作成する
-function makeCreateTableQuery(tableColumnType: TableColumnType, withPk: boolean = true)
-{
+function makeCreateTableQuery(
+    tableColumnType: TableColumnType,
+    withPk: boolean = true
+) {
     // 列数が2,000以上の場合は、警告を出しておく
     if (tableColumnType.columns.length >= 2000) {
         console.warn(`${tableColumnType.tableNameJp}の列数が2,000を超えています。(${tableColumnType.columns.length})`);
@@ -59,6 +67,8 @@ function makeCreateTableQuery(tableColumnType: TableColumnType, withPk: boolean 
         ;
         query += "\n";
         query += `    )\n`;
+    } else {
+        query += `\n`;
     }
 
     query += `);\n`;

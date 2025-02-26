@@ -7,16 +7,17 @@ import fs from "fs";
 import path from "path";
 
 import { executeOneQueryFile } from "./executeSqlFile.js";
-import { QUERY_CREATE_TABLE_PATH } from "../../const.js";
+import { QUERY_CREATE_TABLE_PATH, QUERY_CREATE_TABLE_NOPK_PATH } from "../../const.js";
 
 
-export function executeCreateTableQueries()
-{
+export function executeCreateTableQueries(
+    withPk: boolean = true
+) {
     // クエリファイルが入っているフォルダ
-    const queryFolderPath = QUERY_CREATE_TABLE_PATH;
+    const queryFolderPath = withPk ? QUERY_CREATE_TABLE_PATH : QUERY_CREATE_TABLE_NOPK_PATH;
 
     // クエリファイルを取得
-    const queryFilePaths = fs.readdirSync(QUERY_CREATE_TABLE_PATH);
+    const queryFilePaths = fs.readdirSync(queryFolderPath);
 
     // クエリファイルを実行
     for (const queryFilePath of queryFilePaths) {

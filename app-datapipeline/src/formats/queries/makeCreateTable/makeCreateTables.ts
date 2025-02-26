@@ -6,7 +6,9 @@ import { TableColumnType } from "../../jvdata/parseRecordFormat/types.js";
 import { getTableColumnMap } from "../../jvdata/parseRecordFormat/getTableColumnMap.js";
 import { makeCreateTable } from "./makeCreateTable.js";
 
-export function makeCreateTables() {
+export function makeCreateTables(
+    withPk: boolean = true
+) {
     // 定義情報を読み取る
     const tableColumnMap = getTableColumnMap();
 
@@ -17,7 +19,7 @@ export function makeCreateTables() {
         const tableColumnTypes: TableColumnType[] = tableColumnMap[recordTypeId];
 
         for (const tableColumnType of tableColumnTypes) {
-            makeCreateTable(tableColumnType);
+            makeCreateTable(tableColumnType, withPk);
         }
     }
 

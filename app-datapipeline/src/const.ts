@@ -12,6 +12,7 @@ export const CSV_SAVE_PATH = path.join("..", "data", "csv");
 const QUERY_SAVE_PATH = path.join("..", "data", "queries");
 // テーブルの作成クエリの保存パス
 export const QUERY_CREATE_TABLE_PATH = path.join(QUERY_SAVE_PATH, "create_table");
+export const QUERY_CREATE_TABLE_NOPK_PATH = path.join(QUERY_SAVE_PATH, "create_table_nopk");
 
 
 // DB
