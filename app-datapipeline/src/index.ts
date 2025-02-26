@@ -1,4 +1,4 @@
-/* テーブル作成関連
+/* クエリ作成関連
 
 // Create Table文を作成
 import { makeCreateTables } from "./formats/queries/makeCreateTable/makeCreateTables.js";
@@ -11,7 +11,18 @@ import { executeCreateTableQueries } from "./tools/forSQLite/executeCreateTableQ
 executeCreateTableQueries();
 executeCreateTableQueries(false);   // pkなし
 
-テーブル作成関連 */
+
+// テーブル内のレコードをすべて削除するクエリを作成
+import { makeDeleteAllTablesRecords } from "./formats/queries/makeDaleteAllRecords/makeDeleteAllRecords.js";
+makeDeleteAllTablesRecords();
+
+
+// 最新のレコードを抽出し、PKありのDBへinsertするクエリを作成
+import { makeQuery_ExtractAndInsertLatestRecord } from "./formats/queries/makeExtractAndInsertLatestRecords/makeQuery_ExtractAndInsertLatestRecord.js";
+makeQuery_ExtractAndInsertLatestRecord();
+
+クエリ作成関連 */
+
 
 
 
@@ -39,12 +50,6 @@ await convertOneRecordTypeJvdataToCsv(tcMap["RA"]);
 import { csv2Db } from "./csv2db/csv2db.js";
 csv2Db(false);    // pkなしテーブルへinsert
 */
-
-
-// 最新のレコードを抽出し、PKありのDBへinsertするクエリを作成
-import { makeQuery_ExtractAndInsertLatestRecord } from "./formats/queries/makeExtractAndInsertLatestRecords/makeQuery_ExtractAndInsertLatestRecord.js";
-makeQuery_ExtractAndInsertLatestRecord();
-
 
 
 
