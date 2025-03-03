@@ -67,7 +67,57 @@ app.get("/loadJVData", async(req, res) => {
     });
     worker.postMessage({
         type: "loadJVData",
-        date: "20250101"
+        date: "20240100"
+    });
+});
+
+
+
+// RT系JVデータの読み込み
+app.get("/loadRTJVData", async(req, res) => {
+    console.log(`Request received. isLoading: ${isLoading}`);
+
+    // 既に読み込み中の場合
+    if (isLoading) {
+        console.log('Request rejected - already loading');
+        res.status(409).json({ 
+            message: "JVデータの読み込みが既に実行中です",
+            status: "loading"
+        });
+        return;
+    }
+
+    // 読み込み開始
+    console.log("RT読み込みを開始します");
+    isLoading = true;
+
+    // レスポンスを返す
+    res.json({
+        message: "JVデータ(リアルタイム系)の読み込みを開始しました",
+        status: "started"
+    });
+
+    // WorkerスレッドでJVデータの読み込みを実行
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const worker = new Worker(path.join(__dirname, "./worker.js"));
+    worker.on("message", (message) => {
+        if (message.type === "complete") {
+            console.log("JVデータ(リアルタイム系)の読み込みが完了しました");
+            isLoading = false;
+        } else if (message.type === "error") {
+            console.error("JVデータ(リアルタイム系)の読み込みでエラーが発生しました:", message.error);
+            isLoading = false;
+        }
+    });
+    worker.on("error", (error) => {
+        console.error("Workerエラー:", error);
+        isLoading = false;
+    });
+    worker.postMessage({
+        type: "loadRTJVData",
+        //date: "20230101",
+        date: "19860101",
+        dataSpec: "0B42",
     });
 });
 

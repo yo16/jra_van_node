@@ -8,13 +8,15 @@ import winax from "winax";
 import fs from "fs";
 import path from "path";
 
-import { JV_DATA_PATH } from "../const.js";
+import { JV_DATA_PATH, RT_JV_DATA_PATH } from "../const.js";
 
 export async function readAndSaveJVLinkData(
     // JVLinkのCOMオブジェクト
     jvLink: winax.Object,
     // 出力ファイルが既に存在している場合はスキップするフラグ
     skipExistingFiles: boolean = false,
+    // 蓄積系か、リアルタイム系か
+    isAccumulation: boolean = true,
 ): Promise<void> {
     try {
         // 読み込むデータのバッファ
@@ -38,9 +40,13 @@ export async function readAndSaveJVLinkData(
             //      0: 全ファイル終了
             //     -3: ダウンロード中（少し待つと再開できる）
             if (readResult > 0) {
+
                 // １ファイル開始 or 続き
                 // ファイルパスを決定
-                const filePath = getFilePath(out_varFileName.valueOf());
+                const filePath = getFilePath(
+                    out_varFileName.valueOf(),
+                    isAccumulation,
+                );
 
                 // スキップフラグがtrueで、ファイルが既に存在していて、未オープンの状態だったら、スキップ
                 if (skipExistingFiles && fs.existsSync(filePath) && (fd < 0)) {
@@ -56,7 +62,7 @@ export async function readAndSaveJVLinkData(
                 }
 
                 // ファイルへ出力
-                fs.writeFileSync(filePath, varBuffer.valueOf());
+                fs.writeSync(fd, varBuffer.valueOf());
 
             } else if (readResult === -1) {
                 // １ファイル終了
@@ -80,6 +86,7 @@ export async function readAndSaveJVLinkData(
                 // エラー
                 throw new Error(`JVRead failed with code: ${readResult}`);
             }
+            
         }
 
     } catch (error) {
@@ -95,10 +102,20 @@ export async function readAndSaveJVLinkData(
 
 
 // ファイル名から、ファイルパスを取得
-function getFilePath(fileName: string) {
-    // ファイル名の先頭2文字を取得し、ディレクトリ名とする
-    const dirName = fileName.slice(0, 2);
-    const filePath = path.join(JV_DATA_PATH, dirName, fileName);
+function getFilePath(
+    fileName: string,
+    isAccumulation: boolean,
+) {
+    // ベースのフォルダ：蓄積系か、リアルタイム系か
+    const dirBaseName = isAccumulation ? JV_DATA_PATH: RT_JV_DATA_PATH;
+
+    // ディレクトリ名
+    // 蓄積系: ファイル名の先頭2文字を取得し、ディレクトリ名とする
+    // リアルタイム系: ファイル名の先頭4文字を取得し、ディレクトリ名とする
+    const dirName = isAccumulation ? fileName.slice(0, 2) : fileName.slice(0, 4);
+
+    // 全体のパス
+    const filePath = path.join(dirBaseName, dirName, fileName);
 
     // ディレクトリがなかったら作る
     fs.mkdirSync(path.dirname(filePath), { recursive: true });

@@ -6,7 +6,7 @@
 import winax from "winax";
 
 import { openJVLinkFile } from "./openJVLinkFile.js";
-import { readAndSaveJVLinkData } from "./readAndSaveJVLinkData.js";
+import { readAndSaveJVLinkData } from "../common/readAndSaveJVLinkData.js";
 
 
 // JVServerからJVData（固定長ファイル）の読み込みメイン

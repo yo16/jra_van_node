@@ -16,6 +16,8 @@
     "@types/express": "^5.0.0",
     "cross-env": "^7.0.3",
     "express": "^4.21.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
     "winax": "^3.6.1"
   },
   "devDependencies": {
