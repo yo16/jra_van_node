@@ -116,8 +116,9 @@ app.get("/loadRTJVData", async(req, res) => {
     worker.postMessage({
         type: "loadRTJVData",
         //date: "20230101",
-        date: "19860101",
-        dataSpec: "0B42",
+        //date: "19860101",
+        date: "20091200",
+        dataSpec: "0B41",
     });
 });
 

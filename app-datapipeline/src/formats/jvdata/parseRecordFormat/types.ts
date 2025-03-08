@@ -37,6 +37,14 @@ export type TableColumnTypeMap = {
 
 
 
+// 速報系のデータ種別と、それに対応するレコードタイプID
+export type DataKindAndRecordTypeId = {
+    dataKindId: string,
+    dataKindName?: string,
+    recordTypeId: string,
+    recordTypeName?: string,
+};
+
 
 
 

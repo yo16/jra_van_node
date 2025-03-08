@@ -10,7 +10,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -24,7 +24,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -680,7 +680,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -694,7 +694,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -1658,7 +1658,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -1672,7 +1672,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -2593,7 +2593,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -2607,7 +2607,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -3687,7 +3687,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -3701,7 +3701,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -4676,7 +4676,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -4690,7 +4690,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -4963,7 +4963,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -4977,7 +4977,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -5427,7 +5427,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -5441,7 +5441,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -5682,7 +5682,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -5696,7 +5696,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -5958,7 +5958,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -5972,7 +5972,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -6216,7 +6216,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -6230,7 +6230,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -6474,7 +6474,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -6488,7 +6488,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -6732,7 +6732,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -6746,7 +6746,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -8063,7 +8063,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -8077,7 +8077,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -9630,7 +9630,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -9644,7 +9644,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -10994,7 +10994,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -11008,7 +11008,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -11215,7 +11215,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -11229,7 +11229,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -11436,7 +11436,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -11450,7 +11450,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -11669,7 +11669,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -11683,7 +11683,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -11834,7 +11834,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -11848,7 +11848,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -18104,7 +18104,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -18118,7 +18118,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -18473,7 +18473,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -18487,7 +18487,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -18687,7 +18687,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -18701,7 +18701,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -18880,7 +18880,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -18894,7 +18894,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -18947,7 +18947,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -18961,7 +18961,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -19266,7 +19266,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -19280,7 +19280,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -19360,7 +19360,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -19374,7 +19374,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -19469,7 +19469,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -19483,7 +19483,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -19691,7 +19691,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -19705,7 +19705,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -19877,7 +19877,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -19891,7 +19891,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -20197,7 +20197,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -20211,7 +20211,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -20376,7 +20376,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -20390,7 +20390,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -20822,7 +20822,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -20836,7 +20836,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -20974,7 +20974,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -20988,7 +20988,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -21195,7 +21195,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -21209,7 +21209,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -21374,7 +21374,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -21388,7 +21388,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -21629,7 +21629,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -21643,7 +21643,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,
@@ -21794,7 +21794,7 @@
         "columns": [
             {
                 "seq": 2,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ区分",
                 "column_name_en": "dataCategory",
                 "start_pos": 3,
@@ -21808,7 +21808,7 @@
             },
             {
                 "seq": 3,
-                "is_pk": false,
+                "is_pk": true,
                 "column_name_jp": "データ作成年月日",
                 "column_name_en": "creationDate",
                 "start_pos": 4,

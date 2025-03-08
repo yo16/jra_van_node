@@ -30,6 +30,42 @@ export async function csv2dbOneTable(
     // ファイルパスをフルパスに変換し、スラッシュを `/` に統一
     const dbFilePath_forCommand = path.resolve(dbFilePath).replace(/\\/g, "/");
 
+    // フォルダ内のCSVファイルをDBへinsertする
+    csv2dbOneTable_folder(
+        dbFilePath_forCommand,
+        csvFolderPath,
+        tableName,
+        withPk,
+    );
+
+    // サブフォルダを取得して、サブフォルダ内のCSVファイルをDBへinsertする
+    const subFolderPaths = fs.readdirSync(csvFolderPath)
+        .filter(
+            subFolderPath =>
+                fs.statSync(
+                    path.join(csvFolderPath, subFolderPath)
+                ).isDirectory()
+        );
+    for (const subFolderPath of subFolderPaths) {
+        csv2dbOneTable_folder(
+            dbFilePath_forCommand,
+            path.join(csvFolderPath, subFolderPath),
+            tableName,
+            withPk
+        );
+    }
+}
+
+
+
+// フォルダ内のCSVファイルをDBへinsertする
+export async function csv2dbOneTable_folder(
+    dbFilePath: string,
+    csvFolderPath: string,
+    tableName: string,
+    withPk: boolean,
+) {
+
     // フォルダ内のファイルを取得する
     const csvFileNames = fs.readdirSync(csvFolderPath)
         .filter(fileName => fileName.includes(`_${tableName}.csv`));
@@ -43,10 +79,10 @@ export async function csv2dbOneTable(
 
         try {
             // コマンド
-            const sqliteCommand = getSqliteCommand(dbFilePath_forCommand, csvFilePath_forCommand, tableName, withPk);
+            const sqliteCommand = getSqliteCommand(dbFilePath, csvFilePath_forCommand, tableName, withPk);
 
             // コマンド実行
-            const result = spawnSync("sqlite3", [dbFilePath_forCommand], {
+            const result = spawnSync("sqlite3", [dbFilePath], {
                 input: sqliteCommand,
                 stdio: ["pipe", "inherit", "inherit"],
                 shell: true,

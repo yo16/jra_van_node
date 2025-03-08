@@ -7,14 +7,15 @@ import path from "path";
 import readline from "readline";
 import iconv from "iconv-lite";
 
-import { TableColumnType, ColumnType } from "../formats/jvdata/parseRecordFormat/types.js";
-import { JVDATA_SAVE_PATH, CSV_SAVE_PATH } from "../const.js";
+import { TableColumnType, ColumnType, DataKindAndRecordTypeId } from "../formats/jvdata/parseRecordFormat/types.js";
+import { JVDATA_SAVE_PATH, JVDATA_RT_SAVE_PATH, CSV_SAVE_PATH } from "../const.js";
 
 
 
 // 1 つの RecordTypeId に対する jvdata を csv に変換し、保存する
 export default async function convertOneRecordTypeJvdataToCsv(
     tcTypes: TableColumnType[],
+    skipIfExists: boolean = true,
 ): Promise<void> {
     // レコードタイプID
     // この関数内のレコードタイプIDはすべて同じはずなので、１つ目の要素を使用する
@@ -44,7 +45,44 @@ export default async function convertOneRecordTypeJvdataToCsv(
         await convertOneTableColumnTypeJvdataToCsv(
             recordTypeId,
             jvdataFilePath,
-            tcTypes
+            tcTypes,
+            skipIfExists,
+        );
+    }
+}
+
+
+
+
+// 速報系の jvdata を csv に変換する
+export async function convertRTJvdataToCsv(
+    dataKind: DataKindAndRecordTypeId,
+    tcTypes: TableColumnType[],
+    skipIfExists: boolean = true,
+): Promise<void> {
+    // 入力フォルダ：jvdata 群が格納されているフォルダ
+    const jvdataFolderPath = path.join(JVDATA_RT_SAVE_PATH, dataKind.dataKindId);
+    console.log(jvdataFolderPath);
+
+    // 入力フォルダ自体が存在しなかったら、何もせず終了する
+    if (!fs.existsSync(jvdataFolderPath)) {
+        return;
+    }
+
+    // jvdata ファイルを読み込む
+    const jvdataFiles = fs.readdirSync(jvdataFolderPath);
+
+    // jvdata ファイルを csv へ変換する
+    for (const jvdataFile of jvdataFiles) {
+        // jvdataのファイルパスを取得
+        const jvdataFilePath = path.join(jvdataFolderPath, jvdataFile);
+
+        // １つの jvdata ファイルを csv へ変換する
+        await convertOneTableColumnTypeJvdataToCsv(
+            dataKind.recordTypeId,
+            jvdataFilePath,
+            tcTypes,
+            skipIfExists,
         );
     }
 }
@@ -52,20 +90,19 @@ export default async function convertOneRecordTypeJvdataToCsv(
 
 
 // 1 つの jvdata ファイルを csv ファイルへ変換する
-// テスト用にexportしている
+// 蓄積系は、convertOneRecordTypeJvdataToCsvから呼ばれ、
+// 速報系は、convertRTJvdataToCsvから呼ばれる
 export async function convertOneTableColumnTypeJvdataToCsv(
     recordTypeId: string,
     jvdataFilePath: string,
     tcTypes: TableColumnType[],
-    skipIfExists: boolean = false,
+    skipIfExists: boolean = true,
 ): Promise<void> {
     // 出力フォルダ
     const outputFolderPath = path.join(CSV_SAVE_PATH, recordTypeId);
 
     // 出力フォルダが存在しない場合は作成する
-    if (!fs.existsSync(outputFolderPath)) {
-        fs.mkdirSync(outputFolderPath, { recursive: true });
-    }
+    fs.mkdirSync(outputFolderPath, { recursive: true });
     
     // 入力ファイルを読み込む
     const inputFileName = path.basename(jvdataFilePath);
@@ -97,10 +134,18 @@ export async function convertOneTableColumnTypeJvdataToCsv(
             );
 
             // 出力ファイルを開いていない場合は開く
-            for (const { fileName } of outputLines) {
+            for (const { fileName, eventYear } of outputLines) {
                 if ( !outputFiles.has(fileName) ) {
                     // 出力ファイルパスを決定
-                    const outputFilePath = path.join(outputFolderPath, `${inputFileName}_${fileName}`);
+                    let outputFilePath = "";
+                    // eventYearが存在する場合は、eventYearフォルダをサブフォルダとする
+                    if (eventYear) {
+                        outputFilePath = path.join(outputFolderPath, eventYear, `${inputFileName}_${fileName}`);
+                    } else {
+                        outputFilePath = path.join(outputFolderPath, `${inputFileName}_${fileName}`);
+                    }
+                    // フォルダがなければ作る
+                    fs.mkdirSync(path.dirname(outputFilePath), { recursive: true });
 
                     // 出力ファイルが既に存在する場合で、skipIfExistsがtrueの場合は、何もせずこの関数を終了する
                     if (skipIfExists && fs.existsSync(outputFilePath)) {
@@ -151,29 +196,31 @@ export function parseLine(
 ): {
     fileName: string,
     csvLines: string[],
+    eventYear: string | undefined,
 }[] {
     const outputLines: {
         fileName: string,
         csvLines: string[],
+        eventYear: string | undefined,
     }[] = [];
 
     // tcTypesごとに、出力用のlineを作成する
     for (const [index, tcType] of tcTypes.entries()) {
         if (betsuTableColumnTypesIndexes.includes(index)) {
             // 別テーブルの場合
-            const { fileName, csvLines } = createCsvLine_BetsuTable(
+            const { fileName, csvLines, eventYear } = createCsvLine_BetsuTable(
                 jvdataLine,
                 tcType,
             );
-            outputLines.push({ fileName, csvLines });
+            outputLines.push({ fileName, csvLines, eventYear });
         } else {
             // 通常の列の場合
             // 列のstartPosから、列のlength分の文字列を取得する
-            const { fileName, csvLine } = createCsvLine(
+            const { fileName, csvLine, eventYear } = createCsvLine(
                 jvdataLine,
                 tcType,
             );
-            outputLines.push({ fileName, csvLines: [csvLine] });
+            outputLines.push({ fileName, csvLines: [csvLine], eventYear });
         }
     }
 
@@ -190,11 +237,15 @@ export function createCsvLine(
 ): {
     fileName: string,
     csvLine: string,
+    eventYear: string | undefined,
 } {
     // elementsを、CSVの1行に変換して返す
+    const { csvLine, eventYear } = readColumns(jvdataLine, tcType.columns);
+
     return {
         fileName: `${tcType.tableNameEn}.csv`,
-        csvLine: readColumns(jvdataLine, tcType.columns),
+        csvLine,
+        eventYear,
     };
 }
 
@@ -208,6 +259,7 @@ export function createCsvLine_BetsuTable(
 ): {
     fileName: string,
     csvLines: string[],
+    eventYear: string | undefined,
 } {
     const fileName = `${tcType.tableNameEn}.csv`;
     const csvLines: string[] = [];
@@ -232,7 +284,7 @@ export function createCsvLine_BetsuTable(
     console.assert(tcType.columns[multiLineColumnStartingIndex - 1].columnNameEn === "seq", "単一行の最終項目は、seqのはず");
 
     // ColumnType[]を、CSVの1行に変換する
-    const csvLineSingleLine = readColumns(jvdataLine, tcType.columns);
+    const {csvLine: csvLineSingleLine, eventYear: eventYearSingleLine } = readColumns(jvdataLine, tcType.columns);
 
     // multiLineColumnStartingIndex 以降は、複数行の列
     const multiLineStartPos = tcType.columns[multiLineColumnStartingIndex].startPos;
@@ -251,7 +303,7 @@ export function createCsvLine_BetsuTable(
             oneLineColumns[j].startPos = (multiLineColumns[j].startPos as number[])[i];
         }
         // １行分のデータを取得
-        const oneLineCsvLine = readColumns(jvdataLine, oneLineColumns);
+        const {csvLine: oneLineCsvLine} = readColumns(jvdataLine, oneLineColumns);
         // 空の行の場合は、スキップする
         if (oneLineCsvLine.length === 0) {
             continue;
@@ -270,6 +322,7 @@ export function createCsvLine_BetsuTable(
     return {
         fileName,
         csvLines: retLines,
+        eventYear: eventYearSingleLine,
     };
 }
 
@@ -279,11 +332,17 @@ export function createCsvLine_BetsuTable(
 function readColumns(
     jvdataLine: string,
     columns: ColumnType[],
-): string {
+): {
+    csvLine: string,
+    eventYear: string | undefined,
+} {
     const retCsvElements: string[] = [];
 
     // 何かの要素が含まれているかどうか（空の行を判定する）
     let hasElements = false;
+
+    // eventYearの値
+    let eventYear: string | undefined = undefined;
 
     // 列のstartPosから、列のlength分の文字列を取得する
     for (const column of columns) {
@@ -310,17 +369,28 @@ function readColumns(
 
         // トリムした文字列を、CSVの要素として追加する
         retCsvElements.push(valueStrTrimmed);
+
+        // 項目名がeventYearの場合は、取得しておく
+        if (column.columnNameEn === "eventYear") {
+            eventYear = valueStrTrimmed;
+        }
     }
 
     // 空の行の場合は、空文字列を返す
     if (!hasElements) {
-        return "";
+        return {
+            csvLine: "",
+            eventYear,
+        };
     }
 
-    // elementsを、CSV要素の配列として返す
-    return retCsvElements
+    // elementsを、CSV要素が並んだ文字列として返す
+    return {
+        csvLine: retCsvElements
             .map(element => element.length > 0 ? `"${element}"` : element)
-            .join(",");
+            .join(","),
+        eventYear,
+    };
 }
 
 

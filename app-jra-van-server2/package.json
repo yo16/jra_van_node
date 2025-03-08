@@ -7,7 +7,7 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "start": "C:\\Users\\yoichiro\\AppData\\Local\\nvm\\v22.12.0\\node.exe dist/index.js",
+    "start": "npm run build && C:\\Users\\yoichiro\\AppData\\Local\\nvm\\v22.12.0\\node.exe dist/index.js",
     "build": "tsc",
     "dev": "npm run set-env && npm run build && nodemon --loader ts-node/esm src/index.ts",
     "set-env": "cross-env PATH=\"C:\\Users\\yoichiro\\AppData\\Local\\nvm\\v22.12.0;%PATH%\""

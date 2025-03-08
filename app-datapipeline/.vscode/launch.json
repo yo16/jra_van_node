@@ -17,9 +17,9 @@
         "program": "${workspaceFolder}/node_modules/jest/bin/jest",
         "args": [
           "--runTestsByPath",
-          "${workspaceFolder}/src/formats/jvdata/parseRecordFormat/__tests__/parseColumns.test.ts",
+          "${workspaceFolder}/src/db2parquet/__tests__/db2parquet_OneTable.test.ts",
           "-t",
-          "「別テーブル」の情報が正しくパースされること"
+          "Jest のテストが正しく実行できること"
         ],
         "console": "integratedTerminal",
         "internalConsoleOptions": "neverOpen"

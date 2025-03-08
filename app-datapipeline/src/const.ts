@@ -3,6 +3,7 @@ import path from "path";
 
 // JVDataの保存パス
 export const JVDATA_SAVE_PATH = path.join("..", "data", "JVData", "Accumulated");
+export const JVDATA_RT_SAVE_PATH = path.join("..", "data", "JVData", "RealTime");
 
 // CSVの保存パス
 export const CSV_SAVE_PATH = path.join("..", "data", "csv");
@@ -23,4 +24,12 @@ export const QUERY_EXTRACT_AND_INSERT_LATEST_RECORDS_PATH = path.join(QUERY_SAVE
 // データベースシステム名
 export const DB_SYSTEM_NAME = "SQLite";
 // データベースファイルパス
-export const DB_FILE_PATH = path.join("..", "data", "db", "jra_van_sqlite.db");
+//export const DB_FILE_PATH = path.join("..", "data", "db", "jra_van_sqlite.db");
+export const DB_FILE_PATH = path.join("C:", "tmp", "jra_van_sqlite.db");
+
+
+// Parquet
+// Parquetの保存パス
+export const PARQUET_DIR_PATH = path.join("..", "data", "parquet");
+// Parquetのチャンクサイズ
+export const PARQUET_CHUNK_SIZE = 1_000_000;
