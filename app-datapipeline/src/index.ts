@@ -36,7 +36,7 @@ convertAllJvdataToCsv();
 
 
 
-
+/*
 // for debug
 // １つの recordTypeId の jvdata を csv に変換する
 import { getTableColumnMap } from "./formats/jvdata/parseRecordFormat/getTableColumnMap.js";
@@ -73,7 +73,7 @@ const skipIfExists = true;
 //    tcMap["O2"],
 //    skipIfExists,
 //);
-
+*/
 
 
 /*
@@ -90,6 +90,7 @@ migrateLatestRecord();
 */
 
 
+/*
 // DBからParquetファイルを作成する
 import { db2parquet } from "./db2parquet/db2parquet.js";
 db2parquet();
@@ -104,9 +105,15 @@ db2parquet();
 //    //"RaceDetail",
 //    `test_${outputSubDir}`
 //);
+*/
 
 
 
+
+// GCSからParquetファイルをBigQueryにインポートする
+import path from "path";
+import { parquet2bq } from "./parquet2bq/parquet2bq.js";
+parquet2bq(path.join("..", "data", "parquet", "test1"));
 
 
 
