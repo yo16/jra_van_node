@@ -7,7 +7,8 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 
-import { send2Gcs } from "./send2Gcs.js";
+import { send2gcs } from "./send2gcs.js";
+import { importGcs2Bq } from "./importGcs2Bq.js";
 import { PARQUET_DIR_PATH } from "../const.js";
 
 
@@ -41,6 +42,7 @@ export async function parquet2bq(
     }
 
     // フォルダ内のParquetファイルの１つずつ、GCSへ格納する
+    const gcsUris: string[] = [];
     try {
         const files = await fs.readdirSync(parquetFolderPath);
         const parquetFileNames = files.filter(file => path.extname(file) === ".parquet");
@@ -48,11 +50,25 @@ export async function parquet2bq(
         // GCSへ格納する
         for (const parquetFileName of parquetFileNames) {
             const parquetFilePath = path.join(parquetFolderPath, parquetFileName);
-            await send2Gcs(parquetFilePath, storage);
+            const gcsUri = await send2gcs(parquetFilePath, storage);
+            gcsUris.push(gcsUri);
+            console.log(`send2gcs: ${gcsUri}`);
         }
     } catch (error) {
+        console.error("Parquetファイルの読み込みに失敗しました");
         console.error(error);
     }
+    console.log("Parquetファイルの読み込みに成功しました");
 
-    
+    // GCSからBigQueryへインポートする
+    try {
+        for (const gcsUri of gcsUris) {
+            await importGcs2Bq(gcsUri, bigquery, storage);
+            console.log(`import2bq: ${gcsUri}`);
+        }
+    } catch (error) {
+        console.error("GCSからBigQueryへのインポートに失敗しました");
+        console.error(error);
+    }
+    console.log("GCSからBigQueryへのインポートに成功しました");
 }

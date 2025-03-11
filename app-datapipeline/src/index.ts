@@ -113,7 +113,8 @@ db2parquet();
 // GCSからParquetファイルをBigQueryにインポートする
 import path from "path";
 import { parquet2bq } from "./parquet2bq/parquet2bq.js";
-parquet2bq(path.join("..", "data", "parquet", "test1"));
+//parquet2bq(path.join("..", "data", "parquet", "test1"));  // for debug
+parquet2bq(path.join("..", "data", "parquet", "2025-03-08"));
 
 
 
